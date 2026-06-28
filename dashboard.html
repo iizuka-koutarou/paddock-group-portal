@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
@@ -7,7 +7,18 @@
   <link rel="stylesheet" href="assets/css/portal.css" />
 </head>
 <body>
-  <div class="portal-layout">
+  <header class="paddock-header">
+  <div class="paddock-inner">
+    <div class="paddock-brand">
+      <div class="brand">PADDOCK Portal</div>
+      <div class="subtitle sr-only">Portal</div>
+    </div>
+    <div class="paddock-title">
+      <div class="page-name">PADDOCK GROUP Portal</div>
+    </div>
+    <a href="dashboard.html" class="home-btn">🏠 Portal HOME</a>
+  </div>
+</header><div class="portal-layout">
     <aside class="sidebar">
       <div class="sidebar-brand">
         <img src="assets/images/logos/paddock-logo.jpg" alt="PADDOCK" class="sidebar-logo-image" />
@@ -29,16 +40,17 @@
       </div>
     </aside>
 
-    <main class="main">
+    <main class="main page-shell">
       <div class="top-actions">
         <button type="button" class="ghost-button" onclick="resetDemo()">デモ初期化</button>
-        <button type="button" class="ghost-button admin-button">管理者</button>
+        <button type="button" class="ghost-button admin-button" onclick="window.location.href='paddock-group-academy-main/admin.html'">管理者</button>
       </div>
 
       <header class="page-header">
         <div>
           <p class="eyebrow">PADDOCK GROUP PORTAL</p>
           <h1><span id="greetingText">こんにちは。</span> <span id="greetingName">飯塚さん</span></h1>
+          <p class="lead">今日の勤務状況、お知らせ、Academy へすぐ遷移できます。</p>
         </div>
       </header>
 
@@ -83,6 +95,8 @@
 
           <div class="attendance-actions">
             <button type="button" class="btn btn-start" onclick="clockIn()">出社する</button>
+            <button type="button" class="btn btn-break" onclick="openBreakModal()">外出する</button>
+            <button type="button" class="btn btn-return" onclick="returnFromBreak()">戻る</button>
             <button type="button" class="btn btn-end" onclick="clockOut()">退勤する</button>
           </div>
 
@@ -104,6 +118,8 @@
             </div>
           </div>
 
+          <div id="breakStatusInfo" class="attendance-break-info" aria-live="polite"></div>
+
           <button type="button" class="link-button" onclick="openCorrection()">訂正申請をする ›</button>
         </article>
 
@@ -113,30 +129,30 @@
               <p class="eyebrow">NOTICE</p>
               <h2>お知らせ</h2>
             </div>
-            <a href="#" class="small-link">すべて見る ›</a>
+            <a href="#notice" class="small-link">すべて見る ›</a>
           </div>
           <ul id="noticeList" class="notice-list">
             <li>
               <time>07/01</time>
               <div class="notice-body">
-                <strong><a href="#">Portal Version 1.0 開発開始</a></strong>
+                <strong><a href="#notice">Portal Version 1.0 開発開始</a></strong>
                 <span class="tag tag-new">NEW</span>
               </div>
-              <a href="#" class="notice-link" aria-label="詳細を見る">›</a>
+              <a href="#notice" class="notice-link" aria-label="詳細を見る">›</a>
             </li>
             <li>
               <time>07/05</time>
               <div class="notice-body">
-                <strong><a href="#">共通教育コンテンツ更新予定</a></strong>
+                <strong><a href="#notice">共通教育コンテンツ更新予定</a></strong>
               </div>
-              <a href="#" class="notice-link" aria-label="詳細を見る">›</a>
+              <a href="#notice" class="notice-link" aria-label="詳細を見る">›</a>
             </li>
             <li>
               <time>07/12</time>
               <div class="notice-body">
-                <strong><a href="#">全体ミーティング資料を公開予定</a></strong>
+                <strong><a href="#notice">全体ミーティング資料を公開予定</a></strong>
               </div>
-              <a href="#" class="notice-link" aria-label="詳細を見る">›</a>
+              <a href="#notice" class="notice-link" aria-label="詳細を見る">›</a>
             </li>
           </ul>
         </article>
@@ -147,7 +163,7 @@
               <p class="eyebrow">NEXT EVENTS</p>
               <h2>次回イベント</h2>
             </div>
-            <a href="#" class="small-link">カレンダーを見る ›</a>
+            <a href="#events" class="small-link">カレンダーを見る ›</a>
           </div>
           <div class="event-list">
             <div class="event-item">
@@ -170,6 +186,7 @@
         </article>
 
         <article class="card academy-card" id="academy">
+          <div id="profile" class="sr-only"></div>
           <div class="card-head">
             <div>
               <p class="eyebrow">ACADEMY</p>
@@ -198,7 +215,7 @@
             </div>
           </div>
           <p>勤怠・お知らせ・イベントなどを管理します。</p>
-          <button type="button" class="outline-button">管理画面を開く ›</button>
+          <button type="button" class="outline-button" onclick="window.location.href='paddock-group-academy-main/admin.html'">管理画面を開く ›</button>
         </article>
       </section>
     </main>
@@ -213,6 +230,18 @@
       <div class="modal-actions">
         <button type="button" class="btn-secondary" onclick="closeCorrection()">閉じる</button>
         <button type="button" class="btn-primary" onclick="submitCorrection()">申請する</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="breakModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="breakModalTitle">
+    <div class="modal-panel">
+      <h2 id="breakModalTitle">外出理由を入力</h2>
+      <p>外出前に理由を入力し、「外出する」を押してください。</p>
+      <label>外出理由<input id="breakReasonInput" placeholder="例：昼食、銀行、納車、引取り、その他" /></label>
+      <div class="modal-actions">
+        <button type="button" class="btn-secondary" onclick="closeBreakModal()">キャンセル</button>
+        <button type="button" class="btn-primary" onclick="submitBreak()">外出する</button>
       </div>
     </div>
   </div>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="ja">
 <head>
@@ -9,11 +9,23 @@
 
 <link rel="stylesheet" href="assets/css/dashboard.css">
 
-</head>
+
+<link rel="stylesheet" href="../assets/css/academy-common.css" /></head>
 
 <body>
 
-<div class="container">
+<header class="paddock-header academy-kawasaki">
+  <div class="paddock-inner">
+    <div class="paddock-brand">
+      <div class="brand">PADDOCK Portal</div>
+      <div class="subtitle sr-only">Portal</div>
+    </div>
+    <div class="paddock-title">
+      <div class="page-name">PADDOCK GROUP ACADEMY</div>
+    </div>
+    <a href="../dashboard.html" class="home-btn">🏠 Portal HOME</a>
+  </div>
+</header><div class="container">
 
 <h1>PADDOCK GROUP ACADEMY</h1>
 
@@ -21,7 +33,7 @@
 
 <div class="subtitle">
 
-コンシェルジュ育成プログラム
+コンシェルジュ育成�Eログラム
 
 </div>
 
@@ -35,8 +47,7 @@
 
 <div class="progress-text">
 
-コンシェルジュ達成率
-
+コンシェルジュ達�E玁E
 </div>
 
 <div id="certificateArea"></div>
@@ -48,73 +59,73 @@
 <div class="card">
 <h3>① 身だしなみ</h3>
 <div id="appearanceStatus" class="status"></div>
-<a href="appearance.html">学習する</a>
+<a href="appearance.html">学習すめE/a>
 </div>
 
 <div class="card">
-<h3>② 電話対応</h3>
+<h3>② 電話対忁E/h3>
 <div id="phoneStatus" class="status"></div>
-<a href="phone.html">学習する</a>
+<a href="phone.html">学習すめE/a>
 </div>
 
 <div class="card">
-<h3>③ 店舗清掃</h3>
+<h3>③ 店�E渁E��</h3>
 <div id="cleaningStatus" class="status"></div>
-<a href="cleaning.html">学習する</a>
+<a href="cleaning.html">学習すめE/a>
 </div>
 
 <div class="card">
 <h3>④ 来店客把握</h3>
 <div id="customerStatus" class="status"></div>
-<a href="customer-check.html">学習する</a>
+<a href="customer-check.html">学習すめE/a>
 </div>
 
 <div class="card">
-<h3>⑤ 来店目的ヒアリング</h3>
+<h3>⑤ 来店目皁E��アリング</h3>
 <div id="hearingStatus" class="status"></div>
-<a href="hearing.html">学習する</a>
+<a href="hearing.html">学習すめE/a>
 </div>
 
 <div class="card">
-<h3>⑥ 来店アンケート</h3>
+<h3>⑥ 来店アンケーチE/h3>
 <div id="questionnaireStatus" class="status"></div>
-<a href="questionnaire.html">学習する</a>
+<a href="questionnaire.html">学習すめE/a>
 </div>
 
 <div class="card">
 <h3>⑦ ウェルカムドリンク</h3>
 <div id="drinkStatus" class="status"></div>
-<a href="welcome-drink.html">学習する</a>
+<a href="welcome-drink.html">学習すめE/a>
 </div>
 
 <div class="card">
-<h3>⑧ 見積作成</h3>
+<h3>⑧ 見積作�E</h3>
 <div id="estimateStatus" class="status"></div>
-<a href="estimate.html">学習する</a>
+<a href="estimate.html">学習すめE/a>
 </div>
 
 <div class="card">
-<h3>⑨ 査定</h3>
+<h3>⑨ 査宁E/h3>
 <div id="assessmentStatus" class="status"></div>
-<a href="assessment.html">学習する</a>
+<a href="assessment.html">学習すめE/a>
 </div>
 
 <div class="card">
-<h3>⑩ 契約</h3>
+<h3>⑩ 契紁E/h3>
 <div id="contractStatus" class="status"></div>
-<a href="contract.html">学習する</a>
+<a href="contract.html">学習すめE/a>
 </div>
 
 <div class="card">
-<h3>⑪ 納車</h3>
+<h3>⑪ 納軁E/h3>
 <div id="deliveryStatus" class="status"></div>
-<a href="delivery.html">学習する</a>
+<a href="delivery.html">学習すめE/a>
 </div>
 
 <div class="card">
 <h3>⑫ アフターフォロー</h3>
 <div id="afterStatus" class="status"></div>
-<a href="after-follow.html">学習する</a>
+<a href="after-follow.html">学習すめE/a>
 </div>
 
 </div>
@@ -123,8 +134,7 @@
 
 <a href="welcome.html">
 
-🏠 TOPへ戻る
-
+🏠 TOPへ戻めE
 </a>
 
 </div>
@@ -165,12 +175,12 @@ document.getElementById(item[1]);
 
 if(isCompleted(item[0])){
 
-target.innerHTML = "✅ 修了";
+target.innerHTML = "✁E修亁E;
 target.classList.add("complete");
 
 }else{
 
-target.innerHTML = "🔒 未修了";
+target.innerHTML = "🔒 未修亁E;
 target.classList.add("lock");
 
 }
@@ -184,7 +194,7 @@ if(isAcademyCompleted()){
 
 document.getElementById("certificateArea").innerHTML =
 
-'<a href="concierge-complete.html" class="certificate-btn">🏆 修了証を見る</a>';
+'<a href="concierge-complete.html" class="certificate-btn">🏆 修亁E��を見る</a>';
 
 }
 
@@ -192,3 +202,4 @@ document.getElementById("certificateArea").innerHTML =
 
 </body>
 </html>
+

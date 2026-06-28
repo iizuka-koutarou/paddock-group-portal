@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>PADOCK GROUP ACADEMY</title>
-
+<link rel="stylesheet" href="../assets/css/portal.css" />
 <style>
 
 *{
@@ -18,8 +18,8 @@ font-family:"Yu Gothic",sans-serif;
 body{
 background:
 linear-gradient(
-rgba(0,0,0,.55),
-rgba(0,0,0,.75)
+rgba(0,0,0,.58),
+rgba(0,0,0,.80)
 ),
 url("paddock-top.jpg");
 
@@ -31,273 +31,227 @@ color:white;
 }
 
 .container{
-max-width:1200px;
+max-width:1180px;
 margin:auto;
-padding:80px 30px;
+padding:70px 34px;
 }
 
 .logo{
 text-align:center;
-letter-spacing:8px;
-color:rgba(255,255,255,.75);
-font-weight:bold;
-margin-bottom:20px;
+letter-spacing:10px;
+color:rgba(255,255,255,.72);
+font-weight:800;
+margin-bottom:18px;
+font-size:13px;
 }
 
 .hero{
 text-align:center;
-margin-bottom:60px;
+margin-bottom:54px;
 }
 
 .hero h1{
-font-size:72px;
-margin-bottom:20px;
+font-size:clamp(48px, 7vw, 70px);
+line-height:1.02;
+letter-spacing:.04em;
+margin-bottom:18px;
 }
 
 #user-name{
-margin-top:20px;
+margin-top:18px;
 font-size:30px;
-font-weight:bold;
-color:#6CFF6C;
+font-weight:800;
+color:#c8dca8;
 }
 
 .catch{
-font-size:24px;
-line-height:2;
-color:#ddd;
-margin-top:20px;
+font-size:20px;
+line-height:1.9;
+color:rgba(255,255,255,.82);
+margin-top:24px;
+max-width:760px;
+margin-left:auto;
+margin-right:auto;
 }
 
 .status-panel{
-max-width:900px;
-margin:0 auto 60px;
 background:rgba(255,255,255,.96);
-padding:35px;
-border-radius:20px;
-color:#222;
-box-shadow:0 10px 30px rgba(0,0,0,.2);
+padding:34px;
+border-radius:28px;
+color:#111827;
+box-shadow:0 24px 72px rgba(0,0,0,.16);
+border:1px solid rgba(17,24,39,.08);
 }
 
 .status-panel h2{
 text-align:center;
-color:#1F3A5F;
-margin-bottom:25px;
+color:#111827;
+margin-bottom:24px;
+font-size:26px;
+letter-spacing:.02em;
 }
 
 .status-item{
 display:flex;
 justify-content:space-between;
-padding:15px 0;
-border-bottom:1px solid #eee;
-font-size:18px;
+align-items:center;
+padding:16px 0;
+border-bottom:1px solid rgba(15,23,42,.08);
+font-size:16px;
 }
 
 .status-item:last-child{
 border-bottom:none;
 }
 
+.status-item span{
+font-weight:800;
+}
+
 .total-pass{
 text-align:center;
-margin-top:25px;
-font-size:28px;
-font-weight:bold;
-color:#1F3A5F;
+margin-top:28px;
+font-size:26px;
+font-weight:900;
+color:#111827;
 }
 
 .section-title{
 text-align:center;
 font-size:36px;
-margin-bottom:15px;
+margin-bottom:14px;
+letter-spacing:.01em;
 }
 
 .section-sub{
 text-align:center;
-color:#ddd;
-margin-bottom:30px;
+color:rgba(255,255,255,.75);
+margin-bottom:32px;
+font-size:16px;
+line-height:1.85;
 }
 
 .roadmap{
-max-width:500px;
-margin:0 auto 60px;
-background:rgba(255,255,255,.95);
-padding:25px;
-border-radius:20px;
-color:#1F3A5F;
+background:rgba(255,255,255,.92);
+padding:28px;
+border-radius:28px;
+color:#111827;
+box-shadow:0 20px 56px rgba(0,0,0,.14);
+border:1px solid rgba(17,24,39,.08);
 }
 
 .road-step{
 text-align:center;
-padding:10px;
+padding:16px 0;
 font-size:18px;
-font-weight:bold;
+font-weight:900;
+letter-spacing:.02em;
 }
 
 .arrow{
 text-align:center;
-font-size:18px;
+font-size:15px;
+color:#475569;
+margin:8px 0;
 }
 
 .menu-grid{
 display:grid;
-grid-template-columns:
-repeat(auto-fit,minmax(260px,1fr));
-gap:25px;
-margin-top:50px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:24px;
+margin-top:48px;
 }
 
 .menu-card{
-background:rgba(255,255,255,.95);
-padding:30px;
-border-radius:20px;
+background:rgba(255,255,255,.94);
+padding:28px 26px;
+border-radius:24px;
 text-decoration:none;
-color:#222;
-transition:.3s;
+color:#111827;
+transition:transform .24s ease,box-shadow .24s ease;
+border:1px solid rgba(17,24,39,.08);
+box-shadow:0 20px 56px rgba(17,24,39,.08);
 }
 
 .menu-card:hover{
-transform:translateY(-5px);
-border-bottom:5px solid #1F3A5F;
+transform:translateY(-3px);
+box-shadow:0 26px 68px rgba(17,24,39,.12);
 }
 
 .menu-card h3{
-color:#1F3A5F;
-margin-bottom:10px;
+color:#111827;
+margin-bottom:12px;
+font-size:20px;
 }
 
 .menu-card p{
-color:#666;
+color:#475569;
 line-height:1.8;
 }
 
 .footer{
 text-align:center;
 margin-top:80px;
-color:rgba(255,255,255,.7);
+color:rgba(255,255,255,.70);
 font-size:14px;
 }
 
 </style>
 
-</head>
+
+<link rel="stylesheet" href="../assets/css/academy-common.css" /></head>
 
 <body>
 
-<div class="container">
+<header class="paddock-header academy-kawasaki">
+  <div class="paddock-inner">
+    <div class="paddock-brand">
+      <div class="brand">PADDOCK Portal</div>
+      <div class="subtitle sr-only">Portal</div>
+    </div>
+    <div class="paddock-title">
+      <div class="page-name">PADOCK GROUP ACADEMY</div>
+    </div>
+    <a href="../dashboard.html" class="home-btn">🏠 Portal HOME</a>
+  </div>
+</header><div class="container">
 
 <div class="logo">
 PADOCK GROUP
 </div>
 
 <div class="hero">
+  <header class="page-header">
+    <a href="../dashboard.html" class="home-link">Portal HOME</a>
+  </header>
 
 <h1>ACADEMY</h1>
 
 <div id="user-name"></div>
 
 <div class="catch">
-学び、成長し、<br>
-お客様へ価値を届ける。
-</div>
+学び、�E長し、Ebr>
+お客様へ価値を届ける、E</div>
 
-</div>
-
-  <!-- 認定状況 -->
-
-<div class="status-panel">
-
-<h2>🏆 認定状況</h2>
-
-<div class="status-item">
-<span>共通教育試験</span>
-<span id="common-status">❌ 未受験</span>
-</div>
-
-<div class="status-item">
-<span>Kawasaki 基礎試験</span>
-<span id="basic-status">❌ 未受験</span>
-</div>
-
-<div class="status-item">
-<span>Kawasaki コンシェルジュ試験</span>
-<span id="concierge-status">❌ 未受験</span>
-</div>
-
-<div class="status-item">
-<span>Kawasaki テクニシャン試験</span>
-<span id="technician-status">❌ 未受験</span>
-</div>
-
-<div class="status-item">
-<span>Ducati セールス試験</span>
-<span id="ducati-sales-status">❌ 未受験</span>
-</div>
-
-<div class="status-item">
-<span>Ducati サービス試験</span>
-<span id="ducati-service-status">❌ 未受験</span>
-</div>
-
-<div class="total-pass" id="total-pass">
-0 / 6 合格
-</div>
-
-</div>
-
-<!-- ロードマップ -->
-
-<h2 class="section-title">
-📚 学習ロードマップ
-</h2>
-
-<p class="section-sub">
-共通教育 → 共通スキル → ブランド教育 → 職種教育
-</p>
-
-<div class="roadmap">
-
-<div class="road-step">共通教育</div>
-<div class="arrow">↓</div>
-
-<div class="road-step">共通スキル</div>
-<div class="arrow">↓</div>
-
-<div class="road-step">ブランド教育</div>
-<div class="arrow">↓</div>
-
-<div class="road-step">職種教育</div>
-
-</div>
-
-<!-- メニュー -->
-
-<div class="menu-grid">
-
-<a href="common-education.html" class="menu-card">
-<h3>📚 共通教育</h3>
-<p>
-入社初日・四方良し・共通教育試験
-</p>
-</a>
+<a href="../dashboard.html" class="home-link">Portal HOME</a>
 
 <a href="common-skill.html" class="menu-card">
 <h3>📞 共通スキル</h3>
 <p>
-社会人として・挨拶・報連相・電話対応・クレーム対応
-</p>
+社会人として・挨拶・報連相・電話対応�Eクレーム対忁E</p>
 </a>
 
 <a href="next-stage.html" class="menu-card">
-<h3>🏍 ブランド選択</h3>
+<h3>🏍 ブランド選抁E/h3>
 <p>
 Kawasaki Academy / Ducati Academy
 </p>
 </a>
 
 <a href="admin.html" class="menu-card">
-<h3>👨‍💼 管理者ページ</h3>
+<h3>👨‍💼 管琁E��E�Eージ</h3>
 <p>
-社員管理・試験状況確認
-</p>
+社員管琁E�E試験状況確誁E</p>
 </a>
 
 </div>
@@ -335,7 +289,7 @@ userName +
 
 }
 
-/* 試験判定 */
+/* 試験判宁E*/
 
 function checkStatus(id,key){
 
@@ -349,7 +303,7 @@ user + "_" + key
 if(result === "pass"){
 
 document.getElementById(id).innerHTML =
-"✅ 合格";
+"✁E合格";
 
 passCount++;
 
@@ -374,3 +328,7 @@ passCount + " / 6 合格";
 
 </body>
 </html>
+
+
+
+

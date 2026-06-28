@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -119,11 +119,23 @@ text-align:center;
 
 </style>
 
-</head>
+
+<link rel="stylesheet" href="../assets/css/academy-common.css" /></head>
 
 <body>
 
-<div class="login-box">
+<header class="paddock-header academy-kawasaki">
+  <div class="paddock-inner">
+    <div class="paddock-brand">
+      <div class="brand">PADDOCK Portal</div>
+      <div class="subtitle sr-only">Portal</div>
+    </div>
+    <div class="paddock-title">
+      <div class="page-name">PADOCK GROUP ACADEMY LOGIN</div>
+    </div>
+    <a href="../dashboard.html" class="home-btn">🏠 Portal HOME</a>
+  </div>
+</header><div class="login-box">
 
 <h1>PADOCK GROUP<br>ACADEMY</h1>
 
@@ -166,7 +178,7 @@ document.getElementById(
 "error"
 ).innerHTML =
 
-"IDまたはパスワードが違います";
+"IDまた�Eパスワードが違いまぁE;
 
 return;
 
@@ -178,7 +190,7 @@ document.getElementById(
 "error"
 ).innerHTML =
 
-"IDまたはパスワードが違います";
+"IDまた�Eパスワードが違いまぁE;
 
 return;
 
@@ -201,13 +213,15 @@ new Date().toLocaleString()
 
 if(user.role === "admin"){
 
-location.href =
-"admin.html";
+location.replace(
+"admin.html"
+);
 
 }else{
 
-location.href =
-"welcome.html";
+location.replace(
+"welcome.html"
+);
 
 }
 
@@ -217,3 +231,4 @@ location.href =
 
 </body>
 </html>
+

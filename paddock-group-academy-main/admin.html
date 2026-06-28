@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PADOCK GROUP ACADEMY 管理者ページ</title>
-
+<title>PADOCK GROUP ACADEMY 管琁E��E�Eージ</title>
+<link rel="stylesheet" href="../assets/css/portal.css" />
 <style>
 
 *{
@@ -20,7 +20,7 @@ body{
 background:
 linear-gradient(
 rgba(0,0,0,.60),
-rgba(0,0,0,.85)
+rgba(0,0,0,.86)
 ),
 url("paddock-top.jpg");
 
@@ -32,9 +32,9 @@ color:white;
 }
 
 .container{
-max-width:1200px;
+max-width:1180px;
 margin:auto;
-padding:80px 30px;
+padding:70px 34px;
 }
 
 .hero{
@@ -43,84 +43,146 @@ margin-bottom:50px;
 }
 
 .hero h1{
-font-size:60px;
-margin-bottom:10px;
+font-size:clamp(48px, 7vw, 64px);
+margin-bottom:14px;
+letter-spacing:.04em;
 }
 
 .hero p{
-color:#ddd;
+color:rgba(255,255,255,.78);
+font-size:17px;
+line-height:1.9;
+max-width:720px;
+margin:0 auto;
 }
 
 .employee-card{
-
-background:
-rgba(255,255,255,.96);
-
-color:#222;
-
+background:rgba(255,255,255,.94);
+color:#111827;
 padding:30px;
-
-border-radius:20px;
-
+border-radius:24px;
 margin-bottom:25px;
-
-box-shadow:
-0 10px 30px rgba(0,0,0,.15);
-
+box-shadow:0 28px 72px rgba(0,0,0,.14);
+border:1px solid rgba(17,24,39,.08);
 }
 
 .employee-name{
-
-font-size:28px;
-
-font-weight:bold;
-
-color:#1F3A5F;
-
+font-size:26px;
+font-weight:900;
+color:#111827;
 margin-bottom:10px;
-
 }
 
 .login-date{
-
-color:#666;
-
-margin-bottom:20px;
-
+color:#475569;
+margin-bottom:18px;
 }
 
 .test-row{
-
 display:flex;
-
 justify-content:space-between;
-
-padding:10px 0;
-
-border-bottom:1px solid #eee;
-
+align-items:center;
+padding:16px 0;
+border-bottom:1px solid rgba(15,23,42,.08);
+font-size:15px;
 }
 
 .test-row:last-child{
 border-bottom:none;
 }
 
+.management-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:22px;
+margin-bottom:28px;
+}
+
+.management-card{
+background:rgba(255,255,255,.94);
+color:#111827;
+padding:28px 26px;
+border-radius:24px;
+border:1px solid rgba(17,24,39,.08);
+box-shadow:0 24px 64px rgba(0,0,0,.14);
+display:grid;
+gap:14px;
+transition:transform .2s ease,box-shadow .2s ease;
+}
+
+.management-card:hover{
+transform:translateY(-3px);
+box-shadow:0 28px 72px rgba(0,0,0,.16);
+}
+
+.management-card h3{
+margin:0;
+font-size:22px;
+color:#111827;
+}
+
+.management-card p{
+margin:0;
+color:#475569;
+line-height:1.7;
+font-size:15px;
+}
+
+.status-pill{
+display:inline-flex;
+align-items:center;
+padding:9px 16px;
+border-radius:999px;
+font-size:12px;
+font-weight:900;
+letter-spacing:.04em;
+}
+
+.status-pill.active{
+background:#dcfce7;
+color:#166534;
+}
+
+.status-pill.coming-soon{
+background:#f8fafc;
+color:#334155;
+border:1px solid rgba(15,23,42,.08);
+}
+
+.info-panel{
+background:rgba(255,255,255,.96);
+color:#111827;
+padding:28px 30px;
+border-radius:24px;
+border:1px solid rgba(17,24,39,.08);
+box-shadow:0 24px 68px rgba(0,0,0,.14);
+margin-bottom:32px;
+}
+
+.info-panel strong{
+display:block;
+margin-bottom:12px;
+font-size:20px;
+color:#111827;
+}
+
 .back-btn{
-
-display:inline-block;
-
+display:inline-flex;
 margin-top:30px;
-
-padding:15px 30px;
-
-background:#1F3A5F;
-
-color:white;
-
+padding:16px 32px;
+background:rgba(255,255,255,.96);
+color:#111827;
 text-decoration:none;
+border-radius:22px;
+font-weight:900;
+letter-spacing:.02em;
+box-shadow:0 18px 40px rgba(0,0,0,.12);
+transition:transform .18s ease,box-shadow .18s ease;
+}
 
-border-radius:10px;
-
+.back-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 22px 48px rgba(0,0,0,.16);
 }
 
 .center{
@@ -129,34 +191,35 @@ text-align:center;
 
 </style>
 
-</head>
+
+<link rel="stylesheet" href="../assets/css/academy-common.css" /></head>
 
 <body>
 
-<div class="container">
+<header class="paddock-header academy-kawasaki">
+  <div class="paddock-inner">
+    <div class="paddock-brand">
+      <div class="brand">PADDOCK Portal</div>
+      <div class="subtitle sr-only">Portal</div>
+    </div>
+    <div class="paddock-title">
+      <div class="page-name">PADOCK GROUP ACADEMY 管琁E��E�Eージ</div>
+    </div>
+    <a href="../dashboard.html" class="home-btn">🏠 Portal HOME</a>
+  </div>
+</header><div class="container">
 
 <div class="hero">
+  <header class="page-header">
+    <a href="../dashboard.html" class="home-link">Portal HOME</a>
+  </header>
 
-<h1>👨‍💼 管理者ページ</h1>
+<h1>👨‍💼 管琁E��E�Eージ</h1>
 
 <p>
-社員の学習状況を確認
-</p>
+社員の学習状況を確誁E</p>
 
-</div>
-
-<div id="employee-list">
-
-</div>
-
-<div class="center">
-
-<a href="welcome.html"
-class="back-btn">
-
-🏠 Academy TOPへ戻る
-
-</a>
+<a href="../dashboard.html" class="home-link">Portal HOME</a>
 
 </div>
 
@@ -168,17 +231,17 @@ const employees = [
 
 {
 id:"iizuka_k",
-name:"飯塚康太郎"
+name:"飯塚康太郁E
 },
 
 {
 id:"iizuka_s",
-name:"飯塚宗一郎"
+name:"飯塚宗一郁E
 },
 
 {
 id:"aoshima",
-name:"青島昇平"
+name:"青島昁E��"
 }
 
 ];
@@ -200,43 +263,43 @@ const common =
 localStorage.getItem(
 emp.id + "_common"
 ) === "pass"
-? "✅"
-: "❌";
+? "✁E
+: "❁E;
 
 const basic =
 localStorage.getItem(
 emp.id + "_basic"
 ) === "pass"
-? "✅"
-: "❌";
+? "✁E
+: "❁E;
 
 const concierge =
 localStorage.getItem(
 emp.id + "_concierge"
 ) === "pass"
-? "✅"
-: "❌";
+? "✁E
+: "❁E;
 
 const technician =
 localStorage.getItem(
 emp.id + "_technician"
 ) === "pass"
-? "✅"
-: "❌";
+? "✁E
+: "❁E;
 
 const sales =
 localStorage.getItem(
 emp.id + "_ducati_sales"
 ) === "pass"
-? "✅"
-: "❌";
+? "✁E
+: "❁E;
 
 const service =
 localStorage.getItem(
 emp.id + "_ducati_service"
 ) === "pass"
-? "✅"
-: "❌";
+? "✁E
+: "❁E;
 
 const lastLogin =
 localStorage.getItem(
@@ -255,38 +318,37 @@ ${emp.name}
 
 <div class="login-date">
 
-最終ログイン：
-${lastLogin}
+最終ログイン�E�E${lastLogin}
 
 </div>
 
 <div class="test-row">
-<span>共通教育試験</span>
+<span>共通教育試騁E/span>
 <span>${common}</span>
 </div>
 
 <div class="test-row">
-<span>Kawasaki基礎試験</span>
+<span>Kawasaki基礎試騁E/span>
 <span>${basic}</span>
 </div>
 
 <div class="test-row">
-<span>Kawasakiコンシェルジュ試験</span>
+<span>Kawasakiコンシェルジュ試騁E/span>
 <span>${concierge}</span>
 </div>
 
 <div class="test-row">
-<span>Kawasakiテクニシャン試験</span>
+<span>KawasakiチE��ニシャン試騁E/span>
 <span>${technician}</span>
 </div>
 
 <div class="test-row">
-<span>Ducatiセールス試験</span>
+<span>Ducatiセールス試騁E/span>
 <span>${sales}</span>
 </div>
 
 <div class="test-row">
-<span>Ducatiサービス試験</span>
+<span>Ducatiサービス試騁E/span>
 <span>${service}</span>
 </div>
 
@@ -301,3 +363,7 @@ area.appendChild(card);
 </body>
 </html>
 ```
+
+
+
+

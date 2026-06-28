@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
@@ -7,7 +7,18 @@
   <link rel="stylesheet" href="assets/css/login.css" />
 </head>
 <body class="login-page">
-  <main class="login-shell">
+  <header class="paddock-header">
+  <div class="paddock-inner">
+    <div class="paddock-brand">
+      <div class="brand">PADDOCK Portal</div>
+      <div class="subtitle sr-only">Portal</div>
+    </div>
+    <div class="paddock-title">
+      <div class="page-name">PADDOCK GROUP Portal</div>
+    </div>
+    <a href="dashboard.html" class="home-btn">🏠 Portal HOME</a>
+  </div>
+</header><main class="login-shell">
     <section class="login-brand" aria-label="PADDOCK GROUP Portal">
       <p class="brand-kicker">PADDOCK GROUP PORTAL</p>
       <img class="brand-logo-image" src="assets/images/logos/paddock-logo.jpg" alt="PADDOCK" />
@@ -45,7 +56,7 @@
   <script>
     function login(event) {
       event.preventDefault();
-      window.location.href = "dashboard.html";
+      window.location.replace("dashboard.html");
     }
   </script>
 </body>

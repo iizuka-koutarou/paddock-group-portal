@@ -1,6 +1,8 @@
 const state = {
   clockIn: localStorage.getItem("paddock_clock_in") || "",
   clockOut: localStorage.getItem("paddock_clock_out") || "",
+  breakStatus: localStorage.getItem("paddock_break_status") || "",
+  breakReason: localStorage.getItem("paddock_break_reason") || "",
 };
 
 const WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"];
@@ -149,11 +151,15 @@ function renderAttendance() {
   const clockInLabel = document.getElementById("clockInLabel");
   const clockOutLabel = document.getElementById("clockOutLabel");
   const workDurationLabel = document.getElementById("workDurationLabel");
+  const breakStatusInfo = document.getElementById("breakStatusInfo");
   const clockInButton = document.querySelector(".btn-start");
+  const breakButton = document.querySelector(".btn-break");
+  const returnButton = document.querySelector(".btn-return");
   const clockOutButton = document.querySelector(".btn-end");
 
   const start = parseDateTime(state.clockIn);
   const end = parseDateTime(state.clockOut);
+  const isBreak = state.breakStatus === "out";
 
   if (clockInTime) clockInTime.textContent = start ? formatStoredTime(state.clockIn) : "--:--:--";
   if (clockOutTime) clockOutTime.textContent = end ? formatStoredTime(state.clockOut) : "--:--:--";
@@ -166,19 +172,39 @@ function renderAttendance() {
     if (workDurationLabel) workDurationLabel.textContent = "確定";
     setStatusBadge("勤務終了", "is-done");
     if (clockInButton) clockInButton.disabled = true;
+    if (breakButton) breakButton.disabled = true;
+    if (returnButton) returnButton.disabled = true;
     if (clockOutButton) clockOutButton.disabled = true;
+    if (breakStatusInfo) breakStatusInfo.textContent = "勤務は終了しました。";
+  } else if (start && isBreak) {
+    if (workDuration) workDuration.textContent = formatDuration(new Date() - start);
+    if (workDurationLabel) workDurationLabel.textContent = "外出中";
+    setStatusBadge("外出中", "is-break");
+    if (clockInButton) clockInButton.disabled = true;
+    if (breakButton) breakButton.disabled = true;
+    if (returnButton) returnButton.disabled = false;
+    if (clockOutButton) clockOutButton.disabled = true;
+    if (breakStatusInfo) {
+      breakStatusInfo.textContent = state.breakReason ? `外出中：${state.breakReason}` : "外出中です。";
+    }
   } else if (start) {
     if (workDuration) workDuration.textContent = formatDuration(new Date() - start);
     if (workDurationLabel) workDurationLabel.textContent = "勤務中";
     setStatusBadge("勤務中", "is-working");
     if (clockInButton) clockInButton.disabled = true;
+    if (breakButton) breakButton.disabled = false;
+    if (returnButton) returnButton.disabled = true;
     if (clockOutButton) clockOutButton.disabled = false;
+    if (breakStatusInfo) breakStatusInfo.textContent = "";
   } else {
     if (workDuration) workDuration.textContent = "00時間00分00秒";
     if (workDurationLabel) workDurationLabel.textContent = "未確定";
-    setStatusBadge("未打刻", "is-pending");
+    setStatusBadge("出社前", "is-pending");
     if (clockInButton) clockInButton.disabled = false;
+    if (breakButton) breakButton.disabled = true;
+    if (returnButton) returnButton.disabled = true;
     if (clockOutButton) clockOutButton.disabled = true;
+    if (breakStatusInfo) breakStatusInfo.textContent = "";
   }
 }
 
@@ -187,17 +213,54 @@ function clockIn() {
   const now = new Date().toISOString();
   state.clockIn = now;
   state.clockOut = "";
+  state.breakStatus = "";
+  state.breakReason = "";
   localStorage.setItem("paddock_clock_in", state.clockIn);
   localStorage.removeItem("paddock_clock_out");
+  localStorage.removeItem("paddock_break_status");
+  localStorage.removeItem("paddock_break_reason");
   renderAttendance();
 }
 
 function clockOut() {
-  if (!state.clockIn || state.clockOut) {
+  if (!state.clockIn || state.clockOut || state.breakStatus === "out") {
     return;
   }
   state.clockOut = new Date().toISOString();
   localStorage.setItem("paddock_clock_out", state.clockOut);
+  renderAttendance();
+}
+
+function openBreakModal() {
+  if (!state.clockIn || state.clockOut || state.breakStatus === "out") return;
+  document.getElementById("breakModal").classList.add("is-open");
+}
+
+function closeBreakModal() {
+  document.getElementById("breakModal").classList.remove("is-open");
+}
+
+function submitBreak() {
+  const reasonInput = document.getElementById("breakReasonInput");
+  const reason = reasonInput ? reasonInput.value.trim() : "";
+  if (!reason) {
+    alert("外出理由を入力してください。");
+    return;
+  }
+  state.breakStatus = "out";
+  state.breakReason = reason;
+  localStorage.setItem("paddock_break_status", state.breakStatus);
+  localStorage.setItem("paddock_break_reason", state.breakReason);
+  closeBreakModal();
+  renderAttendance();
+}
+
+function returnFromBreak() {
+  if (state.breakStatus !== "out") return;
+  state.breakStatus = "";
+  state.breakReason = "";
+  localStorage.removeItem("paddock_break_status");
+  localStorage.removeItem("paddock_break_reason");
   renderAttendance();
 }
 
@@ -233,8 +296,12 @@ function resetDemo() {
   localStorage.removeItem("paddock_clock_in");
   localStorage.removeItem("paddock_clock_out");
   localStorage.removeItem("paddock_correction_request");
+  localStorage.removeItem("paddock_break_status");
+  localStorage.removeItem("paddock_break_reason");
   state.clockIn = "";
   state.clockOut = "";
+  state.breakStatus = "";
+  state.breakReason = "";
   const correctionText = document.getElementById("correctionText");
   if (correctionText) correctionText.textContent = "現在、申請はありません。";
   renderAttendance();
