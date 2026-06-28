@@ -31,8 +31,8 @@
 
     <main class="main">
       <div class="top-actions">
-        <button class="ghost-button" onclick="resetDemo()">デモ初期化</button>
-        <button class="ghost-button admin-button">管理者</button>
+        <button type="button" class="ghost-button" onclick="resetDemo()">デモ初期化</button>
+        <button type="button" class="ghost-button admin-button">管理者</button>
       </div>
 
       <header class="page-header">
@@ -84,8 +84,8 @@
           </div>
 
           <div class="attendance-actions">
-            <button class="btn btn-start" onclick="clockIn()">出社する</button>
-            <button class="btn btn-end" onclick="clockOut()">退勤する</button>
+            <button type="button" class="btn btn-start" onclick="clockIn()">出社する</button>
+            <button type="button" class="btn btn-end" onclick="clockOut()">退勤する</button>
           </div>
 
           <div class="time-summary">
@@ -106,7 +106,7 @@
             </div>
           </div>
 
-          <button class="link-button" onclick="openCorrection()">訂正申請をする ›</button>
+          <button type="button" class="link-button" onclick="openCorrection()">訂正申請をする ›</button>
         </article>
 
         <article class="card notice-card" id="notice">
@@ -193,15 +193,15 @@
     </main>
   </div>
 
-  <div id="correctionModal" class="modal" aria-hidden="true">
+  <div id="correctionModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="correctionModalTitle">
     <div class="modal-panel">
-      <h2>訂正申請</h2>
+      <h2 id="correctionModalTitle">訂正申請</h2>
       <p>間違えて打刻した場合は、理由を入力して申請してください。</p>
       <label>訂正内容<input id="correctionValue" placeholder="例：出社 09:12:15 → 08:58:00" /></label>
       <label>理由<textarea id="correctionReason" placeholder="例：押し忘れのため"></textarea></label>
       <div class="modal-actions">
-        <button class="btn-secondary" onclick="closeCorrection()">閉じる</button>
-        <button class="btn-primary" onclick="submitCorrection()">申請する</button>
+        <button type="button" class="btn-secondary" onclick="closeCorrection()">閉じる</button>
+        <button type="button" class="btn-primary" onclick="submitCorrection()">申請する</button>
       </div>
     </div>
   </div>
