@@ -1,0 +1,196 @@
+<section class="hero">
+
+<h1>匠試験</h1>
+
+<p>
+
+TECHNICIAN ACADEMY 修了認定試験
+
+</p>
+
+</section>
+
+<div class="container">
+
+<div class="section">
+
+<h2>試験について</h2>
+
+<p>
+
+全10問です。
+
+8問以上正解で合格となります。
+
+不合格の場合は、もう一度学習してから挑戦してください。
+
+</p>
+
+</div>
+
+<form id="testForm">
+
+<div class="question">
+
+<h3>Q1. テクニシャンの役割として最も適切なのは？</h3>
+
+<label><input type="radio" name="q1" value="a"> 部品交換を行うこと</label><br> <label><input type="radio" name="q1" value="b"> お客様の安全と安心を支えること</label><br> <label><input type="radio" name="q1" value="c"> 車両販売を行うこと</label>
+
+</div>
+
+<div class="question">
+
+<h3>Q2. ヒアリングで最も大切なことは？</h3>
+
+<label><input type="radio" name="q2" value="a"> 先に原因を決める</label><br> <label><input type="radio" name="q2" value="b"> 症状を正確に把握する</label><br> <label><input type="radio" name="q2" value="c"> すぐに部品交換する</label>
+
+</div>
+
+<div class="question">
+
+<h3>Q3. 点検の目的は？</h3>
+
+<label><input type="radio" name="q3" value="a"> 故障を予防する</label><br> <label><input type="radio" name="q3" value="b"> 洗車をする</label><br> <label><input type="radio" name="q3" value="c"> 車検を取る</label>
+
+</div>
+
+<div class="question">
+
+<h3>Q4. 点検時に確認する項目として適切なのは？</h3>
+
+<label><input type="radio" name="q4" value="a"> タイヤ</label><br> <label><input type="radio" name="q4" value="b"> ブレーキ</label><br> <label><input type="radio" name="q4" value="c"> 上記すべて</label>
+
+</div>
+
+<div class="question">
+
+<h3>Q5. 車検の本来の目的は？</h3>
+
+<label><input type="radio" name="q5" value="a"> 車検に通ること</label><br> <label><input type="radio" name="q5" value="b"> 次の2年間を安心して乗っていただくこと</label>
+
+</div>
+
+<div class="question">
+
+<h3>Q6. 故障診断で最も重要なことは？</h3>
+
+<label><input type="radio" name="q6" value="a"> 推測で部品交換する</label><br> <label><input type="radio" name="q6" value="b"> 原因を特定する</label>
+
+</div>
+
+<div class="question">
+
+<h3>Q7. 故障診断の流れとして正しいのは？</h3>
+
+<label><input type="radio" name="q7" value="a"> 部品交換 → 確認</label><br> <label><input type="radio" name="q7" value="b"> ヒアリング → 症状確認 → 原因特定</label>
+
+</div>
+
+<div class="question">
+
+<h3>Q8. 匠の「K」は何を意味する？</h3>
+
+<label><input type="radio" name="q8" value="a"> Knowledge</label><br> <label><input type="radio" name="q8" value="b"> Kawasaki</label>
+
+</div>
+
+<div class="question">
+
+<h3>Q9. 匠プログラムで目指すものは？</h3>
+
+<label><input type="radio" name="q9" value="a"> 技術だけを学ぶこと</label><br> <label><input type="radio" name="q9" value="b"> 技術・知識・対応力を兼ね備えたスタッフ</label>
+
+</div>
+
+<div class="question">
+
+<h3>Q10. パドックが求めるテクニシャンとは？</h3>
+
+<label><input type="radio" name="q10" value="a"> 作業だけできる人</label><br> <label><input type="radio" name="q10" value="b"> 技術と信頼を兼ね備えたプロフェッショナル</label>
+
+</div>
+
+<button type="button" onclick="checkTest()">
+
+採点する
+
+</button>
+
+</form>
+
+<div id="result"></div>
+
+<script>
+
+function checkTest(){
+
+let score = 0;
+
+const answers = {
+
+q1:"b",
+q2:"b",
+q3:"a",
+q4:"c",
+q5:"b",
+q6:"b",
+q7:"b",
+q8:"a",
+q9:"b",
+q10:"b"
+
+};
+
+for(let key in answers){
+
+const selected =
+document.querySelector(`input[name="${key}"]:checked`);
+
+if(selected && selected.value === answers[key]){
+
+score++;
+
+}
+
+}
+
+const result =
+document.getElementById("result");
+
+if(score >= 8){
+
+result.innerHTML =
+"<h2>🎉 合格！</h2><p>" +
+score +
+"/10 点です。匠試験に合格しました。</p>";
+
+}else{
+
+result.innerHTML =
+"<h2>再挑戦</h2><p>" +
+score +
+"/10 点です。もう一度学習してから挑戦しましょう。</p>";
+
+}
+
+}
+
+</script>
+
+<div style="display:flex;justify-content:space-between;margin-top:50px;">
+
+<a href="takumi.html">
+
+← 匠プログラム
+
+</a>
+
+<a href="kawasaki.html">
+
+🏠 KAWASAKI ACADEMY
+
+</a>
+
+</div>
+
+</div>

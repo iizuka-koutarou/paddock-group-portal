@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アフターフォロー理解度チェック</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Yu Gothic",sans-serif;
+}
+
+body{
+background:
+linear-gradient(
+rgba(0,0,0,.65),
+rgba(0,0,0,.85)
+),
+url("paddock-top.jpg");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+color:white;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:80px 25px;
+}
+
+h1{
+text-align:center;
+font-size:55px;
+color:#6CFF6C;
+margin-bottom:20px;
+}
+
+.subtitle{
+text-align:center;
+font-size:22px;
+color:#ddd;
+margin-bottom:50px;
+}
+
+.card{
+background:white;
+color:#222;
+padding:30px;
+border-radius:20px;
+margin-bottom:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+.question{
+font-size:22px;
+font-weight:bold;
+margin-bottom:15px;
+color:#0B8F3C;
+}
+
+label{
+display:block;
+padding:10px 0;
+cursor:pointer;
+font-size:18px;
+}
+
+input[type="radio"]{
+margin-right:10px;
+}
+
+button{
+width:100%;
+padding:20px;
+border:none;
+border-radius:15px;
+background:#0B8F3C;
+color:white;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+margin-top:20px;
+}
+
+#result{
+margin-top:40px;
+text-align:center;
+font-size:30px;
+font-weight:bold;
+}
+
+.navigation{
+display:flex;
+justify-content:center;
+gap:30px;
+margin-top:40px;
+flex-wrap:wrap;
+}
+
+.navigation a{
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>アフターフォロー理解度チェック</h1>
+
+<div class="subtitle">
+10問中8問以上で合格
+</div>
+
+<form id="quiz">
+
+<div class="card">
+<div class="question">Q1. アフターフォローとは何ですか？</div>
+<label><input type="radio" name="q1" value="1"> 継続的にお客様をサポートすること</label>
+<label><input type="radio" name="q1" value="0"> LINEを送ること</label>
+<label><input type="radio" name="q1" value="0"> 点検案内だけすること</label>
+</div>
+
+<div class="card">
+<div class="question">Q2. パドックはいつから本当のお付き合いが始まると考えていますか？</div>
+<label><input type="radio" name="q2" value="1"> 納車後</label>
+<label><input type="radio" name="q2" value="0"> 契約前</label>
+<label><input type="radio" name="q2" value="0"> 点検時</label>
+</div>
+
+<div class="card">
+<div class="question">Q3. 見積作成後はいつ連絡しますか？</div>
+<label><input type="radio" name="q3" value="1"> 当日</label>
+<label><input type="radio" name="q3" value="0"> 1週間後</label>
+<label><input type="radio" name="q3" value="0"> 必要ない</label>
+</div>
+
+<div class="card">
+<div class="question">Q4. 点検案内前に確認するものは？</div>
+<label><input type="radio" name="q4" value="1"> タイムツリーとLINE</label>
+<label><input type="radio" name="q4" value="0"> 天気予報</label>
+<label><input type="radio" name="q4" value="0"> SNS</label>
+</div>
+
+<div class="card">
+<div class="question">Q5. 点検案内で聞く内容として正しいものは？</div>
+<label><input type="radio" name="q5" value="1"> 現在の走行距離</label>
+<label><input type="radio" name="q5" value="0"> 好きな食べ物</label>
+<label><input type="radio" name="q5" value="0"> 血液型</label>
+</div>
+
+<div class="card">
+<div class="question">Q6. 予約希望があった場合は？</div>
+<label><input type="radio" name="q6" value="1"> テクニシャンへ電話を回す</label>
+<label><input type="radio" name="q6" value="0"> 自分だけで予約する</label>
+<label><input type="radio" name="q6" value="0"> 予約を断る</label>
+</div>
+
+<div class="card">
+<div class="question">Q7. 電話が繋がらなかった場合は？</div>
+<label><input type="radio" name="q7" value="1"> LINEでご連絡する</label>
+<label><input type="radio" name="q7" value="0"> 何もしない</label>
+<label><input type="radio" name="q7" value="0"> 次回まで待つ</label>
+</div>
+
+<div class="card">
+<div class="question">Q8. LINE連絡で大切なことは？</div>
+<label><input type="radio" name="q8" value="1"> 敬語を使用する</label>
+<label><input type="radio" name="q8" value="0"> タメ口で送る</label>
+<label><input type="radio" name="q8" value="0"> 絵文字だけ送る</label>
+</div>
+
+<div class="card">
+<div class="question">Q9. LINE連絡後に行うことは？</div>
+<label><input type="radio" name="q9" value="1"> LINEメモへ記録する</label>
+<label><input type="radio" name="q9" value="0"> 特に何もしない</label>
+<label><input type="radio" name="q9" value="0"> 削除する</label>
+</div>
+
+<div class="card">
+<div class="question">Q10. パドックが考えるアフターフォローとは？</div>
+<label><input type="radio" name="q10" value="1"> 「パドックで買って良かった」と思っていただく活動</label>
+<label><input type="radio" name="q10" value="0"> 点検案内だけ行う活動</label>
+<label><input type="radio" name="q10" value="0"> 売上を作る活動</label>
+</div>
+
+<button type="button" onclick="checkTest()">
+試験結果を見る
+</button>
+
+</form>
+
+<div id="result"></div>
+
+<div class="navigation">
+
+<a href="after-follow.html">
+← アフターフォローへ戻る
+</a>
+
+<a href="concierge-skill.html">
+📚 コンシェルジュスキル一覧
+</a>
+
+<a href="welcome.html">
+🏠 Academy TOP
+</a>
+
+</div>
+
+</div>
+
+<script src="academy.js"></script>
+
+<script>
+
+function checkTest(){
+
+let score = 0;
+
+for(let i=1;i<=10;i++){
+
+const ans =
+document.querySelector(
+'input[name="q' + i + '"]:checked'
+);
+
+if(ans){
+score += Number(ans.value);
+}
+
+}
+
+const result =
+document.getElementById("result");
+
+if(score >= 8){
+
+completeCourse("after_follow");
+
+result.innerHTML =
+
+"✅ 合格！<br>" +
+
+score +
+
+" / 10" +
+
+"<br><br>" +
+
+"アフターフォローコースを修了しました。" +
+
+"<br><br>" +
+
+'<a href="dashboard.html" style="display:inline-block;padding:15px 30px;background:#0B8F3C;color:white;text-decoration:none;border-radius:10px;font-size:20px;font-weight:bold;">🏆 コンシェルジュスキル一覧へ戻る</a>';
+
+}else{
+
+result.innerHTML =
+
+"❌ 不合格<br>" +
+
+score +
+
+" / 10" +
+
+"<br><br>" +
+
+"もう一度学習内容を確認しましょう。";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

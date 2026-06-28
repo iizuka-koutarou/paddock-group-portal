@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ブランド選択 | PADOCK GROUP ACADEMY</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Yu Gothic",sans-serif;}
+body{
+background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.85)),url('paddock-top.jpg');
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+color:white;
+}
+
+.hero{
+padding:120px 20px 80px;
+text-align:center;
+}
+
+.hero h1{
+font-size:68px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:24px;
+color:#ddd;
+line-height:1.8;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:0 30px 80px;
+}
+
+.select-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+gap:40px;
+}
+
+.card{
+padding:50px;
+border-radius:25px;
+text-decoration:none;
+color:white;
+transition:.3s;
+min-height:350px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.kawasaki{
+background:linear-gradient(135deg,#0B5E2A,#1FAF5A);
+}
+
+.ducati{
+background:linear-gradient(135deg,#5A0000,#D50000);
+}
+
+.card h2{
+font-size:42px;
+margin-bottom:20px;
+}
+
+.card p{
+font-size:18px;
+line-height:1.8;
+}
+
+.quote{
+margin-top:60px;
+background:rgba(255,255,255,.1);
+padding:40px;
+border-radius:20px;
+text-align:center;
+font-size:24px;
+font-weight:bold;
+}
+
+.back{
+display:block;
+text-align:center;
+margin-top:40px;
+color:white;
+text-decoration:none;
+}
+
+@media(max-width:768px){
+.hero h1{font-size:44px;}
+.hero p{font-size:18px;}
+.card h2{font-size:32px;}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+<h1>ブランド選択</h1>
+<p>
+ここから先はブランド教育。<br>
+あなたのステージを選択してください。
+</p>
+</section>
+
+<div class="container">
+
+<div class="select-grid">
+
+<a href="kawasaki.html" class="card kawasaki">
+<h2>Kawasaki Academy</h2>
+<p>
+Kawasakiの歴史、思想、商品知識、<br>
+そしてお客様へ価値を届けるための知識を学びます。
+</p>
+</a>
+
+<a href="ducati.html" class="card ducati">
+<h2>Ducati Academy</h2>
+<p>
+イタリアンブランドとしての魅力、<br>
+情熱とプレミアム体験を学びます。
+</p>
+</a>
+
+</div>
+
+<div class="quote">
+ブランドを知ることは、<br>
+ブランドの価値を伝える第一歩。
+</div>
+
+<a href="welcome.html" class="back">
+← Academy TOPへ戻る
+</a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PHILOSOPHY TEST</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Yu Gothic",sans-serif;
+}
+
+body{
+background:#050505;
+color:white;
+padding:60px 20px;
+}
+
+.home-header{
+padding:20px;
+background:#111;
+margin:-60px -20px 40px -20px;
+}
+
+.home-header a{
+color:white;
+text-decoration:none;
+font-weight:bold;
+font-size:18px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+}
+
+h1{
+font-size:60px;
+margin-bottom:20px;
+text-align:center;
+}
+
+.sub{
+text-align:center;
+color:#999;
+margin-bottom:60px;
+font-size:18px;
+}
+
+.question{
+background:#111;
+padding:30px;
+border-radius:20px;
+margin-bottom:25px;
+}
+
+.question h2{
+font-size:22px;
+margin-bottom:20px;
+line-height:1.6;
+}
+
+label{
+display:block;
+padding:12px 0;
+cursor:pointer;
+}
+
+input[type="radio"]{
+margin-right:10px;
+}
+
+button{
+width:100%;
+padding:20px;
+font-size:20px;
+font-weight:bold;
+border:none;
+background:#1F3A5F;
+color:white;
+cursor:pointer;
+border-radius:12px;
+margin-top:40px;
+}
+
+.result{
+margin-top:40px;
+text-align:center;
+font-size:28px;
+font-weight:bold;
+}
+
+.pass{
+color:#7BB4FF;
+}
+
+.fail{
+color:#ff6666;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="home-header">
+<a href="welcome.html">🏠 HOME</a>
+</header>
+
+<div class="container">
+
+<h1>PHILOSOPHY TEST</h1>
+
+<p class="sub">
+合格ライン：10問中8問以上
+</p>
+
+<form id="quizForm">
+
+<div class="question">
+<h2>Q1. パドックグループの企業理念は？</h2>
+<label><input type="radio" name="q1" value="0">お客様第一主義</label>
+<label><input type="radio" name="q1" value="1">お客様と地域に愛され、全社員の幸せを恒久的に実現する</label>
+<label><input type="radio" name="q1" value="0">地域社会への貢献</label>
+</div>
+
+<div class="question">
+<h2>Q2. 四方良しに含まれないものは？</h2>
+<label><input type="radio" name="q2" value="0">売り手よし</label>
+<label><input type="radio" name="q2" value="0">買い手よし</label>
+<label><input type="radio" name="q2" value="1">世界よし</label>
+</div>
+
+<div class="question">
+<h2>Q3. 「未来よし」とは？</h2>
+<label><input type="radio" name="q3" value="0">来月の売上を上げること</label>
+<label><input type="radio" name="q3" value="1">未来のお客様と社員にとって魅力ある会社であり続けること</label>
+<label><input type="radio" name="q3" value="0">店舗数を増やすこと</label>
+</div>
+
+<div class="question">
+<h2>Q4. お客様に対する企業ビジョンは？</h2>
+<label><input type="radio" name="q4" value="1">まだ見ていない未来を提案してくれるプロフェッショナル</label>
+<label><input type="radio" name="q4" value="0">業界最安値を目指す</label>
+<label><input type="radio" name="q4" value="0">全国最大規模を目指す</label>
+</div>
+
+<div class="question">
+<h2>Q5. 「挑戦」とは？</h2>
+<label><input type="radio" name="q5" value="0">失敗しないこと</label>
+<label><input type="radio" name="q5" value="1">できるかではなく、どうしたらできるかを考えること</label>
+<label><input type="radio" name="q5" value="0">無計画に行動すること</label>
+</div>
+
+
+  <div class="question">
+<h2>Q6. 「達成」とは？</h2>
+<label><input type="radio" name="q6" value="1">決めたことを最後までやり切る</label>
+<label><input type="radio" name="q6" value="0">途中で方向転換する</label>
+<label><input type="radio" name="q6" value="0">他人に任せる</label>
+</div>
+
+<div class="question">
+<h2>Q7. 「誠意」とは？</h2>
+<label><input type="radio" name="q7" value="1">約束を守り、相手の立場で考える</label>
+<label><input type="radio" name="q7" value="0">怒られないようにする</label>
+<label><input type="radio" name="q7" value="0">自分を優先する</label>
+</div>
+
+<div class="question">
+<h2>Q8. 「スペシャリティ」とは？</h2>
+<label><input type="radio" name="q8" value="1">学び続け、プロフェッショナルを目指す</label>
+<label><input type="radio" name="q8" value="0">資格を増やすことだけ</label>
+<label><input type="radio" name="q8" value="0">ベテランになること</label>
+</div>
+
+<div class="question">
+<h2>Q9. 創業のきっかけとなった言葉は？</h2>
+<label><input type="radio" name="q9" value="0">継続は力なり</label>
+<label><input type="radio" name="q9" value="1">愚痴をこぼすくらいなら、自分でやってみたらどうだ</label>
+<label><input type="radio" name="q9" value="0">石の上にも三年</label>
+</div>
+
+<div class="question">
+<h2>Q10. パドックグループが目指す姿は？</h2>
+<label><input type="radio" name="q10" value="1">お客様と地域に愛され、全社員の幸せを恒久的に実現する</label>
+<label><input type="radio" name="q10" value="0">売上日本一</label>
+<label><input type="radio" name="q10" value="0">店舗数日本一</label>
+</div>
+
+<button type="button" onclick="checkQuiz()">
+採点する
+</button>
+
+</form>
+
+<div id="result" class="result"></div>
+
+</div>
+
+<script>
+
+function checkQuiz(){
+
+let score = 0;
+
+for(let i = 1; i <= 10; i++){
+
+let answer =
+document.querySelector(`input[name="q${i}"]:checked`);
+
+if(answer){
+
+score += Number(answer.value);
+
+}
+
+}
+
+let result =
+document.getElementById("result");
+
+if(score >= 8){
+
+const user =
+localStorage.getItem("currentUser");
+
+if(user){
+
+localStorage.setItem(
+user + "_common",
+"pass"
+);
+
+}
+
+result.innerHTML =
+`<div class="pass">
+
+合格！ ${score}/10
+
+<br><br>
+
+あなたはパドックグループの理念を理解しています。
+
+<br><br>
+
+次はブランド理解へ進みましょう。
+
+<br><br>
+
+<a href="next-stage.html"
+style="
+display:inline-block;
+padding:15px 35px;
+background:#1F3A5F;
+color:white;
+text-decoration:none;
+border-radius:10px;
+font-size:20px;
+font-weight:bold;
+">
+
+▶ ブランド選択へ進む
+
+</a>
+
+</div>`;
+
+  }else{
+
+result.innerHTML =
+`<div class="fail">
+
+不合格 ${score}/10
+
+<br><br>
+
+もう一度、企業理念・ビジョン・フィロソフィーを読み返しましょう。
+
+</div>`;
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

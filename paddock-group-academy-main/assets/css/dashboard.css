@@ -1,0 +1,59 @@
+/* ========================================
+   PADDOCK GROUP ACADEMY v2
+   Dashboard Style
+======================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Yu Gothic","Segoe UI",sans-serif;
+}
+
+body{
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,.72),
+        rgba(0,0,0,.90)
+    ),
+    url("../../paddock-top.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+
+    color:#fff;
+    min-height:100vh;
+}
+
+.container{
+
+    max-width:1200px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+h1{
+
+    text-align:center;
+    color:#6CFF6C;
+    font-size:60px;
+    margin-bottom:10px;
+}
+
+#welcomeUser{
+
+    text-align:center;
+    font-size:24px;
+    color:#6CFF6C;
+    margin-bottom:15px;
+}
+
+.subtitle{
+
+    text-align:center;
+    color:#ddd;
+    font-size:20px;
+    margin-bottom:40px;
+}

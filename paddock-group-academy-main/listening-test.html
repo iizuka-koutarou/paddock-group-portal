@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>聞く姿勢理解度チェック</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Yu Gothic",sans-serif;
+}
+
+body{
+background:
+linear-gradient(
+rgba(0,0,0,.65),
+rgba(0,0,0,.85)
+),
+url("paddock-top.jpg");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+color:white;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:80px 25px;
+}
+
+h1{
+text-align:center;
+font-size:55px;
+color:#6CFF6C;
+margin-bottom:20px;
+}
+
+.subtitle{
+text-align:center;
+font-size:22px;
+color:#ddd;
+margin-bottom:50px;
+}
+
+.card{
+background:white;
+color:#222;
+padding:30px;
+border-radius:20px;
+margin-bottom:20px;
+box-shadow:
+0 5px 20px rgba(0,0,0,.15);
+}
+
+.question{
+font-size:22px;
+font-weight:bold;
+margin-bottom:15px;
+color:#0B8F3C;
+}
+
+label{
+display:block;
+padding:10px 0;
+cursor:pointer;
+font-size:18px;
+}
+
+input[type="radio"]{
+margin-right:10px;
+}
+
+button{
+width:100%;
+padding:20px;
+border:none;
+border-radius:15px;
+background:#0B8F3C;
+color:white;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+margin-top:20px;
+}
+
+#result{
+margin-top:40px;
+text-align:center;
+font-size:30px;
+font-weight:bold;
+}
+
+.navigation{
+display:flex;
+justify-content:center;
+gap:30px;
+margin-top:40px;
+flex-wrap:wrap;
+}
+
+.navigation a{
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>聞く姿勢理解度チェック</h1>
+
+<div class="subtitle">
+10問中8問以上で合格
+</div>
+
+<form id="quiz">
+
+<div class="card">
+<div class="question">Q1. 聞く姿勢とは？</div>
+<label><input type="radio" name="q1" value="1"> お客様を理解しようとする姿勢</label>
+<label><input type="radio" name="q1" value="0"> 黙っていること</label>
+<label><input type="radio" name="q1" value="0"> 質問しないこと</label>
+</div>
+
+<div class="card">
+<div class="question">Q2. お客様の話はどうする？</div>
+<label><input type="radio" name="q2" value="1"> 最後まで聞く</label>
+<label><input type="radio" name="q2" value="0"> 途中で説明する</label>
+<label><input type="radio" name="q2" value="0"> 途中で提案する</label>
+</div>
+
+<div class="card">
+<div class="question">Q3. 相槌はなぜ必要？</div>
+<label><input type="radio" name="q3" value="1"> 話を聞いていることを伝えるため</label>
+<label><input type="radio" name="q3" value="0"> 特に意味はない</label>
+<label><input type="radio" name="q3" value="0"> 話を終わらせるため</label>
+</div>
+
+<div class="card">
+<div class="question">Q4. お客様の話に対して最初にすることは？</div>
+<label><input type="radio" name="q4" value="1"> 受け止める</label>
+<label><input type="radio" name="q4" value="0"> 否定する</label>
+<label><input type="radio" name="q4" value="0"> 自分の意見を言う</label>
+</div>
+
+<div class="card">
+<div class="question">Q5. メモを取る目的は？</div>
+<label><input type="radio" name="q5" value="1"> 大切な内容を忘れないため</label>
+<label><input type="radio" name="q5" value="0"> 書くことが目的</label>
+<label><input type="radio" name="q5" value="0"> 特に必要ない</label>
+</div>
+
+<div class="card">
+<div class="question">Q6. 質問をする理由は？</div>
+<label><input type="radio" name="q6" value="1"> お客様を理解するため</label>
+<label><input type="radio" name="q6" value="0"> 話を終わらせるため</label>
+<label><input type="radio" name="q6" value="0"> 自分の知識を見せるため</label>
+</div>
+
+<div class="card">
+<div class="question">Q7. 聞く姿勢で大切なのは？</div>
+<label><input type="radio" name="q7" value="1"> お客様を理解すること</label>
+<label><input type="radio" name="q7" value="0"> 早く商談すること</label>
+<label><input type="radio" name="q7" value="0"> 早く契約すること</label>
+</div>
+
+<div class="card">
+<div class="question">Q8. お客様が信頼する人は？</div>
+<label><input type="radio" name="q8" value="1"> 話を聞いてくれる人</label>
+<label><input type="radio" name="q8" value="0"> 話が長い人</label>
+<label><input type="radio" name="q8" value="0"> 商品説明だけする人</label>
+</div>
+
+<div class="card">
+<div class="question">Q9. お客様が求めているものは？</div>
+<label><input type="radio" name="q9" value="1"> 理想のバイクライフ</label>
+<label><input type="radio" name="q9" value="0"> カタログだけ</label>
+<label><input type="radio" name="q9" value="0"> 値段だけ</label>
+</div>
+
+<div class="card">
+<div class="question">Q10. パドックが大切にしていることは？</div>
+<label><input type="radio" name="q10" value="1"> 話す力より聞く力</label>
+<label><input type="radio" name="q10" value="0"> 話す力だけ</label>
+<label><input type="radio" name="q10" value="0"> 商品知識だけ</label>
+</div>
+
+<button type="button" onclick="checkTest()">
+試験結果を見る
+</button>
+
+</form>
+
+<div id="result"></div>
+
+<div class="navigation">
+
+<a href="listening.html">
+← 聞く姿勢へ戻る
+</a>
+
+<a href="concierge-skill.html">
+📚 コンシェルジュスキル一覧
+</a>
+
+<a href="welcome.html">
+🏠 Academy TOP
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+function checkTest(){
+
+let score = 0;
+
+for(let i=1;i<=10;i++){
+
+const ans =
+document.querySelector(
+'input[name="q'+i+'"]:checked'
+);
+
+if(ans){
+
+score += Number(ans.value);
+
+}
+
+}
+
+const result =
+document.getElementById("result");
+
+if(score >= 8){
+
+const user =
+localStorage.getItem("currentUser");
+
+if(user){
+
+localStorage.setItem(
+user + "_listening",
+"pass"
+);
+
+}
+
+result.innerHTML =
+
+"✅ 合格！<br>" +
+
+score +
+
+" / 10" +
+
+"<br><br>" +
+
+"聞く姿勢コースを修了しました。" +
+
+"<br><br>" +
+
+'<a href="phone.html" style="display:inline-block;padding:15px 30px;background:#0B8F3C;color:white;text-decoration:none;border-radius:10px;font-size:20px;font-weight:bold;">▶ 次へ進む（電話対応）</a>';
+
+}else{
+
+result.innerHTML =
+
+"❌ 不合格<br>" +
+
+score +
+
+" / 10" +
+
+"<br><br>" +
+
+"もう一度学習内容を確認しましょう。";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

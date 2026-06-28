@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PADDOCK GROUP ACADEMY</title>
+
+<link rel="stylesheet" href="assets/css/dashboard.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>PADDOCK GROUP ACADEMY</h1>
+
+<div id="welcomeUser"></div>
+
+<div class="subtitle">
+
+コンシェルジュ育成プログラム
+
+</div>
+
+<div class="progress-card">
+
+<div class="progress-number" id="percent">
+
+0%
+
+</div>
+
+<div class="progress-text">
+
+コンシェルジュ達成率
+
+</div>
+
+<div id="certificateArea"></div>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h3>① 身だしなみ</h3>
+<div id="appearanceStatus" class="status"></div>
+<a href="appearance.html">学習する</a>
+</div>
+
+<div class="card">
+<h3>② 電話対応</h3>
+<div id="phoneStatus" class="status"></div>
+<a href="phone.html">学習する</a>
+</div>
+
+<div class="card">
+<h3>③ 店舗清掃</h3>
+<div id="cleaningStatus" class="status"></div>
+<a href="cleaning.html">学習する</a>
+</div>
+
+<div class="card">
+<h3>④ 来店客把握</h3>
+<div id="customerStatus" class="status"></div>
+<a href="customer-check.html">学習する</a>
+</div>
+
+<div class="card">
+<h3>⑤ 来店目的ヒアリング</h3>
+<div id="hearingStatus" class="status"></div>
+<a href="hearing.html">学習する</a>
+</div>
+
+<div class="card">
+<h3>⑥ 来店アンケート</h3>
+<div id="questionnaireStatus" class="status"></div>
+<a href="questionnaire.html">学習する</a>
+</div>
+
+<div class="card">
+<h3>⑦ ウェルカムドリンク</h3>
+<div id="drinkStatus" class="status"></div>
+<a href="welcome-drink.html">学習する</a>
+</div>
+
+<div class="card">
+<h3>⑧ 見積作成</h3>
+<div id="estimateStatus" class="status"></div>
+<a href="estimate.html">学習する</a>
+</div>
+
+<div class="card">
+<h3>⑨ 査定</h3>
+<div id="assessmentStatus" class="status"></div>
+<a href="assessment.html">学習する</a>
+</div>
+
+<div class="card">
+<h3>⑩ 契約</h3>
+<div id="contractStatus" class="status"></div>
+<a href="contract.html">学習する</a>
+</div>
+
+<div class="card">
+<h3>⑪ 納車</h3>
+<div id="deliveryStatus" class="status"></div>
+<a href="delivery.html">学習する</a>
+</div>
+
+<div class="card">
+<h3>⑫ アフターフォロー</h3>
+<div id="afterStatus" class="status"></div>
+<a href="after-follow.html">学習する</a>
+</div>
+
+</div>
+
+<div class="footer">
+
+<a href="welcome.html">
+
+🏠 TOPへ戻る
+
+</a>
+
+</div>
+
+</div>
+
+<script src="academy.js"></script>
+
+<script>
+
+const userName =
+localStorage.getItem("currentUserName");
+
+document.getElementById("welcomeUser").innerHTML =
+"ようこそ " + userName + " さん";
+
+const items = [
+
+["appearance","appearanceStatus"],
+["phone","phoneStatus"],
+["cleaning","cleaningStatus"],
+["customer_check","customerStatus"],
+["hearing","hearingStatus"],
+["questionnaire","questionnaireStatus"],
+["welcome_drink","drinkStatus"],
+["estimate","estimateStatus"],
+["assessment","assessmentStatus"],
+["contract","contractStatus"],
+["delivery","deliveryStatus"],
+["after_follow","afterStatus"]
+
+];
+
+items.forEach(item=>{
+
+const target =
+document.getElementById(item[1]);
+
+if(isCompleted(item[0])){
+
+target.innerHTML = "✅ 修了";
+target.classList.add("complete");
+
+}else{
+
+target.innerHTML = "🔒 未修了";
+target.classList.add("lock");
+
+}
+
+});
+
+document.getElementById("percent").innerHTML =
+getProgress() + "%";
+
+if(isAcademyCompleted()){
+
+document.getElementById("certificateArea").innerHTML =
+
+'<a href="concierge-complete.html" class="certificate-btn">🏆 修了証を見る</a>';
+
+}
+
+</script>
+
+</body>
+</html>

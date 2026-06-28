@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PADOCK GROUP ACADEMY LOGIN</title>
+
+<script src="users.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Yu Gothic",sans-serif;
+}
+
+body{
+
+height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:
+linear-gradient(
+rgba(0,0,0,.65),
+rgba(0,0,0,.85)
+),
+url("paddock-top.jpg");
+
+background-size:cover;
+background-position:center;
+
+color:white;
+
+}
+
+.login-box{
+
+width:420px;
+
+background:
+rgba(255,255,255,.95);
+
+padding:40px;
+
+border-radius:20px;
+
+color:#222;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,.3);
+
+}
+
+h1{
+
+text-align:center;
+
+margin-bottom:30px;
+
+color:#1F3A5F;
+
+}
+
+input{
+
+width:100%;
+
+padding:15px;
+
+margin-bottom:15px;
+
+border:1px solid #ddd;
+
+border-radius:10px;
+
+font-size:16px;
+
+}
+
+button{
+
+width:100%;
+
+padding:15px;
+
+background:#1F3A5F;
+
+color:white;
+
+border:none;
+
+border-radius:10px;
+
+font-size:18px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+#error{
+
+color:red;
+
+margin-top:15px;
+
+text-align:center;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="login-box">
+
+<h1>PADOCK GROUP<br>ACADEMY</h1>
+
+<input
+type="text"
+id="id"
+placeholder="ID">
+
+<input
+type="password"
+id="pass"
+placeholder="Password">
+
+<button onclick="login()">
+
+ログイン
+
+</button>
+
+<div id="error"></div>
+
+</div>
+
+<script>
+
+function login(){
+
+const id =
+document.getElementById("id").value;
+
+const pass =
+document.getElementById("pass").value;
+
+const user =
+users[id];
+
+if(!user){
+
+document.getElementById(
+"error"
+).innerHTML =
+
+"IDまたはパスワードが違います";
+
+return;
+
+}
+
+if(user.password !== pass){
+
+document.getElementById(
+"error"
+).innerHTML =
+
+"IDまたはパスワードが違います";
+
+return;
+
+}
+
+localStorage.setItem(
+"currentUser",
+id
+);
+
+localStorage.setItem(
+"currentUserName",
+user.name
+);
+
+localStorage.setItem(
+id + "_lastlogin",
+new Date().toLocaleString()
+);
+
+if(user.role === "admin"){
+
+location.href =
+"admin.html";
+
+}else{
+
+location.href =
+"welcome.html";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

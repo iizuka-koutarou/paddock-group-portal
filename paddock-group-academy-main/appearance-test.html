@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>身だしなみ理解度チェック</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Yu Gothic",sans-serif;
+}
+
+body{
+background:
+linear-gradient(
+rgba(0,0,0,.65),
+rgba(0,0,0,.85)
+),
+url("paddock-top.jpg");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+color:white;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:80px 25px;
+}
+
+h1{
+text-align:center;
+font-size:55px;
+color:#6CFF6C;
+margin-bottom:20px;
+}
+
+.subtitle{
+text-align:center;
+font-size:22px;
+color:#ddd;
+margin-bottom:50px;
+}
+
+.card{
+background:white;
+color:#222;
+padding:30px;
+border-radius:20px;
+margin-bottom:20px;
+box-shadow:
+0 5px 20px rgba(0,0,0,.15);
+}
+
+.question{
+font-size:22px;
+font-weight:bold;
+margin-bottom:15px;
+color:#0B8F3C;
+}
+
+label{
+display:block;
+padding:10px 0;
+cursor:pointer;
+font-size:18px;
+}
+
+input[type="radio"]{
+margin-right:10px;
+}
+
+button{
+width:100%;
+padding:20px;
+border:none;
+border-radius:15px;
+background:#0B8F3C;
+color:white;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+margin-top:20px;
+transition:.3s;
+}
+
+button:hover{
+opacity:.9;
+}
+
+#result{
+margin-top:40px;
+text-align:center;
+font-size:30px;
+font-weight:bold;
+}
+
+.navigation{
+display:flex;
+justify-content:center;
+gap:30px;
+margin-top:40px;
+flex-wrap:wrap;
+}
+
+.navigation a{
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+.navigation a:hover{
+text-decoration:underline;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>身だしなみ理解度チェック</h1>
+
+<div class="subtitle">
+10問中8問以上で合格
+</div>
+
+<form id="quiz">
+
+<div class="card">
+<div class="question">Q1. 身だしなみの目的は？</div>
+<label><input type="radio" name="q1" value="1"> お客様に安心していただくため</label>
+<label><input type="radio" name="q1" value="0"> 自分をかっこよく見せるため</label>
+<label><input type="radio" name="q1" value="0"> 上司に怒られないため</label>
+</div>
+
+<div class="card">
+<div class="question">Q2. 制服はどのような状態が望ましい？</div>
+<label><input type="radio" name="q2" value="1"> 清潔で整っている</label>
+<label><input type="radio" name="q2" value="0"> 少し汚れていても問題ない</label>
+<label><input type="radio" name="q2" value="0"> 忙しい日は気にしなくて良い</label>
+</div>
+
+<div class="card">
+<div class="question">Q3. お客様は何を見ている？</div>
+<label><input type="radio" name="q3" value="1"> 店舗・商品・スタッフ</label>
+<label><input type="radio" name="q3" value="0"> 商品だけ</label>
+<label><input type="radio" name="q3" value="0"> 価格だけ</label>
+</div>
+
+<div class="card">
+<div class="question">Q4. 髪型で大切なことは？</div>
+<label><input type="radio" name="q4" value="1"> 清潔感</label>
+<label><input type="radio" name="q4" value="0"> 流行だけ</label>
+<label><input type="radio" name="q4" value="0"> 長さだけ</label>
+</div>
+
+<div class="card">
+<div class="question">Q5. 爪はどうする？</div>
+<label><input type="radio" name="q5" value="1"> 短く清潔に保つ</label>
+<label><input type="radio" name="q5" value="0"> 長くても問題ない</label>
+<label><input type="radio" name="q5" value="0"> 気にしなくて良い</label>
+</div>
+
+<div class="card">
+<div class="question">Q6. 靴はどうする？</div>
+<label><input type="radio" name="q6" value="1"> 綺麗な状態を保つ</label>
+<label><input type="radio" name="q6" value="0"> 汚れていても履ければ良い</label>
+<label><input type="radio" name="q6" value="0"> 雨の日だけ気を付ける</label>
+</div>
+
+<div class="card">
+<div class="question">Q7. 名札の目的は？</div>
+<label><input type="radio" name="q7" value="1"> お客様に名前を覚えていただくため</label>
+<label><input type="radio" name="q7" value="0"> 制服の飾り</label>
+<label><input type="radio" name="q7" value="0"> 特に意味はない</label>
+</div>
+
+<div class="card">
+<div class="question">Q8. 接客前に行うことは？</div>
+<label><input type="radio" name="q8" value="1"> 鏡で確認する</label>
+<label><input type="radio" name="q8" value="0"> 特に何もしない</label>
+<label><input type="radio" name="q8" value="0"> スマホを見る</label>
+</div>
+
+<div class="card">
+<div class="question">Q9. 身だしなみは何を表す？</div>
+<label><input type="radio" name="q9" value="1"> お客様への敬意</label>
+<label><input type="radio" name="q9" value="0"> 自己満足</label>
+<label><input type="radio" name="q9" value="0"> 個性の主張</label>
+</div>
+
+<div class="card">
+<div class="question">Q10. 第一印象は何につながる？</div>
+<label><input type="radio" name="q10" value="1"> 信頼</label>
+<label><input type="radio" name="q10" value="0"> 値引き</label>
+<label><input type="radio" name="q10" value="0"> 売上だけ</label>
+</div>
+
+<button type="button" onclick="checkTest()">
+試験結果を見る
+</button>
+
+</form>
+
+<div id="result"></div>
+
+<div class="navigation">
+
+<a href="appearance.html">
+← 身だしなみへ戻る
+</a>
+
+<a href="concierge-skill.html">
+📚 コンシェルジュスキル一覧
+</a>
+
+<a href="welcome.html">
+🏠 Academy TOPへ戻る
+</a>
+
+</div>
+
+</div>
+
+<script src="academy.js"></script>
+
+<script>
+
+function checkTest(){
+
+let score = 0;
+
+for(let i=1;i<=10;i++){
+
+const ans =
+document.querySelector(
+'input[name="q'+i+'"]:checked'
+);
+
+if(ans){
+
+score += Number(ans.value);
+
+}
+
+}
+
+const result =
+document.getElementById("result");
+
+if(score >= 8){
+
+completeCourse("appearance");
+
+result.innerHTML =
+
+"✅ 合格！<br>" +
+
+score +
+
+" / 10" +
+
+"<br><br>" +
+
+"身だしなみコースを修了しました。" +
+
+"<br><br>" +
+
+'<a href="phone.html" style="display:inline-block;padding:15px 30px;background:#0B8F3C;color:white;text-decoration:none;border-radius:10px;font-size:20px;font-weight:bold;">▶ 次へ進む（電話対応）</a>';
+
+}else{
+
+result.innerHTML =
+
+"❌ 不合格<br>" +
+
+score +
+
+" / 10" +
+
+"<br><br>" +
+
+"もう一度学習内容を確認しましょう。";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

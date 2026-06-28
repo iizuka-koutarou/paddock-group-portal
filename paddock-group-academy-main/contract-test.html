@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>契約理解度チェック</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Yu Gothic",sans-serif;
+}
+
+body{
+background:
+linear-gradient(
+rgba(0,0,0,.65),
+rgba(0,0,0,.85)
+),
+url("paddock-top.jpg");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+color:white;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:80px 25px;
+}
+
+h1{
+text-align:center;
+font-size:55px;
+color:#6CFF6C;
+margin-bottom:20px;
+}
+
+.subtitle{
+text-align:center;
+font-size:22px;
+color:#ddd;
+margin-bottom:50px;
+}
+
+.card{
+background:white;
+color:#222;
+padding:30px;
+border-radius:20px;
+margin-bottom:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+.question{
+font-size:22px;
+font-weight:bold;
+margin-bottom:15px;
+color:#0B8F3C;
+}
+
+label{
+display:block;
+padding:10px 0;
+cursor:pointer;
+font-size:18px;
+}
+
+input[type="radio"]{
+margin-right:10px;
+}
+
+button{
+width:100%;
+padding:20px;
+border:none;
+border-radius:15px;
+background:#0B8F3C;
+color:white;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+margin-top:20px;
+}
+
+#result{
+margin-top:40px;
+text-align:center;
+font-size:30px;
+font-weight:bold;
+}
+
+.navigation{
+display:flex;
+justify-content:center;
+gap:30px;
+margin-top:40px;
+flex-wrap:wrap;
+}
+
+.navigation a{
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>契約理解度チェック</h1>
+
+<div class="subtitle">
+10問中8問以上で合格
+</div>
+
+<form id="quiz">
+
+<div class="card">
+<div class="question">Q1. 契約とは何ですか？</div>
+<label><input type="radio" name="q1" value="1"> 納車へ向けたスタート</label>
+<label><input type="radio" name="q1" value="0"> ゴール</label>
+<label><input type="radio" name="q1" value="0"> 書類へサインをもらうだけ</label>
+</div>
+
+<div class="card">
+<div class="question">Q2. 契約時に必ず使用するものは？</div>
+<label><input type="radio" name="q2" value="1"> 進行表</label>
+<label><input type="radio" name="q2" value="0"> 電卓</label>
+<label><input type="radio" name="q2" value="0"> カタログ</label>
+</div>
+
+<div class="card">
+<div class="question">Q3. 希望納車日はいつ確認しますか？</div>
+<label><input type="radio" name="q3" value="1"> 契約時</label>
+<label><input type="radio" name="q3" value="0"> 納車当日</label>
+<label><input type="radio" name="q3" value="0"> 契約後1ヶ月後</label>
+</div>
+
+<div class="card">
+<div class="question">Q4. 住民票はいつまでにご準備いただく？</div>
+<label><input type="radio" name="q4" value="1"> 登録予定日の1週間前まで</label>
+<label><input type="radio" name="q4" value="0"> 納車後</label>
+<label><input type="radio" name="q4" value="0"> 必要ない</label>
+</div>
+
+<div class="card">
+<div class="question">Q5. キャンセル規定はいつ説明する？</div>
+<label><input type="radio" name="q5" value="1"> 契約時</label>
+<label><input type="radio" name="q5" value="0"> 納車時</label>
+<label><input type="radio" name="q5" value="0"> 説明しない</label>
+</div>
+
+<div class="card">
+<div class="question">Q6. パーツ発注はいつ行う？</div>
+<label><input type="radio" name="q6" value="1"> パーツ代以上の入金確認後</label>
+<label><input type="radio" name="q6" value="0"> 契約直後</label>
+<label><input type="radio" name="q6" value="0"> 納車後</label>
+</div>
+
+<div class="card">
+<div class="question">Q7. 契約後の主な連絡手段は？</div>
+<label><input type="radio" name="q7" value="1"> LINE</label>
+<label><input type="radio" name="q7" value="0"> FAX</label>
+<label><input type="radio" name="q7" value="0"> 郵送のみ</label>
+</div>
+
+<div class="card">
+<div class="question">Q8. 郵送物可否を確認する理由は？</div>
+<label><input type="radio" name="q8" value="1"> ご家族に内緒の場合があるため</label>
+<label><input type="radio" name="q8" value="0"> 郵送代を確認するため</label>
+<label><input type="radio" name="q8" value="0"> 特に理由はない</label>
+</div>
+
+<div class="card">
+<div class="question">Q9. ローン審査時に確認するものは？</div>
+<label><input type="radio" name="q9" value="1"> 勤務先や年収</label>
+<label><input type="radio" name="q9" value="0"> 好きなメーカー</label>
+<label><input type="radio" name="q9" value="0"> ツーリング先</label>
+</div>
+
+<div class="card">
+<div class="question">Q10. パドックが考える契約とは？</div>
+<label><input type="radio" name="q10" value="1"> 安心して納車日を迎えていただくための時間</label>
+<label><input type="radio" name="q10" value="0"> 書類作業だけの時間</label>
+<label><input type="radio" name="q10" value="0"> 入金確認だけの時間</label>
+</div>
+
+<button type="button" onclick="checkTest()">
+試験結果を見る
+</button>
+
+</form>
+
+<div id="result"></div>
+
+<div class="navigation">
+
+<a href="contract.html">
+← 契約へ戻る
+</a>
+
+<a href="concierge-skill.html">
+📚 コンシェルジュスキル一覧
+</a>
+
+<a href="welcome.html">
+🏠 Academy TOP
+</a>
+
+</div>
+
+</div>
+
+<script src="academy.js"></script>
+
+<script>
+
+function checkTest(){
+
+let score = 0;
+
+for(let i=1;i<=10;i++){
+
+const ans =
+document.querySelector(
+'input[name="q' + i + '"]:checked'
+);
+
+if(ans){
+score += Number(ans.value);
+}
+
+}
+
+const result =
+document.getElementById("result");
+
+if(score >= 8){
+
+completeCourse("contract");
+
+result.innerHTML =
+
+"✅ 合格！<br>" +
+
+score +
+
+" / 10" +
+
+"<br><br>" +
+
+"契約コースを修了しました。" +
+
+"<br><br>" +
+
+'<a href="delivery.html" style="display:inline-block;padding:15px 30px;background:#0B8F3C;color:white;text-decoration:none;border-radius:10px;font-size:20px;font-weight:bold;">▶ 次へ進む（納車）</a>';
+
+}else{
+
+result.innerHTML =
+
+"❌ 不合格<br>" +
+
+score +
+
+" / 10" +
+
+"<br><br>" +
+
+"もう一度学習内容を確認しましょう。";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

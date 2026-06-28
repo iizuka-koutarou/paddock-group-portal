@@ -1,0 +1,81 @@
+/* ===========================
+   PADDOCK GROUP ACADEMY
+   Login Style
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:"Yu Gothic","Segoe UI",sans-serif;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,.55),
+            rgba(0,0,0,.70)
+        ),
+        url("../images/paddock-top.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+
+    min-height:100vh;
+
+}
+
+.login-container{
+
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-direction:column;
+
+    color:white;
+
+    text-align:center;
+
+}
+
+.sub-title{
+
+    letter-spacing:10px;
+
+    font-size:22px;
+
+    opacity:.8;
+
+    margin-bottom:20px;
+
+}
+
+.logo-area h1{
+
+    font-size:110px;
+
+    font-weight:700;
+
+    letter-spacing:5px;
+
+}
+
+.catch{
+
+    margin-top:30px;
+
+    font-size:24px;
+
+    line-height:1.8;
+
+    color:#ddd;
+
+}

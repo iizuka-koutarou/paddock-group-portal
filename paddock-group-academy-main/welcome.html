@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PADOCK GROUP ACADEMY</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Yu Gothic",sans-serif;
+}
+
+body{
+background:
+linear-gradient(
+rgba(0,0,0,.55),
+rgba(0,0,0,.75)
+),
+url("paddock-top.jpg");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+color:white;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:80px 30px;
+}
+
+.logo{
+text-align:center;
+letter-spacing:8px;
+color:rgba(255,255,255,.75);
+font-weight:bold;
+margin-bottom:20px;
+}
+
+.hero{
+text-align:center;
+margin-bottom:60px;
+}
+
+.hero h1{
+font-size:72px;
+margin-bottom:20px;
+}
+
+#user-name{
+margin-top:20px;
+font-size:30px;
+font-weight:bold;
+color:#6CFF6C;
+}
+
+.catch{
+font-size:24px;
+line-height:2;
+color:#ddd;
+margin-top:20px;
+}
+
+.status-panel{
+max-width:900px;
+margin:0 auto 60px;
+background:rgba(255,255,255,.96);
+padding:35px;
+border-radius:20px;
+color:#222;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.status-panel h2{
+text-align:center;
+color:#1F3A5F;
+margin-bottom:25px;
+}
+
+.status-item{
+display:flex;
+justify-content:space-between;
+padding:15px 0;
+border-bottom:1px solid #eee;
+font-size:18px;
+}
+
+.status-item:last-child{
+border-bottom:none;
+}
+
+.total-pass{
+text-align:center;
+margin-top:25px;
+font-size:28px;
+font-weight:bold;
+color:#1F3A5F;
+}
+
+.section-title{
+text-align:center;
+font-size:36px;
+margin-bottom:15px;
+}
+
+.section-sub{
+text-align:center;
+color:#ddd;
+margin-bottom:30px;
+}
+
+.roadmap{
+max-width:500px;
+margin:0 auto 60px;
+background:rgba(255,255,255,.95);
+padding:25px;
+border-radius:20px;
+color:#1F3A5F;
+}
+
+.road-step{
+text-align:center;
+padding:10px;
+font-size:18px;
+font-weight:bold;
+}
+
+.arrow{
+text-align:center;
+font-size:18px;
+}
+
+.menu-grid{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+margin-top:50px;
+}
+
+.menu-card{
+background:rgba(255,255,255,.95);
+padding:30px;
+border-radius:20px;
+text-decoration:none;
+color:#222;
+transition:.3s;
+}
+
+.menu-card:hover{
+transform:translateY(-5px);
+border-bottom:5px solid #1F3A5F;
+}
+
+.menu-card h3{
+color:#1F3A5F;
+margin-bottom:10px;
+}
+
+.menu-card p{
+color:#666;
+line-height:1.8;
+}
+
+.footer{
+text-align:center;
+margin-top:80px;
+color:rgba(255,255,255,.7);
+font-size:14px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="logo">
+PADOCK GROUP
+</div>
+
+<div class="hero">
+
+<h1>ACADEMY</h1>
+
+<div id="user-name"></div>
+
+<div class="catch">
+学び、成長し、<br>
+お客様へ価値を届ける。
+</div>
+
+</div>
+
+  <!-- 認定状況 -->
+
+<div class="status-panel">
+
+<h2>🏆 認定状況</h2>
+
+<div class="status-item">
+<span>共通教育試験</span>
+<span id="common-status">❌ 未受験</span>
+</div>
+
+<div class="status-item">
+<span>Kawasaki 基礎試験</span>
+<span id="basic-status">❌ 未受験</span>
+</div>
+
+<div class="status-item">
+<span>Kawasaki コンシェルジュ試験</span>
+<span id="concierge-status">❌ 未受験</span>
+</div>
+
+<div class="status-item">
+<span>Kawasaki テクニシャン試験</span>
+<span id="technician-status">❌ 未受験</span>
+</div>
+
+<div class="status-item">
+<span>Ducati セールス試験</span>
+<span id="ducati-sales-status">❌ 未受験</span>
+</div>
+
+<div class="status-item">
+<span>Ducati サービス試験</span>
+<span id="ducati-service-status">❌ 未受験</span>
+</div>
+
+<div class="total-pass" id="total-pass">
+0 / 6 合格
+</div>
+
+</div>
+
+<!-- ロードマップ -->
+
+<h2 class="section-title">
+📚 学習ロードマップ
+</h2>
+
+<p class="section-sub">
+共通教育 → 共通スキル → ブランド教育 → 職種教育
+</p>
+
+<div class="roadmap">
+
+<div class="road-step">共通教育</div>
+<div class="arrow">↓</div>
+
+<div class="road-step">共通スキル</div>
+<div class="arrow">↓</div>
+
+<div class="road-step">ブランド教育</div>
+<div class="arrow">↓</div>
+
+<div class="road-step">職種教育</div>
+
+</div>
+
+<!-- メニュー -->
+
+<div class="menu-grid">
+
+<a href="common-education.html" class="menu-card">
+<h3>📚 共通教育</h3>
+<p>
+入社初日・四方良し・共通教育試験
+</p>
+</a>
+
+<a href="common-skill.html" class="menu-card">
+<h3>📞 共通スキル</h3>
+<p>
+社会人として・挨拶・報連相・電話対応・クレーム対応
+</p>
+</a>
+
+<a href="next-stage.html" class="menu-card">
+<h3>🏍 ブランド選択</h3>
+<p>
+Kawasaki Academy / Ducati Academy
+</p>
+</a>
+
+<a href="admin.html" class="menu-card">
+<h3>👨‍💼 管理者ページ</h3>
+<p>
+社員管理・試験状況確認
+</p>
+</a>
+
+</div>
+
+<div class="footer">
+
+PADOCK GROUP ACADEMY<br>
+Learning Never Ends.
+
+</div>
+
+</div>
+
+<script>
+
+const user =
+localStorage.getItem("currentUser");
+
+const userName =
+localStorage.getItem("currentUserName");
+
+let passCount = 0;
+
+/* 名前表示 */
+
+if(userName){
+
+document.getElementById(
+"user-name"
+).innerHTML =
+
+"ようこそ " +
+userName +
+" さん";
+
+}
+
+/* 試験判定 */
+
+function checkStatus(id,key){
+
+if(!user) return;
+
+const result =
+localStorage.getItem(
+user + "_" + key
+);
+
+if(result === "pass"){
+
+document.getElementById(id).innerHTML =
+"✅ 合格";
+
+passCount++;
+
+}
+
+}
+
+checkStatus("common-status","common");
+checkStatus("basic-status","basic");
+checkStatus("concierge-status","concierge");
+checkStatus("technician-status","technician");
+checkStatus("ducati-sales-status","ducati_sales");
+checkStatus("ducati-service-status","ducati_service");
+
+document.getElementById(
+"total-pass"
+).innerHTML =
+
+passCount + " / 6 合格";
+
+</script>
+
+</body>
+</html>

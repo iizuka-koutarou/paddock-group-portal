@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>見積作成理解度チェック</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Yu Gothic",sans-serif;
+}
+
+body{
+background:
+linear-gradient(
+rgba(0,0,0,.65),
+rgba(0,0,0,.85)
+),
+url("paddock-top.jpg");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+color:white;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:80px 25px;
+}
+
+h1{
+text-align:center;
+font-size:55px;
+color:#6CFF6C;
+margin-bottom:20px;
+}
+
+.subtitle{
+text-align:center;
+font-size:22px;
+color:#ddd;
+margin-bottom:50px;
+}
+
+.card{
+background:white;
+color:#222;
+padding:30px;
+border-radius:20px;
+margin-bottom:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+.question{
+font-size:22px;
+font-weight:bold;
+margin-bottom:15px;
+color:#0B8F3C;
+}
+
+label{
+display:block;
+padding:10px 0;
+cursor:pointer;
+font-size:18px;
+}
+
+input[type="radio"]{
+margin-right:10px;
+}
+
+button{
+width:100%;
+padding:20px;
+border:none;
+border-radius:15px;
+background:#0B8F3C;
+color:white;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+margin-top:20px;
+}
+
+#result{
+margin-top:40px;
+text-align:center;
+font-size:30px;
+font-weight:bold;
+}
+
+.navigation{
+display:flex;
+justify-content:center;
+gap:30px;
+margin-top:40px;
+flex-wrap:wrap;
+}
+
+.navigation a{
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>見積作成理解度チェック</h1>
+
+<div class="subtitle">
+10問中8問以上で合格
+</div>
+
+<form id="quiz">
+
+<div class="card">
+<div class="question">Q1. 見積作成とは何ですか？</div>
+<label><input type="radio" name="q1" value="1"> お客様の理想のバイクライフを形にすること</label>
+<label><input type="radio" name="q1" value="0"> 金額を出すだけの作業</label>
+<label><input type="radio" name="q1" value="0"> 契約書を作ること</label>
+</div>
+
+<div class="card">
+<div class="question">Q2. 見積作成前に必ず確認するものは？</div>
+<label><input type="radio" name="q2" value="1"> 来店アンケート</label>
+<label><input type="radio" name="q2" value="0"> SNS</label>
+<label><input type="radio" name="q2" value="0"> 天気予報</label>
+</div>
+
+<div class="card">
+<div class="question">Q3. アンケート確認後に行うことは？</div>
+<label><input type="radio" name="q3" value="1"> CRM登録</label>
+<label><input type="radio" name="q3" value="0"> 納車準備</label>
+<label><input type="radio" name="q3" value="0"> 車検予約</label>
+</div>
+
+<div class="card">
+<div class="question">Q4. 見積作成にはどれくらい時間がかかる場合がありますか？</div>
+<label><input type="radio" name="q4" value="1"> 約30分</label>
+<label><input type="radio" name="q4" value="0"> 約5分</label>
+<label><input type="radio" name="q4" value="0"> 約1分</label>
+</div>
+
+<div class="card">
+<div class="question">Q5. ヒアリングする内容として正しいものは？</div>
+<label><input type="radio" name="q5" value="1"> 使用目的・予算・購入時期</label>
+<label><input type="radio" name="q5" value="0"> 名前だけ</label>
+<label><input type="radio" name="q5" value="0"> 住所だけ</label>
+</div>
+
+<div class="card">
+<div class="question">Q6. 見積時に必ず説明するものは？</div>
+<label><input type="radio" name="q6" value="1"> オーナーサポート</label>
+<label><input type="radio" name="q6" value="0"> 車検証</label>
+<label><input type="radio" name="q6" value="0"> 任意保険証券</label>
+</div>
+
+<div class="card">
+<div class="question">Q7. 現金購入予定のお客様にも提案するものは？</div>
+<label><input type="radio" name="q7" value="1"> ローン</label>
+<label><input type="radio" name="q7" value="0"> カスタムのみ</label>
+<label><input type="radio" name="q7" value="0"> 下取りのみ</label>
+</div>
+
+<div class="card">
+<div class="question">Q8. ローン提案のメリットとして正しいものは？</div>
+<label><input type="radio" name="q8" value="1"> 手元資金を残せる</label>
+<label><input type="radio" name="q8" value="0"> 金額が安くなる</label>
+<label><input type="radio" name="q8" value="0"> 車検が不要になる</label>
+</div>
+
+<div class="card">
+<div class="question">Q9. 見積完成後に必ず行うことは？</div>
+<label><input type="radio" name="q9" value="1"> Wチェック</label>
+<label><input type="radio" name="q9" value="0"> 即印刷</label>
+<label><input type="radio" name="q9" value="0"> 即契約</label>
+</div>
+
+<div class="card">
+<div class="question">Q10. パドックが考える見積作成とは？</div>
+<label><input type="radio" name="q10" value="1"> 信頼関係を築く時間</label>
+<label><input type="radio" name="q10" value="0"> 値段を伝える時間</label>
+<label><input type="radio" name="q10" value="0"> 契約を急ぐ時間</label>
+</div>
+
+<button type="button" onclick="checkTest()">
+試験結果を見る
+</button>
+
+</form>
+
+<div id="result"></div>
+
+<div class="navigation">
+
+<a href="estimate.html">
+← 見積作成へ戻る
+</a>
+
+<a href="concierge-skill.html">
+📚 コンシェルジュスキル一覧
+</a>
+
+<a href="welcome.html">
+🏠 Academy TOP
+</a>
+
+</div>
+
+</div>
+
+<script src="academy.js"></script>
+
+<script>
+
+function checkTest(){
+
+let score = 0;
+
+for(let i=1;i<=10;i++){
+
+const ans =
+document.querySelector(
+'input[name="q' + i + '"]:checked'
+);
+
+if(ans){
+score += Number(ans.value);
+}
+
+}
+
+const result =
+document.getElementById("result");
+
+if(score >= 8){
+
+completeCourse("estimate");
+
+result.innerHTML =
+
+"✅ 合格！<br>" +
+
+score +
+
+" / 10" +
+
+"<br><br>" +
+
+"見積作成コースを修了しました。" +
+
+"<br><br>" +
+
+'<a href="assessment.html" style="display:inline-block;padding:15px 30px;background:#0B8F3C;color:white;text-decoration:none;border-radius:10px;font-size:20px;font-weight:bold;">▶ 次へ進む（査定）</a>';
+
+}else{
+
+result.innerHTML =
+
+"❌ 不合格<br>" +
+
+score +
+
+" / 10" +
+
+"<br><br>" +
+
+"もう一度学習内容を確認しましょう。";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+function login(){if(u.value==='admin'&&p.value==='paddock'){location='dashboard.html'}else alert('ID: admin\nPW: paddock');}

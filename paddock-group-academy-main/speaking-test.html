@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>話し方理解度チェック</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Yu Gothic",sans-serif;
+}
+
+body{
+background:
+linear-gradient(
+rgba(0,0,0,.65),
+rgba(0,0,0,.85)
+),
+url("paddock-top.jpg");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+color:white;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:80px 25px;
+}
+
+h1{
+text-align:center;
+font-size:55px;
+color:#6CFF6C;
+margin-bottom:20px;
+}
+
+.subtitle{
+text-align:center;
+font-size:22px;
+color:#ddd;
+margin-bottom:50px;
+}
+
+.card{
+background:white;
+color:#222;
+padding:30px;
+border-radius:20px;
+margin-bottom:20px;
+box-shadow:
+0 5px 20px rgba(0,0,0,.15);
+}
+
+.question{
+font-size:22px;
+font-weight:bold;
+margin-bottom:15px;
+color:#0B8F3C;
+}
+
+label{
+display:block;
+padding:10px 0;
+cursor:pointer;
+font-size:18px;
+}
+
+input[type="radio"]{
+margin-right:10px;
+}
+
+button{
+width:100%;
+padding:20px;
+border:none;
+border-radius:15px;
+background:#0B8F3C;
+color:white;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+margin-top:20px;
+}
+
+#result{
+margin-top:40px;
+text-align:center;
+font-size:30px;
+font-weight:bold;
+}
+
+.navigation{
+display:flex;
+justify-content:center;
+gap:30px;
+margin-top:40px;
+flex-wrap:wrap;
+}
+
+.navigation a{
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>話し方理解度チェック</h1>
+
+<div class="subtitle">
+10問中8問以上で合格
+</div>
+
+<form id="quiz">
+
+<div class="card">
+<div class="question">Q1. 話し方とは？</div>
+<label><input type="radio" name="q1" value="1"> 相手に伝わるように話すこと</label>
+<label><input type="radio" name="q1" value="0"> 自分の言いたいことを話すこと</label>
+<label><input type="radio" name="q1" value="0"> 大きな声を出すこと</label>
+</div>
+
+<div class="card">
+<div class="question">Q2. お客様へ話す際に大切なことは？</div>
+<label><input type="radio" name="q2" value="1"> 安心感を与えること</label>
+<label><input type="radio" name="q2" value="0"> 早く説明すること</label>
+<label><input type="radio" name="q2" value="0"> 専門用語を使うこと</label>
+</div>
+
+<div class="card">
+<div class="question">Q3. 話すスピードは？</div>
+<label><input type="radio" name="q3" value="1"> ゆっくり話す</label>
+<label><input type="radio" name="q3" value="0"> とにかく早く話す</label>
+<label><input type="radio" name="q3" value="0"> 気にしない</label>
+</div>
+
+<div class="card">
+<div class="question">Q4. 話す時の表情は？</div>
+<label><input type="radio" name="q4" value="1"> 笑顔を意識する</label>
+<label><input type="radio" name="q4" value="0"> 無表情で良い</label>
+<label><input type="radio" name="q4" value="0"> 気にしない</label>
+</div>
+
+<div class="card">
+<div class="question">Q5. 説明はどこから始める？</div>
+<label><input type="radio" name="q5" value="1"> 結論から話す</label>
+<label><input type="radio" name="q5" value="0"> 思いついた順番で話す</label>
+<label><input type="radio" name="q5" value="0"> 最後に結論を言う</label>
+</div>
+
+<div class="card">
+<div class="question">Q6. 専門用語は？</div>
+<label><input type="radio" name="q6" value="1"> 分かりやすく説明する</label>
+<label><input type="radio" name="q6" value="0"> とにかく使う</label>
+<label><input type="radio" name="q6" value="0"> 説明しない</label>
+</div>
+
+<div class="card">
+<div class="question">Q7. お客様の反応は？</div>
+<label><input type="radio" name="q7" value="1"> 確認しながら話す</label>
+<label><input type="radio" name="q7" value="0"> 気にしない</label>
+<label><input type="radio" name="q7" value="0"> 最後だけ見る</label>
+</div>
+
+<div class="card">
+<div class="question">Q8. 自信のない話し方は？</div>
+<label><input type="radio" name="q8" value="0"> 良い印象を与える</label>
+<label><input type="radio" name="q8" value="1"> 不安を与える</label>
+<label><input type="radio" name="q8" value="0"> 関係ない</label>
+</div>
+
+<div class="card">
+<div class="question">Q9. お客様が覚えていることは？</div>
+<label><input type="radio" name="q9" value="1"> どのように話したか</label>
+<label><input type="radio" name="q9" value="0"> 話した時間だけ</label>
+<label><input type="radio" name="q9" value="0"> 声の大きさだけ</label>
+</div>
+
+<div class="card">
+<div class="question">Q10. パドックが大切にする話し方は？</div>
+<label><input type="radio" name="q10" value="1"> 伝えるではなく伝わる</label>
+<label><input type="radio" name="q10" value="0"> とにかく説明する</label>
+<label><input type="radio" name="q10" value="0"> とにかく話す</label>
+</div>
+
+<button type="button" onclick="checkTest()">
+試験結果を見る
+</button>
+
+</form>
+
+<div id="result"></div>
+
+<div class="navigation">
+
+<a href="speaking.html">
+← 話し方へ戻る
+</a>
+
+<a href="concierge-skill.html">
+📚 コンシェルジュスキル一覧
+</a>
+
+<a href="welcome.html">
+🏠 Academy TOP
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+function checkTest(){
+
+let score = 0;
+
+for(let i=1;i<=10;i++){
+
+const ans =
+document.querySelector(
+'input[name="q'+i+'"]:checked'
+);
+
+if(ans){
+
+score += Number(ans.value);
+
+}
+
+}
+
+const result =
+document.getElementById("result");
+
+if(score >= 8){
+
+const user =
+localStorage.getItem("currentUser");
+
+if(user){
+
+localStorage.setItem(
+user + "_speaking",
+"pass"
+);
+
+}
+
+result.innerHTML =
+
+"✅ 合格！<br>" +
+
+score +
+
+" / 10" +
+
+"<br><br>" +
+
+"話し方コースを修了しました。" +
+
+"<br><br>" +
+
+'<a href="listening.html" style="display:inline-block;padding:15px 30px;background:#0B8F3C;color:white;text-decoration:none;border-radius:10px;font-size:20px;font-weight:bold;">▶ 次へ進む（聞く姿勢）</a>';
+
+}else{
+
+result.innerHTML =
+
+"❌ 不合格<br>" +
+
+score +
+
+" / 10" +
+
+"<br><br>" +
+
+"もう一度学習内容を確認しましょう。";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

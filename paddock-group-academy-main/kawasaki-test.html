@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kawasaki試験</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Yu Gothic",sans-serif;}
+body{
+background:linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.85)),url('paddock-top.jpg');
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+color:white;
+}
+.container{
+max-width:900px;
+margin:auto;
+padding:80px 25px;
+}
+h1{
+text-align:center;
+color:#6CFF6C;
+font-size:60px;
+margin-bottom:20px;
+}
+.subtitle{
+text-align:center;
+font-size:22px;
+color:#ddd;
+margin-bottom:40px;
+}
+.card{
+background:white;
+color:#222;
+padding:30px;
+border-radius:20px;
+margin-bottom:20px;
+}
+.question{
+font-size:20px;
+font-weight:bold;
+margin-bottom:15px;
+}
+label{
+display:block;
+margin:10px 0;
+cursor:pointer;
+}
+button{
+width:100%;
+padding:20px;
+border:none;
+border-radius:15px;
+background:#0B8F3C;
+color:white;
+font-size:20px;
+font-weight:bold;
+cursor:pointer;
+margin-top:20px;
+}
+#result{
+margin-top:30px;
+font-size:24px;
+text-align:center;
+font-weight:bold;
+}
+.back{
+display:block;
+text-align:center;
+margin-top:30px;
+color:white;
+text-decoration:none;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>Kawasaki試験</h1>
+
+<div class="subtitle">
+8問中6問以上で合格
+</div>
+
+<form id="quiz">
+
+<div class="card">
+<div class="question">Q1. Kawasakiの創業者は？</div>
+<label><input type="radio" name="q1" value="1"> 川崎正蔵</label>
+<label><input type="radio" name="q1" value="0"> 本田宗一郎</label>
+<label><input type="radio" name="q1" value="0"> 豊田喜一郎</label>
+</div>
+
+<div class="card">
+<div class="question">Q2. Kawasakiは元々何から始まった？</div>
+<label><input type="radio" name="q2" value="1"> 造船業</label>
+<label><input type="radio" name="q2" value="0"> バイク販売</label>
+<label><input type="radio" name="q2" value="0"> 自動車製造</label>
+</div>
+
+<div class="card">
+<div class="question">Q3. Kawasakiは何メーカー？</div>
+<label><input type="radio" name="q3" value="1"> 総合重工メーカー</label>
+<label><input type="radio" name="q3" value="0"> バイク専業メーカー</label>
+<label><input type="radio" name="q3" value="0"> 自動車メーカー</label>
+</div>
+
+<div class="card">
+<div class="question">Q4. Kawasaki Plazaの役割は？</div>
+<label><input type="radio" name="q4" value="1"> ブランド体験の提供</label>
+<label><input type="radio" name="q4" value="0"> 車両販売のみ</label>
+<label><input type="radio" name="q4" value="0"> 部品販売のみ</label>
+</div>
+
+<div class="card">
+<div class="question">Q5. Kawasakiが製造しているものは？</div>
+<label><input type="radio" name="q5" value="1"> 船舶・航空機・鉄道車両</label>
+<label><input type="radio" name="q5" value="0"> バイクのみ</label>
+<label><input type="radio" name="q5" value="0"> 家電製品</label>
+</div>
+
+<div class="card">
+<div class="question">Q6. お客様へ伝えるべきものは？</div>
+<label><input type="radio" name="q6" value="1"> Kawasakiの価値</label>
+<label><input type="radio" name="q6" value="0"> 価格だけ</label>
+<label><input type="radio" name="q6" value="0"> スペックだけ</label>
+</div>
+
+<div class="card">
+<div class="question">Q7. Kawasaki Plazaは何をサポートする？</div>
+<label><input type="radio" name="q7" value="1"> Kawasakiライフ</label>
+<label><input type="radio" name="q7" value="0"> 車検のみ</label>
+<label><input type="radio" name="q7" value="0"> 保険のみ</label>
+</div>
+
+<div class="card">
+<div class="question">Q8. Academyで大切な考え方は？</div>
+<label><input type="radio" name="q8" value="1"> ブランド価値を伝える</label>
+<label><input type="radio" name="q8" value="0"> とにかく販売台数</label>
+<label><input type="radio" name="q8" value="0"> 値引き販売</label>
+</div>
+
+<button type="button" onclick="checkTest()">試験結果を見る</button>
+
+</form>
+
+<div id="result"></div>
+
+<a href="kawasaki.html" class="back">
+← Kawasaki Academyへ戻る
+</a>
+
+</div>
+
+<script>
+function checkTest(){
+
+let score = 0;
+
+for(let i=1;i<=8;i++){
+
+let ans =
+document.querySelector(
+'input[name="q'+i+'"]:checked'
+);
+
+if(ans){
+
+score += Number(ans.value);
+
+}
+
+}
+
+let result =
+document.getElementById("result");
+
+if(score >= 6){
+
+const user =
+localStorage.getItem("currentUser");
+
+if(user){
+
+localStorage.setItem(
+user + "_basic",
+"pass"
+);
+
+}
+
+result.innerHTML =
+
+"✅ 合格！<br>" +
+
+score +
+
+" / 8" +
+
+"<br><br>" +
+
+"ブランド理解を修了しました。" +
+
+"<br><br>" +
+
+'<a href="concierge.html" style="display:inline-block;padding:15px 30px;background:#0B8F3C;color:white;text-decoration:none;border-radius:10px;">▶ 次へ進む</a>';
+
+}else{
+
+result.innerHTML =
+
+"❌ 不合格<br>" +
+
+score +
+
+" / 8";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

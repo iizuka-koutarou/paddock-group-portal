@@ -1,0 +1,62 @@
+<!-- login.html の script部分 -->
+
+<script src="users.js"></script>
+
+<script>
+
+function login(){
+
+const id =
+document.getElementById("id").value;
+
+const pass =
+document.getElementById("pass").value;
+
+const user = users[id];
+
+if(!user){
+
+document.getElementById("error").innerHTML =
+"IDまたはパスワードが違います";
+
+return;
+
+}
+
+if(user.password !== pass){
+
+document.getElementById("error").innerHTML =
+"IDまたはパスワードが違います";
+
+return;
+
+}
+
+localStorage.setItem(
+"currentUser",
+id
+);
+
+localStorage.setItem(
+"currentUserName",
+user.name
+);
+
+localStorage.setItem(
+id + "_lastlogin",
+new Date().toLocaleString()
+);
+
+if(user.role === "admin"){
+
+location.href = "admin.html";
+
+}else{
+
+location.href = "welcome.html";
+
+}
+
+}
+
+</script>

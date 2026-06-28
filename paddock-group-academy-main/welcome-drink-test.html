@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ウェルカムドリンク理解度チェック</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Yu Gothic",sans-serif;
+}
+
+body{
+background:
+linear-gradient(
+rgba(0,0,0,.65),
+rgba(0,0,0,.85)
+),
+url("paddock-top.jpg");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+color:white;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:80px 25px;
+}
+
+h1{
+text-align:center;
+font-size:55px;
+color:#6CFF6C;
+margin-bottom:20px;
+}
+
+.subtitle{
+text-align:center;
+font-size:22px;
+color:#ddd;
+margin-bottom:50px;
+}
+
+.card{
+background:white;
+color:#222;
+padding:30px;
+border-radius:20px;
+margin-bottom:20px;
+box-shadow:0 5px 20px rgba(0,0,0,.15);
+}
+
+.question{
+font-size:22px;
+font-weight:bold;
+margin-bottom:15px;
+color:#0B8F3C;
+}
+
+label{
+display:block;
+padding:10px 0;
+cursor:pointer;
+font-size:18px;
+}
+
+input[type="radio"]{
+margin-right:10px;
+}
+
+button{
+width:100%;
+padding:20px;
+border:none;
+border-radius:15px;
+background:#0B8F3C;
+color:white;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+margin-top:20px;
+}
+
+#result{
+margin-top:40px;
+text-align:center;
+font-size:30px;
+font-weight:bold;
+}
+
+.navigation{
+display:flex;
+justify-content:center;
+gap:30px;
+margin-top:40px;
+flex-wrap:wrap;
+}
+
+.navigation a{
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>ウェルカムドリンク理解度チェック</h1>
+
+<div class="subtitle">
+5問中4問以上で合格
+</div>
+
+<form id="quiz">
+
+<div class="card">
+<div class="question">Q1. ウェルカムドリンクの目的は？</div>
+<label><input type="radio" name="q1" value="1"> お客様にリラックスしていただくため</label>
+<label><input type="radio" name="q1" value="0"> 飲み物を消費するため</label>
+<label><input type="radio" name="q1" value="0"> 商談を急ぐため</label>
+</div>
+
+<div class="card">
+<div class="question">Q2. ドリンク提供のタイミングは？</div>
+<label><input type="radio" name="q2" value="1"> ご着席後できるだけ早く</label>
+<label><input type="radio" name="q2" value="0"> 商談終了後</label>
+<label><input type="radio" name="q2" value="0"> 帰る直前</label>
+</div>
+
+<div class="card">
+<div class="question">Q3. ウェルカムドリンクは誰の仕事ですか？</div>
+<label><input type="radio" name="q3" value="1"> スタッフ全員</label>
+<label><input type="radio" name="q3" value="0"> 店長のみ</label>
+<label><input type="radio" name="q3" value="0"> コンシェルジュのみ</label>
+</div>
+
+<div class="card">
+<div class="question">Q4. ダイヤレモンは何に由来する飲み物ですか？</div>
+<label><input type="radio" name="q4" value="1"> 布引鉱泉所</label>
+<label><input type="radio" name="q4" value="0"> カワサキモータース</label>
+<label><input type="radio" name="q4" value="0"> 明石工場</label>
+</div>
+
+<div class="card">
+<div class="question">Q5. ウェルカムドリンクが表すものは？</div>
+<label><input type="radio" name="q5" value="1"> おもてなしの心</label>
+<label><input type="radio" name="q5" value="0"> 販売テクニック</label>
+<label><input type="radio" name="q5" value="0"> 値引きサービス</label>
+</div>
+
+<button type="button" onclick="checkTest()">
+試験結果を見る
+</button>
+
+</form>
+
+<div id="result"></div>
+
+<div class="navigation">
+
+<a href="welcome-drink.html">
+← ウェルカムドリンクへ戻る
+</a>
+
+<a href="concierge-skill.html">
+📚 コンシェルジュスキル一覧
+</a>
+
+<a href="welcome.html">
+🏠 Academy TOP
+</a>
+
+</div>
+
+</div>
+
+<script src="academy.js"></script>
+
+<script>
+
+function checkTest(){
+
+let score = 0;
+
+for(let i=1;i<=5;i++){
+
+const ans =
+document.querySelector(
+'input[name="q' + i + '"]:checked'
+);
+
+if(ans){
+score += Number(ans.value);
+}
+
+}
+
+const result =
+document.getElementById("result");
+
+if(score >= 4){
+
+completeCourse("welcome_drink");
+
+result.innerHTML =
+
+"✅ 合格！<br>" +
+
+score +
+
+" / 5" +
+
+"<br><br>" +
+
+"ウェルカムドリンクコースを修了しました。" +
+
+"<br><br>" +
+
+'<a href="estimate.html" style="display:inline-block;padding:15px 30px;background:#0B8F3C;color:white;text-decoration:none;border-radius:10px;font-size:20px;font-weight:bold;">▶ 次へ進む（見積作成）</a>';
+
+}else{
+
+result.innerHTML =
+
+"❌ 不合格<br>" +
+
+score +
+
+" / 5" +
+
+"<br><br>" +
+
+"もう一度学習内容を確認しましょう。";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

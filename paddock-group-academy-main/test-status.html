@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>試験一覧</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Yu Gothic",sans-serif;
+}
+
+body{
+
+background:
+linear-gradient(
+rgba(0,0,0,.65),
+rgba(0,0,0,.85)
+),
+url("paddock-top.jpg");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+color:white;
+
+}
+
+.container{
+
+max-width:900px;
+margin:auto;
+padding:100px 25px;
+
+}
+
+h1{
+
+text-align:center;
+font-size:60px;
+margin-bottom:15px;
+
+}
+
+.sub{
+
+text-align:center;
+color:#ccc;
+margin-bottom:50px;
+
+}
+
+.card{
+
+background:white;
+color:#222;
+
+padding:40px;
+
+border-radius:20px;
+
+}
+
+.test-row{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:20px 0;
+
+border-bottom:1px solid #ddd;
+
+font-size:22px;
+
+}
+
+.count{
+
+margin-top:40px;
+
+text-align:center;
+
+font-size:32px;
+
+font-weight:bold;
+
+color:#1F3A5F;
+
+}
+
+.back{
+
+display:block;
+
+text-align:center;
+
+margin-top:40px;
+
+color:white;
+
+text-decoration:none;
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>試験一覧</h1>
+
+<p class="sub">
+
+Academy認定状況
+
+</p>
+
+<div class="card">
+
+<div class="test-row">
+<span>共通教育試験</span>
+<span id="common"></span>
+</div>
+
+<div class="test-row">
+<span>Kawasaki基礎試験</span>
+<span id="basic"></span>
+</div>
+
+<div class="test-row">
+<span>Kawasakiコンシェルジュ試験</span>
+<span id="concierge"></span>
+</div>
+
+<div class="test-row">
+<span>Kawasakiテクニシャン試験</span>
+<span id="technician"></span>
+</div>
+
+<div class="test-row">
+<span>Ducatiセールス試験</span>
+<span id="ducati-sales"></span>
+</div>
+
+<div class="test-row">
+<span>Ducatiサービス試験</span>
+<span id="ducati-service"></span>
+</div>
+
+<div class="count" id="total">
+
+</div>
+
+</div>
+
+<a href="welcome.html" class="back">
+
+← Academy TOPへ戻る
+
+</a>
+
+</div>
+
+<script>
+
+let passCount = 0;
+
+function check(id,key){
+
+const pass =
+localStorage.getItem(key);
+
+if(pass==="pass"){
+
+document.getElementById(id).innerHTML="✅";
+
+passCount++;
+
+}else{
+
+document.getElementById(id).innerHTML="❌";
+
+}
+
+}
+
+check(
+"common",
+"common-test"
+);
+
+check(
+"basic",
+"kawasaki-basic-test"
+);
+
+check(
+"concierge",
+"kawasaki-concierge-test"
+);
+
+check(
+"technician",
+"kawasaki-technician-test"
+);
+
+check(
+"ducati-sales",
+"ducati-sales-test"
+);
+
+check(
+"ducati-service",
+"ducati-service-test"
+);
+
+document.getElementById("total").innerHTML =
+passCount + " / 6 合格";
+
+</script>
+
+</body>
+</html>

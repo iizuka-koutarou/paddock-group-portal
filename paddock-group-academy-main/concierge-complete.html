@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>修了証</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Yu Gothic",sans-serif;
+}
+
+body{
+
+background:
+linear-gradient(
+rgba(0,0,0,.75),
+rgba(0,0,0,.90)
+),
+url("paddock-top.jpg");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+min-height:100vh;
+
+padding:30px;
+
+}
+
+.certificate{
+
+background:white;
+
+width:100%;
+max-width:1100px;
+
+padding:80px 60px;
+
+border-radius:25px;
+
+box-shadow:
+0 0 30px rgba(0,0,0,.3);
+
+text-align:center;
+
+position:relative;
+
+}
+
+.certificate:before{
+
+content:"";
+
+position:absolute;
+
+top:15px;
+left:15px;
+right:15px;
+bottom:15px;
+
+border:4px solid #0B8F3C;
+
+border-radius:20px;
+
+}
+
+.logo{
+
+font-size:18px;
+letter-spacing:5px;
+color:#666;
+
+margin-bottom:20px;
+
+}
+
+.title{
+
+font-size:60px;
+font-weight:bold;
+
+color:#0B8F3C;
+
+margin-bottom:30px;
+
+}
+
+.sub{
+
+font-size:24px;
+
+margin-bottom:50px;
+
+color:#444;
+
+}
+
+.complete{
+
+font-size:42px;
+
+font-weight:bold;
+
+margin-bottom:50px;
+
+color:#222;
+
+}
+
+.name{
+
+font-size:48px;
+
+font-weight:bold;
+
+margin:40px 0;
+
+color:#111;
+
+}
+
+.message{
+
+font-size:22px;
+
+line-height:2;
+
+color:#333;
+
+max-width:800px;
+
+margin:auto;
+
+}
+
+.date{
+
+margin-top:60px;
+
+font-size:20px;
+
+color:#555;
+
+}
+
+.sign{
+
+margin-top:50px;
+
+font-size:24px;
+
+font-weight:bold;
+
+color:#222;
+
+}
+
+.kawasaki{
+
+margin-top:10px;
+
+font-size:18px;
+
+color:#777;
+
+}
+
+.btn-area{
+
+margin-top:60px;
+
+display:flex;
+
+justify-content:center;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+}
+
+.btn{
+
+padding:15px 30px;
+
+background:#0B8F3C;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:10px;
+
+font-size:18px;
+
+font-weight:bold;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="certificate">
+
+<div class="logo">
+
+PADOCK ACADEMY
+
+</div>
+
+<div class="title">
+
+修 了 証
+
+</div>
+
+<div class="sub">
+
+CONCIERGE COURSE
+
+</div>
+
+<div class="complete">
+
+COMPLETED
+
+</div>
+
+<div class="name" id="userName">
+
+受講者
+
+</div>
+
+<div class="message">
+
+あなたは
+
+PADOCK ACADEMY
+
+コンシェルジュコースの全課程を修了し、
+
+パドックグループが定める
+
+コンシェルジュとして必要な知識と技能を
+
+習得したことをここに証します。
+
+<br><br>
+
+お客様へ感動を届け、
+
+バイクライフを支える
+
+最高のコンシェルジュとして
+
+今後の活躍を期待します。
+
+</div>
+
+<div class="date" id="today">
+
+2026.00.00
+
+</div>
+
+<div class="sign">
+
+株式会社パドック
+
+</div>
+
+<div class="kawasaki">
+
+Kawasaki Plaza Yaizu
+
+</div>
+
+<div class="btn-area">
+
+<a href="dashboard.html" class="btn">
+
+📊 ダッシュボードへ戻る
+
+</a>
+
+<a href="welcome.html" class="btn">
+
+🏠 TOPへ戻る
+
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+const user =
+localStorage.getItem("currentUser");
+
+if(user){
+
+document.getElementById("userName").innerHTML =
+user;
+
+}
+
+const today = new Date();
+
+const year = today.getFullYear();
+
+const month =
+String(today.getMonth()+1).padStart(2,"0");
+
+const day =
+String(today.getDate()).padStart(2,"0");
+
+document.getElementById("today").innerHTML =
+
+year + "." + month + "." + day;
+
+</script>
+
+</body>
+</html>
