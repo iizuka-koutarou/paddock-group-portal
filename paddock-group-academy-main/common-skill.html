@@ -1,169 +1,63 @@
 ﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>共通スキル</title>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:"Yu Gothic",sans-serif;
-}
-
-body{
-background:
-linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.8)),
-url("paddock-top.jpg");
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
-color:white;
-}
-
-.container{
-max-width:1100px;
-margin:auto;
-padding:100px 30px;
-}
-
-.hero{
-text-align:center;
-margin-bottom:70px;
-}
-
-.hero h1{
-font-size:64px;
-margin-bottom:20px;
-}
-
-.hero p{
-font-size:22px;
-color:#ddd;
-}
-
-.menu-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
-}
-
-.card{
-background:rgba(255,255,255,.95);
-color:#222;
-padding:35px;
-border-radius:20px;
-text-decoration:none;
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-border-bottom:5px solid #1F3A5F;
-}
-
-.card h2{
-color:#1F3A5F;
-margin-bottom:15px;
-}
-
-.card p{
-line-height:1.8;
-color:#666;
-}
-
-.back{
-display:block;
-text-align:center;
-margin-top:50px;
-color:white;
-text-decoration:none;
-}
-
-</style>
-
-<link rel="stylesheet" href="../assets/css/academy-common.css" /></head>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>共通スキル</title>
+  <link rel="stylesheet" href="../assets/css/academy-common.css">
+</head>
 <body>
-
-<header class="paddock-header academy-kawasaki">
-  <div class="paddock-inner">
-    <div class="paddock-brand">
-      <div class="brand">PADDOCK Portal</div>
-      <div class="subtitle sr-only">Portal</div>
+  <header class="paddock-header academy-kawasaki">
+    <div class="paddock-inner">
+      <div class="paddock-brand">
+        <div class="brand">PADDOCK Portal</div>
+        <div class="subtitle sr-only">Portal</div>
+      </div>
+      <div class="paddock-title">
+        <div class="page-name">共通スキル</div>
+      </div>
+      <div class="paddock-actions">
+        <a href="welcome.html" class="btn-secondary">Academy TOPへ戻る</a>
+        <a href="../dashboard.html" class="home-btn">🏠 Portal HOME</a>
+      </div>
     </div>
-    <div class="paddock-title">
-      <div class="page-name">共通スキル</div>
-    </div>
-    <a href="../dashboard.html" class="home-btn">🏠 Portal HOME</a>
-  </div>
-</header><div class="container">
-
-<div class="hero">
-  <header class="page-header">
-    <a href="../dashboard.html" class="home-link">Portal HOME</a>
   </header>
 
-<h1>共通スキル</h1>
+  <main class="container">
+    <section class="hero">
+      <header class="page-header">
+        <div class="page-title-group">
+          <span class="page-badge">Academy / 共通スキル</span>
+          <h1>共通スキル</h1>
+        </div>
+      </header>
+      <p>
+        すべての職種に共通する、社会人としての基本スキルを学びます。
+        接遇・電話対応・クレーム対応など、日常業務に必要な基礎を整理しています。
+      </p>
+    </section>
 
-<p>
+    <section class="menu-grid" aria-label="共通スキルメニュー">
+      <a href="social-basic.html" class="card">
+        <span class="card-icon" aria-hidden="true">✦</span>
+        <h2>社会人として</h2>
+        <p>名刺交換・お辞儀・お迎え・お見送りなど、基本的な接遇を学びます。</p>
+      </a>
 
-すべての職種に共通すめE社会人としての基本スキル
+      <a href="phone.html" class="card">
+        <span class="card-icon" aria-hidden="true">☎</span>
+        <h2>電話対応</h2>
+        <p>電話応対の基本を学び、相手に安心して話を聞いてもらえる対応を身につけます。</p>
+      </a>
 
-</p>
+      <a href="complaint.html" class="card">
+        <span class="card-icon" aria-hidden="true">⚑</span>
+        <h2>クレーム対応</h2>
+        <p>初期対応から復旧対応まで、落ち着いて対応するための流れを学びます。</p>
+      </a>
+    </section>
 
-</div>
-
-<div class="menu-grid">
-
-<a href="social-basic.html" class="card">
-
-<h2>社会人として</h2>
-
-<p>
-
-名刺交換�Eお辞儀・お�E迎え・お見送り
-
-</p>
-
-</a>
-
-<a href="phone.html" class="card">
-
-<h2>電話対忁E/h2>
-
-<p>
-
-電話応対の基本を学ぶ
-
-</p>
-
-</a>
-
-<a href="complaint.html" class="card">
-
-<h2>クレーム対忁E/h2>
-
-<p>
-
-期征E��復対応を学ぶ
-
-</p>
-
-</a>
-
-</div>
-
-<a href="welcome.html" class="back">
-
-ↁEAcademy TOPへ戻めE
-</a>
-
-</div>
-
+  </main>
 </body>
 </html>
 

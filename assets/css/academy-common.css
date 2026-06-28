@@ -1,13 +1,13 @@
 /* Academy 共通レイアウト / ポータル共通デザイン */
 :root {
-  --text: #111827;
+  --text: #121826;
   --text-light: #f8fafc;
-  --text-muted: #6b7280;
-  --surface: rgba(255,255,255,.94);
-  --surface-soft: rgba(255,255,255,.88);
+  --text-muted: #64748b;
+  --surface: rgba(255,255,255,.965);
+  --surface-soft: rgba(255,255,255,.9);
   --border: rgba(17,24,39,.08);
-  --shadow: 0 28px 80px rgba(17,24,39,.08);
-  --shadow-soft: 0 12px 34px rgba(17,24,39,.07);
+  --shadow: 0 22px 60px rgba(17,24,39,.08);
+  --shadow-soft: 0 12px 30px rgba(17,24,39,.06);
   --gold: #c8a96a;
   --green: #0b8f3c;
   --red: #bf0a30;
@@ -17,51 +17,70 @@ body {
   font-family: "Noto Sans JP", "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--text-light);
   min-height: 100vh;
+  background:
+    linear-gradient(rgba(5, 18, 32, 0.82), rgba(5, 18, 32, 0.86)),
+    url("../images/paddock-top.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 .container {
-  max-width: 1180px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 56px 26px 72px;
+  padding: 0 40px 72px;
 }
 
 .hero {
   display: grid;
-  gap: 22px;
-  padding: 54px 0 42px;
+  gap: 18px;
+  padding: 36px 0 56px;
+  max-width: 900px;
 }
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(42px, 5vw, 64px);
-  line-height: 1.05;
-  letter-spacing: .02em;
-  color: var(--text-light);
+  font-size: clamp(40px, 4.8vw, 62px);
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  color: #ffffff;
+  text-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
 }
 
 .hero p {
   margin: 0;
-  color: rgba(248,250,252,.84);
-  font-size: 18px;
-  line-height: 1.9;
-  max-width: 860px;
+  color: rgba(248,250,252,.9);
+  font-size: 17px;
+  line-height: 1.85;
+  max-width: 900px;
 }
 
 .page-header {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: space-between;
-  gap: 16px;
+  gap: 14px;
 }
 
 .page-header .home-link {
   align-self: start;
+  display: none;
 }
 
 .page-title-group {
   display: grid;
-  gap: 12px;
+  gap: 8px;
+}
+
+.page-title-group::before {
+  content: "PADDOCK Academy";
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: rgba(248,250,252,.72);
 }
 
 .page-title-group .page-badge {
@@ -71,9 +90,10 @@ body {
   padding: 8px 14px;
   border-radius: 999px;
   background: rgba(255,255,255,.12);
-  color: rgba(255,255,255,.82);
+  border: 1px solid rgba(255,255,255,.16);
+  color: rgba(255,255,255,.86);
   font-size: 13px;
-  font-weight: 900;
+  font-weight: 800;
 }
 
 .home-link,
@@ -81,65 +101,102 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 50px;
-  padding: 0 22px;
-  border-radius: 18px;
-  background: rgba(255,255,255,.92);
+  min-height: 48px;
+  padding: 0 20px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255,255,255,.97), rgba(248,244,236,.95));
   color: var(--text);
   font-size: 14px;
   font-weight: 900;
   text-decoration: none;
-  border: 1px solid var(--border);
-  box-shadow: 0 10px 24px rgba(17,24,39,.08);
+  border: 1px solid rgba(200,169,106,.22);
+  box-shadow: 0 12px 24px rgba(17,24,39,.08);
   transition: transform .16s ease, box-shadow .16s ease;
 }
 
 .home-link:hover,
 .btn-secondary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 16px 34px rgba(17,24,39,.12);
+  box-shadow: 0 16px 34px rgba(17,24,39,.13);
 }
 
 .card,
 .menu-card,
 .status-panel,
 .progress-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 26px;
-  box-shadow: var(--shadow);
+  background: rgba(20, 32, 48, 0.72);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 24px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
   padding: 28px 30px;
-  color: #111827;
-  transition: transform .18s ease, box-shadow .18s ease;
+  color: #ffffff;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 250ms ease;
 }
 
 .card:hover,
 .menu-card:hover,
 .status-panel:hover,
 .progress-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 32px 88px rgba(17,24,39,.10);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255,255,255,0.22);
 }
 
 .menu-card,
 .card {
   text-decoration: none;
   color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 260px;
+  gap: 14px;
+  position: relative;
+  overflow: hidden;
+}
+
+.menu-card::before,
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent 45%);
+  pointer-events: none;
+}
+
+.menu-card .card-icon,
+.card .card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 2px;
+  border-radius: 50%;
+  background: rgba(124, 169, 255, 0.16);
+  color: #e8f2ff;
+  font-size: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
 }
 
 .menu-card h3,
 .card h2,
 .card h3 {
-  margin: 0 0 14px;
-  font-size: 20px;
+  margin: 0;
+  font-size: 21px;
+  line-height: 1.25;
+  color: #ffffff;
 }
 
 .menu-card p,
 .card p,
 .card .status {
   margin: 0;
-  color: #475569;
+  color: rgba(255,255,255,0.86);
   line-height: 1.8;
+  font-size: 15px;
 }
 
 .menu-grid,
@@ -150,6 +207,8 @@ body {
 
 .menu-grid {
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+  align-items: stretch;
 }
 
 .grid {
@@ -182,15 +241,15 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 32px;
+  margin-top: 30px;
   padding: 0 20px;
   min-height: 48px;
   color: var(--text-light);
   text-decoration: none;
   font-weight: 900;
-  border: 1px solid rgba(255,255,255,.24);
-  border-radius: 18px;
-  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 16px;
+  background: rgba(255,255,255,.1);
   transition: transform .16s ease, box-shadow .16s ease;
 }
 
@@ -208,51 +267,109 @@ body {
 
 @media (max-width: 980px) {
   .container {
-    padding: 42px 20px 60px;
+    padding: 30px 24px 60px;
   }
   .hero {
-    padding: 40px 0 32px;
+    padding: 24px 0 32px;
   }
   .page-header {
-    gap: 14px;
+    gap: 12px;
+  }
+  .menu-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 680px) {
+  .container {
+    padding: 24px 20px 56px;
+  }
   .page-header {
     flex-direction: column;
+    align-items: flex-start;
   }
   .menu-grid,
   .grid {
     grid-template-columns: 1fr;
+  }
+  .page-title-group {
+    gap: 8px;
   }
 }
 
 /* Shared header for Academy pages */
 .paddock-header {
   width: 100%;
-  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-  border-bottom: 1px solid rgba(255,255,255,.04);
+  background: rgba(255,255,255,.04);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
   position: sticky;
   top: 0;
   z-index: 30;
+  box-shadow: 0 8px 24px rgba(17,24,39,.08);
 }
 .paddock-inner {
   max-width: 1180px;
   margin: 0 auto;
   padding: 14px 22px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  justify-content:space-between;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
 }
-.paddock-brand .brand { font-weight:900; color:var(--text-light); }
-.paddock-title .page-name { color:var(--text-light); font-weight:900; font-size:18px; text-align:center; }
-.home-btn { background:var(--surface-soft); color:var(--text); padding:8px 14px; border-radius:12px; font-weight:900; text-decoration:none; box-shadow:var(--shadow-soft); }
-.paddock-header.academy-kawasaki .home-btn { background:var(--green); color:#fff }
-.paddock-header.academy-ducati .home-btn { background:var(--red); color:#fff }
+.paddock-brand .brand {
+  font-weight: 900;
+  color: var(--text-light);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+.paddock-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.paddock-title .page-name { color: var(--text-light); font-weight: 900; font-size: 18px; text-align: center; }
+.home-btn {
+  background: linear-gradient(135deg, rgba(255,255,255,.97), rgba(248,244,236,.95));
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: 0 10px 24px rgba(17,24,39,.08);
+  border: 1px solid rgba(200,169,106,.22);
+}
+.paddock-header.academy-kawasaki .home-btn { background: var(--green); color: #fff; border-color: transparent; }
+.paddock-header.academy-ducati .home-btn { background: var(--red); color: #fff; border-color: transparent; }
 
-@media (max-width:680px) {
-  .paddock-inner { padding:12px; }
-  .paddock-title .page-name { font-size:16px; }
+.academy-kawasaki .card:hover,
+.academy-kawasaki .menu-card:hover { border-color: rgba(11,143,60,.24); }
+
+.academy-ducati .card:hover,
+.academy-ducati .menu-card:hover { border-color: rgba(191,10,48,.24); }
+
+:root {
+  --academy-primary: var(--green);
+  --academy-primary-dark: #0a6f2d;
 }
+
+.btn-primary { background: linear-gradient(135deg, var(--academy-primary), var(--academy-primary-dark)); color:#fff; box-shadow: 0 18px 42px rgba(2,8,6,.12); }
+.btn-secondary { background: rgba(255,255,255,.94); color:var(--text); border:1px solid rgba(255,255,255,.06); }
+.btn-outline { background: transparent; color:var(--text); border:2px solid rgba(255,255,255,.12); }
+.btn-danger { background: linear-gradient(135deg, var(--red), #8f071f); color:#fff; }
+
+.card { border-radius:22px; padding:28px; background: rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.04); box-shadow: var(--shadow); }
+.card h2, .card h3 { color:var(--text-light); }
+.card .card-actions a, .card .card-actions button { min-height:48px; }
+
+.page-title .title { color:var(--text-light); }
+.page-title .subtitle { color: rgba(248,250,252,.76); }
+
+.badge-new { background: #e11d48; color:#fff; }
+.badge-recommended { background: linear-gradient(90deg, var(--academy-primary), var(--gold)); color:#fff; }
+
+/* Ducati variant helper */
+.accent-ducati { --academy-primary: var(--red); --academy-primary-dark: #a00926; }
