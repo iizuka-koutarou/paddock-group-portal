@@ -351,48 +351,58 @@ weather-card {
   font-weight: 700;
 }
 
-.weather-area {
-  margin: 10px 0 0;
-  color: #475569;
+.weather-region-group {
+  margin-top: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.weather-region-block {
+  display: grid;
+  gap: 8px;
+}
+
+.weather-region-head p {
+  margin: 0;
+  color: #334155;
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .weather-list {
-  margin-top: 14px;
   display: grid;
-  grid-template-columns: repeat(7, minmax(84px, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(7, minmax(66px, 1fr));
+  gap: 6px;
   overflow-x: auto;
   padding-bottom: 2px;
 }
 
 .weather-day {
-  min-height: 124px;
-  min-width: 84px;
-  border-radius: 12px;
+  min-height: 88px;
+  min-width: 66px;
+  border-radius: 10px;
   background: #f8fafc;
   border: 1px solid rgba(148, 163, 184, 0.16);
   display: grid;
   align-items: center;
   justify-items: center;
-  gap: 5px;
-  padding: 8px 4px;
+  gap: 3px;
+  padding: 6px 4px;
 }
 
 .weather-day-label {
   color: #64748b;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
 }
 
 .weather-day .weather-icon {
-  font-size: 19px;
+  font-size: 16px;
 }
 
 .weather-day-caption {
   color: #334155;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   text-align: center;
   line-height: 1.2;
@@ -400,9 +410,10 @@ weather-card {
 
 .weather-temp {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 4px;
-  font-size: 11px;
+  gap: 1px;
+  font-size: 9px;
   font-weight: 800;
 }
 
@@ -425,6 +436,27 @@ weather-card {
   margin: 10px 0 0;
   color: #64748b;
   font-size: 11px;
+  font-weight: 700;
+}
+
+.daily-message-card {
+  min-height: 306px;
+  display: block;
+  padding: 24px;
+}
+
+.daily-message-text {
+  margin: 14px 0 0;
+  color: #1f2937;
+  font-size: 17px;
+  line-height: 1.85;
+  white-space: pre-wrap;
+}
+
+.daily-message-note {
+  margin: 12px 0 0;
+  color: #64748b;
+  font-size: 12px;
   font-weight: 700;
 }
 
@@ -966,7 +998,7 @@ academy-card {
   }
 
   .weather-list {
-    grid-template-columns: repeat(7, minmax(76px, 1fr));
+    grid-template-columns: repeat(7, minmax(64px, 1fr));
   }
 
   .academy-entry-card {
@@ -1013,7 +1045,7 @@ academy-card {
   }
 
   .weather-list {
-    grid-template-columns: repeat(7, minmax(72px, 1fr));
+    grid-template-columns: repeat(7, minmax(62px, 1fr));
   }
 
   .time-summary {

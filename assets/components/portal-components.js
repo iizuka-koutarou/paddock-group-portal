@@ -120,13 +120,39 @@
       this.innerHTML =
         '<header class="panel-head weather-head">' +
         "<h3>週間天気</h3>" +
-        '<a href="https://www.jma.go.jp/bosai/forecast/#area_type=offices&area_code=220000" target="_blank" rel="noopener">気象庁 ↗</a>' +
+        '<a href="https://www.jma.go.jp/bosai/forecast/" target="_blank" rel="noopener">公開データ ↗</a>' +
         "</header>" +
-        '<p class="weather-area">静岡県（店舗所在地）</p>' +
-        '<div id="weeklyWeather" class="weather-list" aria-live="polite">' +
+        '<div class="weather-region-group" aria-live="polite">' +
+        '<section class="weather-region-block">' +
+        '<div class="weather-region-head"><p>焼津市</p></div>' +
+        '<div id="weatherYaizuList" class="weather-list" aria-label="焼津市7日予報">' +
         '<div class="weather-loading">読み込み中...</div>' +
         "</div>" +
+        "</section>" +
+        '<section class="weather-region-block">' +
+        '<div class="weather-region-head"><p>静岡市</p></div>' +
+        '<div id="weatherShizuokaList" class="weather-list" aria-label="静岡市7日予報">' +
+        '<div class="weather-loading">読み込み中...</div>' +
+        "</div>" +
+        "</section>" +
+        "</div>" +
         '<p id="weatherUpdated" class="weather-updated">気象庁データ / 更新情報なし</p>';
+      this.dataset.rendered = "true";
+    }
+  }
+
+  class DailyMessageCard extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.rendered === "true") return;
+      this.classList.add("panel-card", "daily-message-card");
+      this.id = this.id || "daily-message";
+      this.innerHTML =
+        '<header class="panel-head">' +
+        "<h3>今日のひとこと</h3>" +
+        '<a href="paddock-group-academy-main/portal-settings.html">Portal設定 ›</a>' +
+        "</header>" +
+        '<p id="dailyMessage" class="daily-message-text">管理画面のPortal設定からメッセージを登録してください。</p>' +
+        '<p class="daily-message-note">社長メッセージは管理画面から毎朝更新できます。</p>';
       this.dataset.rendered = "true";
     }
   }
@@ -296,6 +322,7 @@
     ["welcome-card", WelcomeCard],
     ["clock-card", ClockCard],
     ["weather-card", WeatherCard],
+    ["daily-message-card", DailyMessageCard],
     ["attendance-card", AttendanceCard],
     ["announcement-card", AnnouncementCard],
     ["event-card", EventCard],

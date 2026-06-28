@@ -8,6 +8,7 @@ const state = {
 };
 
 const WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"];
+const PORTAL_DAILY_MESSAGE_KEY = "paddock_portal_daily_message";
 
 const customerMessages = {
   morning: [
@@ -108,14 +109,21 @@ function updateClock() {
   const greetingText = document.getElementById("greetingText");
   const serviceMessage = document.getElementById("serviceMessage");
   const dailyMessage = document.getElementById("dailyMessage");
+  const messageText = getDailyMessage();
 
   if (currentTime) currentTime.textContent = nowTime();
   if (currentDate) currentDate.textContent = formatDate(now);
   if (greetingText) greetingText.textContent = getGreeting(period);
-  if (serviceMessage) serviceMessage.textContent = getSeasonalMessage(now);
-  if (dailyMessage) dailyMessage.textContent = getSeasonalMessage(now);
+  if (serviceMessage) serviceMessage.textContent = messageText;
+  if (dailyMessage) dailyMessage.textContent = messageText;
 
   renderAttendance();
+}
+
+function getDailyMessage() {
+  const fromStorage = localStorage.getItem(PORTAL_DAILY_MESSAGE_KEY);
+  if (fromStorage && fromStorage.trim()) return fromStorage.trim();
+  return "管理画面のPortal設定から「今日のひとこと」を登録してください。";
 }
 
 function parseDateTime(value) {
@@ -330,6 +338,14 @@ function resetDemo() {
 }
 
 function weatherIcon(telop = "") {
+  if (typeof telop === "number") {
+    if ([95, 96, 99].includes(telop)) return "⛈";
+    if ([61, 63, 65, 80, 81, 82].includes(telop)) return "☔";
+    if ([71, 73, 75, 77].includes(telop)) return "☃";
+    if ([0, 1].includes(telop)) return "☀";
+    if ([2, 3, 45, 48].includes(telop)) return "☁";
+    return "○";
+  }
   if (telop.includes("雷")) return "⛈";
   if (telop.includes("雨")) return "☔";
   if (telop.includes("雪")) return "☃";
@@ -339,7 +355,7 @@ function weatherIcon(telop = "") {
 }
 
 function renderWeatherFallback() {
-  const days = [
+  const yaizuDays = [
     { date: "6/28", day: "土", telop: "雨", max: 28, min: 22 },
     { date: "6/29", day: "日", telop: "くもり", max: 30, min: 23 },
     { date: "6/30", day: "月", telop: "晴れ", max: 32, min: 24 },
@@ -348,14 +364,32 @@ function renderWeatherFallback() {
     { date: "7/3", day: "木", telop: "晴れ", max: 33, min: 24 },
     { date: "7/4", day: "金", telop: "くもり", max: 30, min: 23 },
   ];
-  renderWeatherDays(days);
+  const shizuokaDays = [
+    { date: "6/28", day: "土", telop: "くもり", max: 29, min: 23 },
+    { date: "6/29", day: "日", telop: "晴れ", max: 31, min: 24 },
+    { date: "6/30", day: "月", telop: "晴れ", max: 33, min: 25 },
+    { date: "7/1", day: "火", telop: "くもり", max: 32, min: 25 },
+    { date: "7/2", day: "水", telop: "雨", max: 30, min: 24 },
+    { date: "7/3", day: "木", telop: "晴れ", max: 34, min: 25 },
+    { date: "7/4", day: "金", telop: "くもり", max: 31, min: 24 },
+  ];
+  renderWeatherDays("weatherYaizuList", yaizuDays);
+  renderWeatherDays("weatherShizuokaList", shizuokaDays);
   const updated = document.getElementById("weatherUpdated");
   if (updated) updated.textContent = "天気情報を取得できない場合はサンプル表示になります。";
   const summary = document.getElementById("headerWeatherSummary");
-  if (summary) summary.textContent = "静岡県 7日予報（サンプル）";
+  if (summary) summary.textContent = "焼津市/静岡市 7日予報（サンプル）";
 }
 
 function simplifyTelop(telop) {
+  if (typeof telop === "number") {
+    if ([95, 96, 99].includes(telop)) return "雷雨";
+    if ([61, 63, 65, 80, 81, 82].includes(telop)) return "雨";
+    if ([71, 73, 75, 77].includes(telop)) return "雪";
+    if ([0, 1].includes(telop)) return "晴";
+    if ([2, 3, 45, 48].includes(telop)) return "くもり";
+    return "情報";
+  }
   if (telop.includes("雷")) return "雷雨";
   if (telop.includes("雨")) return "雨";
   if (telop.includes("雪")) return "雪";
@@ -364,17 +398,17 @@ function simplifyTelop(telop) {
   return "情報";
 }
 
-function renderWeatherDays(days) {
-  const wrap = document.getElementById("weeklyWeather");
+function renderWeatherDays(targetId, days) {
+  const wrap = document.getElementById(targetId);
   if (!wrap) return;
   wrap.innerHTML = days.slice(0, 7).map((item) => {
-    const shortText = simplifyTelop(item.telop);
+    const shortText = simplifyTelop(item.telop ?? item.weatherCode);
     const hi = Number.isFinite(Number(item.max)) ? `${Math.round(Number(item.max))}℃` : "--";
     const lo = Number.isFinite(Number(item.min)) ? `${Math.round(Number(item.min))}℃` : "--";
     return `
       <div class="weather-day">
         <div class="weather-day-label">${item.day}</div>
-        <span class="weather-icon">${weatherIcon(item.telop)}</span>
+        <span class="weather-icon">${weatherIcon(item.telop ?? item.weatherCode)}</span>
         <div class="weather-day-caption">${shortText}</div>
         <div class="weather-temp"><span class="weather-hi">H ${hi}</span><span class="weather-lo">L ${lo}</span></div>
       </div>
@@ -382,89 +416,45 @@ function renderWeatherDays(days) {
   }).join("");
 }
 
-function parseTemp(value) {
-  const n = Number(value);
-  return Number.isFinite(n) ? n : null;
-}
+async function loadCityForecast(city) {
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo&forecast_days=7`;
+  const response = await fetch(url, { cache: "no-store" });
+  if (!response.ok) throw new Error(`weather fetch failed: ${city.name}`);
+  const data = await response.json();
+  const daily = data?.daily;
+  if (!daily || !Array.isArray(daily.time)) throw new Error(`invalid weather data: ${city.name}`);
 
-function findAreaByName(areas = []) {
-  return areas.find((area) => area.area?.name?.includes("中部")) || areas[0];
-}
-
-function buildTemperatureMap(data) {
-  const series = data?.[0]?.timeSeries || [];
-  const temperatureSeries = series.find((item) =>
-    Array.isArray(item?.areas) && item.areas.some((area) =>
-      Array.isArray(area?.tempsMin) || Array.isArray(area?.tempsMax) || Array.isArray(area?.temps)
-    )
-  );
-
-  if (!temperatureSeries) return {};
-  const area = findAreaByName(temperatureSeries.areas || []);
-  if (!area) return {};
-
-  const timeDefines = temperatureSeries.timeDefines || [];
-  const mins = area.tempsMin || [];
-  const maxs = area.tempsMax || [];
-  const temps = area.temps || [];
-  const map = {};
-
-  timeDefines.forEach((time, index) => {
-    const key = new Date(time).toISOString().slice(0, 10);
-    const min = parseTemp(mins[index]);
-    const max = parseTemp(maxs[index]);
-    const single = parseTemp(temps[index]);
-    map[key] = {
-      min: min,
-      max: max ?? single,
+  return daily.time.map((time, index) => {
+    const date = new Date(time);
+    return {
+      day: WEEKDAYS[date.getDay()],
+      weatherCode: daily.weather_code?.[index],
+      max: daily.temperature_2m_max?.[index],
+      min: daily.temperature_2m_min?.[index],
     };
   });
-
-  return map;
 }
 
 async function loadJmaWeather() {
   const updated = document.getElementById("weatherUpdated");
   const summary = document.getElementById("headerWeatherSummary");
+  const cities = [
+    { name: "焼津市", lat: 34.8667, lon: 138.3167, targetId: "weatherYaizuList" },
+    { name: "静岡市", lat: 34.9756, lon: 138.3828, targetId: "weatherShizuokaList" },
+  ];
 
   try {
-    const response = await fetch("https://www.jma.go.jp/bosai/forecast/data/forecast/220000.json", {
-      cache: "no-store",
-    });
-    if (!response.ok) throw new Error("weather fetch failed");
-
-    const data = await response.json();
-    const areaSeries = data?.[0]?.timeSeries?.[0];
-    const timeDefines = areaSeries?.timeDefines || [];
-    const shizuokaArea = findAreaByName(areaSeries?.areas || []);
-    const weatherCodes = shizuokaArea?.weatherCodes || [];
-    const weatherText = shizuokaArea?.weathers || [];
-    const tempMap = buildTemperatureMap(data);
-
-    const days = timeDefines.map((time, index) => {
-      const date = new Date(time);
-      const telop = weatherText[index] || codeToTelop(weatherCodes[index]) || "情報確認";
-      const key = date.toISOString().slice(0, 10);
-      const temperatures = tempMap[key] || {};
-      return {
-        date: `${date.getMonth() + 1}/${date.getDate()}`,
-        day: WEEKDAYS[date.getDay()],
-        telop,
-        max: temperatures.max,
-        min: temperatures.min,
-      };
+    const results = await Promise.all(cities.map((city) => loadCityForecast(city)));
+    results.forEach((days, index) => {
+      renderWeatherDays(cities[index].targetId, days);
     });
 
-    if (days.length) {
-      renderWeatherDays(days);
-      if (summary) {
-        const first = days[0];
-        summary.textContent = `静岡県 ${simplifyTelop(first.telop)} H${Number.isFinite(Number(first.max)) ? Math.round(Number(first.max)) : "--"}℃ L${Number.isFinite(Number(first.min)) ? Math.round(Number(first.min)) : "--"}℃`;
-      }
-      if (updated) updated.textContent = `気象庁データ / 最終更新 ${formatDate(new Date())} ${nowTime()}`;
-    } else {
-      renderWeatherFallback();
+    if (summary) {
+      const yaizuToday = results[0]?.[0];
+      const shizuokaToday = results[1]?.[0];
+      summary.textContent = `焼津 ${simplifyTelop(yaizuToday?.weatherCode)} / 静岡 ${simplifyTelop(shizuokaToday?.weatherCode)}`;
     }
+    if (updated) updated.textContent = `公開天気データ / 最終更新 ${formatDate(new Date())} ${nowTime()}`;
   } catch (error) {
     renderWeatherFallback();
   }
