@@ -9,30 +9,36 @@
 <body class="login-page">
   <main class="login-shell">
     <section class="login-brand" aria-label="PADDOCK GROUP Portal">
-      <div class="brand-kicker">PADDOCK GROUP</div>
-      <div class="brand-logo-text">PADDOCK</div>
-      <div class="brand-url">http://8109.tv</div>
+      <p class="brand-kicker">PADDOCK GROUP PORTAL</p>
+      <img class="brand-logo-image" src="assets/images/logos/paddock-logo.jpg" alt="PADDOCK" />
       <div class="brand-portal">Portal</div>
       <p class="brand-copy">仕事のはじまりを、ここから。</p>
+      <div class="login-feature-pills" aria-label="Portal機能">
+        <span>勤怠</span>
+        <span>お知らせ</span>
+        <span>イベント</span>
+        <span>Academy</span>
+      </div>
     </section>
 
     <section class="login-card" aria-label="ログインフォーム">
-      <p class="login-label">PADDOCK GROUP Portal</p>
+      <p class="login-label">PADDOCK GROUP PORTAL</p>
       <h1>ログイン</h1>
       <div class="login-line"></div>
       <p class="login-description">出社・退勤、お知らせ確認、Academy学習をここから始めます。</p>
 
       <form class="login-form" onsubmit="login(event)">
         <label for="userId">ID</label>
-        <input type="text" id="userId" placeholder="IDを入力" autocomplete="username" required />
+        <input type="text" id="userId" value="admin" placeholder="IDを入力" autocomplete="username" required />
 
         <label for="password">PASSWORD</label>
-        <input type="password" id="password" placeholder="パスワードを入力" autocomplete="current-password" required />
+        <input type="password" id="password" value="password" placeholder="パスワードを入力" autocomplete="current-password" required />
 
         <button type="submit">Portalへログイン</button>
       </form>
 
-      <p class="login-note">PADDOCK GROUP / Portal v1.0</p>
+      <p class="login-help">ID・パスワードをお忘れの場合は管理者へ確認してください。</p>
+      <p class="login-note">Portal v1.0 / PADDOCK GROUP</p>
     </section>
   </main>
 

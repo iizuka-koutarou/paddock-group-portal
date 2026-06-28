@@ -16,8 +16,8 @@ body {
 .login-page {
   min-height: 100vh;
   background:
-    radial-gradient(circle at 22% 24%, rgba(200,169,106,.20), transparent 28%),
-    linear-gradient(115deg, rgba(5,8,14,.96) 0%, rgba(8,12,19,.88) 42%, rgba(8,12,19,.42) 72%, rgba(8,12,19,.25) 100%),
+    radial-gradient(circle at 22% 24%, rgba(200,169,106,.17), transparent 30%),
+    linear-gradient(115deg, rgba(5,8,14,.97) 0%, rgba(8,12,19,.88) 42%, rgba(8,12,19,.52) 72%, rgba(8,12,19,.32) 100%),
     url("../images/paddock-top.jpg") center / cover no-repeat;
 }
 
@@ -33,37 +33,24 @@ body {
 .login-brand { max-width: 760px; }
 
 .brand-kicker {
-  margin-bottom: 22px;
-  color: rgba(255,255,255,.68);
+  margin: 0 0 28px;
+  color: rgba(255,255,255,.70);
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: .34em;
 }
 
-.brand-logo-text {
-  color: #e60012;
-  font-size: clamp(60px, 8vw, 118px);
-  font-weight: 950;
-  font-style: italic;
-  letter-spacing: 1px;
-  line-height: .85;
-  text-shadow: 0 20px 50px rgba(0,0,0,.5);
-}
-
-.brand-url {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 5px 18px 9px;
-  background: #e60012;
-  color: #ffffff;
-  font-size: clamp(22px, 3vw, 42px);
-  font-weight: 950;
-  font-style: italic;
-  line-height: 1;
+.brand-logo-image {
+  display: block;
+  width: min(640px, 82vw);
+  max-height: 190px;
+  object-fit: contain;
+  object-position: left center;
+  filter: drop-shadow(0 24px 46px rgba(0,0,0,.55));
 }
 
 .brand-portal {
-  margin-top: 34px;
+  margin-top: 42px;
   font-size: clamp(44px, 6vw, 86px);
   font-weight: 300;
   letter-spacing: .25em;
@@ -71,18 +58,37 @@ body {
 }
 
 .brand-copy {
-  margin-top: 36px;
-  color: rgba(255,255,255,.82);
+  margin: 36px 0 0;
+  color: rgba(255,255,255,.85);
   font-size: clamp(17px, 1.7vw, 23px);
   letter-spacing: .18em;
+}
+
+.login-feature-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+}
+
+.login-feature-pills span {
+  min-width: 112px;
+  padding: 14px 20px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 18px;
+  background: rgba(255,255,255,.06);
+  color: rgba(255,255,255,.82);
+  text-align: center;
+  font-weight: 800;
+  backdrop-filter: blur(10px);
 }
 
 .login-card {
   width: 100%;
   padding: 52px 48px 38px;
-  border: 1px solid rgba(255,255,255,.16);
+  border: 1px solid rgba(200,169,106,.32);
   border-radius: 32px;
-  background: rgba(10,13,20,.82);
+  background: rgba(10,13,20,.84);
   backdrop-filter: blur(22px);
   box-shadow: 0 36px 100px rgba(0,0,0,.46);
 }
@@ -104,10 +110,10 @@ body {
 }
 
 .login-line {
-  width: 54px;
-  height: 2px;
+  width: 100%;
+  height: 1px;
   margin: 24px 0;
-  background: linear-gradient(90deg, var(--gold), transparent);
+  background: linear-gradient(90deg, transparent, rgba(200,169,106,.75), transparent);
 }
 
 .login-description {
@@ -120,9 +126,9 @@ body {
 
 .login-form label {
   margin-top: 12px;
-  color: rgba(255,255,255,.7);
+  color: rgba(255,255,255,.72);
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: .14em;
 }
 
@@ -152,32 +158,37 @@ body {
   margin-top: 26px;
   border: none;
   border-radius: 22px;
-  background: #ffffff;
+  background: linear-gradient(135deg, #fff, #f2dfb6);
   color: #111111;
   font-size: 16px;
   font-weight: 900;
   letter-spacing: .08em;
   cursor: pointer;
-  transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+  transition: transform .15s ease, box-shadow .15s ease;
 }
 
 .login-form button:hover {
   transform: translateY(-2px);
-  background: #f4ead6;
   box-shadow: 0 16px 40px rgba(200,169,106,.18);
 }
 
+.login-help {
+  margin: 24px 0 0;
+  color: rgba(255,255,255,.55);
+  font-size: 12px;
+  line-height: 1.7;
+  text-align: center;
+}
+
 .login-note {
-  margin: 30px 0 0;
+  margin: 26px 0 0;
   color: rgba(255,255,255,.42);
   font-size: 12px;
   text-align: center;
 }
 
 @media (max-width: 980px) {
-  .login-shell {
-    grid-template-columns: 1fr;
-  }
+  .login-shell { grid-template-columns: 1fr; }
   .login-card { max-width: 560px; }
 }
 
@@ -185,4 +196,5 @@ body {
   .login-shell { padding: 28px 18px; }
   .login-card { padding: 34px 24px 28px; border-radius: 26px; }
   .brand-copy { letter-spacing: .08em; }
+  .login-feature-pills span { flex: 1 1 45%; }
 }

@@ -9,40 +9,76 @@
 <body>
   <div class="portal-layout">
     <aside class="sidebar">
-      <div class="sidebar-logo">
-        <span class="logo-mark">P</span>
-        <div>
-          <strong>PADDOCK</strong>
-          <small>GROUP Portal</small>
-        </div>
+      <div class="sidebar-brand">
+        <img src="assets/images/logos/paddock-logo.jpg" alt="PADDOCK" class="sidebar-logo-image" />
+        <p>GROUP PORTAL</p>
       </div>
-      <nav class="side-nav">
-        <a class="active" href="dashboard.html">Portal</a>
-        <a href="#academy">Academy</a>
-        <a href="#attendance">勤怠</a>
-        <a href="#notice">お知らせ</a>
-        <a href="#events">イベント</a>
-        <a href="#stores">店舗情報</a>
-        <a href="#profile">マイページ</a>
-        <a href="#admin">管理画面</a>
+
+      <nav class="side-nav" aria-label="メインメニュー">
+        <a class="active" href="dashboard.html"><span>⌂</span>Portal</a>
+        <a href="#attendance"><span>◷</span>勤怠</a>
+        <a href="#notice"><span>○</span>お知らせ</a>
+        <a href="#events"><span>◇</span>イベント</a>
+        <a href="#academy"><span>□</span>Academy</a>
+        <a href="#profile"><span>◎</span>マイページ</a>
+        <a href="#admin"><span>⚙</span>管理画面</a>
       </nav>
+
+      <div class="sidebar-footer">
+        <span>Portal v1.0</span>
+      </div>
     </aside>
 
     <main class="main">
-      <header class="topbar">
+      <div class="top-actions">
+        <button class="ghost-button" onclick="resetDemo()">デモ初期化</button>
+        <button class="ghost-button admin-button">管理者</button>
+      </div>
+
+      <header class="page-header">
         <div>
-          <p class="eyebrow">PADDOCK GROUP Portal</p>
-          <h1>おはようございます。飯塚さん</h1>
+          <p class="eyebrow">PADDOCK GROUP PORTAL</p>
+          <h1><span id="greetingText">こんにちは。</span> 飯塚さん</h1>
+          <p id="serviceMessage" class="lead">ご来店いただく一人ひとりのお客様との時間を大切にしましょう。</p>
         </div>
-        <div class="user-pill">管理者</div>
       </header>
 
-      <section class="grid hero-grid">
+      <section class="top-grid">
+        <article class="card time-card">
+          <p class="card-kicker">現在の時刻</p>
+          <strong id="currentTime">--:--:--</strong>
+          <span id="currentDate">----年--月--日（--）</span>
+        </article>
+
+        <article class="card message-card">
+          <div class="message-icon">☀</div>
+          <div>
+            <p class="card-kicker">今日の一言</p>
+            <strong id="dailyMessage">笑顔の対応が、お客様の最高の思い出になります。</strong>
+          </div>
+        </article>
+
+        <article class="card weather-card">
+          <div class="weather-head">
+            <div>
+              <p class="card-kicker">静岡県 週間天気</p>
+              <strong>気象庁発表データ</strong>
+            </div>
+            <a href="https://www.jma.go.jp/bosai/forecast/#area_type=offices&area_code=220000" target="_blank" rel="noopener">気象庁 ↗</a>
+          </div>
+          <div id="weeklyWeather" class="weather-list" aria-live="polite">
+            <div class="weather-loading">読み込み中...</div>
+          </div>
+          <p id="weatherUpdated" class="weather-updated">気象庁データを参照します。</p>
+        </article>
+      </section>
+
+      <section class="content-grid">
         <article class="card attendance-card" id="attendance">
           <div class="card-head">
             <div>
-              <p class="eyebrow">Attendance</p>
-              <h2>本日の勤務</h2>
+              <p class="eyebrow">ATTENDANCE</p>
+              <h2>本日の勤務状況</h2>
             </div>
             <span id="workStatus" class="status-badge">未打刻</span>
           </div>
@@ -53,78 +89,100 @@
           </div>
 
           <div class="time-summary">
-            <div><span>出社</span><strong id="clockInTime">--:--</strong></div>
-            <div><span>退勤</span><strong id="clockOutTime">--:--</strong></div>
-            <div><span>勤務時間</span><strong id="workDuration">--</strong></div>
+            <div>
+              <span>出社時刻</span>
+              <strong id="clockInTime">--:--:--</strong>
+              <em id="clockInLabel">未打刻</em>
+            </div>
+            <div>
+              <span>退勤時刻</span>
+              <strong id="clockOutTime">--:--:--</strong>
+              <em id="clockOutLabel">未退勤</em>
+            </div>
+            <div>
+              <span>勤務時間</span>
+              <strong id="workDuration">00時間00分</strong>
+              <em id="workDurationLabel">未確定</em>
+            </div>
           </div>
 
-          <button class="link-button" onclick="openCorrection()">訂正申請をする</button>
+          <button class="link-button" onclick="openCorrection()">訂正申請をする ›</button>
         </article>
 
         <article class="card notice-card" id="notice">
           <div class="card-head">
             <div>
-              <p class="eyebrow">Notice</p>
+              <p class="eyebrow">NOTICE</p>
               <h2>お知らせ</h2>
             </div>
-            <span class="dot-new">NEW</span>
+            <a href="#" class="small-link">すべて見る ›</a>
           </div>
           <ul class="notice-list">
-            <li><time>07/01</time><span>Portal Version 1.0 開発開始</span></li>
-            <li><time>07/05</time><span>共通教育コンテンツ更新予定</span></li>
-            <li><time>07/12</time><span>全体ミーティング資料を公開予定</span></li>
+            <li><time>07/01</time><span class="tag tag-new">NEW</span><strong>Portal Version 1.0 開発開始</strong><a href="#">›</a></li>
+            <li><time>07/05</time><strong>共通教育コンテンツ更新予定</strong><a href="#">›</a></li>
+            <li><time>07/12</time><strong>全体ミーティング資料を公開予定</strong><a href="#">›</a></li>
           </ul>
         </article>
-      </section>
 
-      <section class="grid two-col">
-        <article class="card" id="events">
+        <article class="card event-card" id="events">
           <div class="card-head">
             <div>
-              <p class="eyebrow">Events</p>
+              <p class="eyebrow">NEXT EVENTS</p>
               <h2>次回イベント</h2>
             </div>
+            <a href="#" class="small-link">カレンダーを見る ›</a>
           </div>
           <div class="event-list">
-            <div class="event-item joint"><span>合同イベント</span><strong>07/12 PADDOCK GROUP BBQ</strong></div>
-            <div class="event-item"><span>Kawasaki Plaza 焼津</span><strong>07/20 Ninja試乗会</strong></div>
-            <div class="event-item"><span>Ducati 静岡</span><strong>08/03 Ducati Test Ride Day</strong></div>
+            <div class="event-item">
+              <span>合同イベント</span>
+              <time>07/12（土）</time>
+              <strong>PADDOCK GROUP BBQ</strong>
+            </div>
+            <div class="event-item">
+              <span>Kawasaki Plaza 焼津</span>
+              <time>07/20（日）</time>
+              <strong>Ninja 試乗会</strong>
+            </div>
+            <div class="event-item">
+              <span>Ducati 静岡</span>
+              <time>08/03（日）</time>
+              <strong>Ducati Test Ride Day</strong>
+            </div>
           </div>
+          <button class="outline-button">すべてのイベントを見る ›</button>
         </article>
 
         <article class="card academy-card" id="academy">
           <div class="card-head">
             <div>
-              <p class="eyebrow">Academy</p>
+              <p class="eyebrow">ACADEMY</p>
               <h2>学習を続ける</h2>
             </div>
+            <a href="#" class="small-link">すべて見る ›</a>
           </div>
+
           <div class="academy-current">
             <span>前回の続き</span>
             <strong>PADDOCK GROUPとは</strong>
-            <p>進捗 40% / 約18分</p>
+            <p>進捗 40% / 予想時間 約18分</p>
+            <div class="progress"><span style="width:40%"></span></div>
           </div>
-          <div class="academy-links">
-            <a href="#">共通教育</a>
-            <a href="#">共通スキル</a>
-            <a href="#">ブランド教育</a>
-            <a href="#">テスト一覧</a>
-          </div>
-        </article>
-      </section>
 
-      <section class="grid two-col">
-        <article class="card" id="stores">
-          <div class="card-head"><div><p class="eyebrow">Stores</p><h2>店舗情報</h2></div></div>
-          <div class="store-list">
-            <div><strong>PADDOCK 本店</strong><span>焼津市中新田288</span></div>
-            <div><strong>Kawasaki Plaza 焼津</strong><span>焼津市中新田239-1</span></div>
-            <div><strong>Ducati 静岡</strong><span>住所確認中</span></div>
+          <div class="academy-mini-grid">
+            <a href="#"><strong>共通教育</strong><span>全12講座 / 進捗65%</span></a>
+            <a href="#"><strong>マニュアル・資料</strong><span>全28資料 / いつでも確認できます</span></a>
           </div>
+
+          <a href="#" class="academy-button">Academyへ進む ›</a>
         </article>
 
         <article class="card admin-card" id="admin">
-          <div class="card-head"><div><p class="eyebrow">Admin</p><h2>管理画面</h2></div></div>
+          <div class="card-head">
+            <div>
+              <p class="eyebrow">ADMIN</p>
+              <h2>管理画面</h2>
+            </div>
+          </div>
           <p>訂正申請・お知らせ・イベント・教材を管理します。</p>
           <div class="admin-demo">
             <strong>訂正申請デモ</strong>
@@ -139,7 +197,7 @@
     <div class="modal-panel">
       <h2>訂正申請</h2>
       <p>間違えて打刻した場合は、理由を入力して申請してください。</p>
-      <label>訂正内容<input id="correctionValue" placeholder="例：出社 09:12 → 08:58" /></label>
+      <label>訂正内容<input id="correctionValue" placeholder="例：出社 09:12:15 → 08:58:00" /></label>
       <label>理由<textarea id="correctionReason" placeholder="例：押し忘れのため"></textarea></label>
       <div class="modal-actions">
         <button class="btn-secondary" onclick="closeCorrection()">閉じる</button>
