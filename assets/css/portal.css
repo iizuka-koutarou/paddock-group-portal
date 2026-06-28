@@ -26,6 +26,7 @@ body {
   margin: 0;
   font-family: "Noto Sans JP", "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--text);
+  line-height: 1.7;
   background:
     radial-gradient(circle at 85% 5%, rgba(200,169,106,.20), transparent 34%),
     linear-gradient(135deg, #fffdf8 0%, #f5f1e9 52%, #f8f8f6 100%);
@@ -127,13 +128,13 @@ textarea {
 
 .main {
   position: relative;
-  padding: 34px clamp(26px, 3.8vw, 60px) 54px;
+  padding: 36px clamp(28px, 4vw, 64px) 56px;
   overflow: hidden;
 }
 
 .top-actions {
   position: absolute;
-  right: clamp(26px, 3.8vw, 60px);
+  right: clamp(28px, 4vw, 64px);
   top: 30px;
   display: flex;
   gap: 12px;
@@ -157,7 +158,7 @@ textarea {
 }
 
 .page-header {
-  margin: 0 0 24px;
+  margin: 0 0 28px;
   padding-right: 230px;
 }
 
@@ -172,9 +173,14 @@ textarea {
 
 .page-header h1 {
   margin: 0;
-  font-size: clamp(34px, 3.3vw, 52px);
-  line-height: 1.15;
-  letter-spacing: .04em;
+  font-size: clamp(36px, 3.4vw, 54px);
+  line-height: 1.12;
+  letter-spacing: .03em;
+}
+
+.page-header h1 span + span {
+  display: inline-block;
+  margin-left: .3em;
 }
 
 .lead {
@@ -201,12 +207,16 @@ textarea {
 }
 
 .card {
-  min-height: 260px;
+  min-height: 280px;
   border: 1px solid rgba(231,223,208,.82);
   border-radius: 28px;
   background: var(--card);
   box-shadow: var(--shadow);
   backdrop-filter: blur(12px);
+  padding: 28px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 }
 
 .card-head {
@@ -214,7 +224,7 @@ textarea {
   justify-content: space-between;
   gap: 18px;
   align-items: flex-start;
-  margin-bottom: 22px;
+  margin-bottom: 18px;
 }
 
 .card h2 {
@@ -233,11 +243,11 @@ textarea {
 }
 
 .time-card {
-  padding: 22px 24px;
+  padding: 26px 30px;
   min-width: 0;
   min-height: 260px;
   display: grid;
-  gap: 12px;
+  gap: 14px;
 }
 
 .time-card strong {
@@ -262,23 +272,23 @@ textarea {
 .message-card {
   display: flex;
   align-items: center;
-  gap: 26px;
-  padding: 28px 34px;
+  gap: 22px;
+  padding: 28px 30px;
   border-color: rgba(200,169,106,.42);
   background:
     linear-gradient(135deg, rgba(255,255,255,.95), rgba(255,251,242,.92));
 }
 
 .message-icon {
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
   display: grid;
   place-items: center;
   flex: 0 0 auto;
   border-radius: 50%;
   background: #f7ead1;
   color: var(--gold-dark);
-  font-size: 30px;
+  font-size: 28px;
 }
 
 .message-card strong {
@@ -383,7 +393,7 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 18px;
-  min-height: 320px;
+  min-height: 360px;
 }
 
 .notice-card .notice-list,
@@ -391,6 +401,7 @@ textarea {
 .academy-card .academy-current,
 .academy-card .academy-mini-grid {
   flex: 1;
+  min-height: 0;
 }
 
 .event-card .outline-button,
@@ -449,6 +460,14 @@ textarea {
   transform: translateY(-2px);
   filter: brightness(1.03);
   box-shadow: var(--shadow-soft);
+}
+
+.btn:disabled,
+.btn[disabled] {
+  opacity: .6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .btn-start {
