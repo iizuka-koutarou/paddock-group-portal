@@ -1,225 +1,30 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PADDOCK GROUP Portal | Home</title>
-  <link rel="stylesheet" href="assets/css/portal.css" />
+  <link rel="stylesheet" href="assets/components/portal-components.css" />
+  <link rel="stylesheet" href="assets/css/portal-home-rc.css" />
+  <script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js" defer></script>
+  <script src="assets/components/portal-components.js" defer></script>
 </head>
 <body>
-  <header class="paddock-header">
-  <div class="paddock-inner">
-    <div class="paddock-brand">
-      <div class="brand">PADDOCK Portal</div>
-      <div class="subtitle sr-only">Portal</div>
-    </div>
-    <div class="paddock-title">
-      <div class="page-name">PADDOCK GROUP Portal</div>
-    </div>
-    <a href="dashboard.html" class="home-btn">🏠 Portal HOME</a>
-  </div>
-</header><div class="portal-layout">
-    <aside class="sidebar">
-      <div class="sidebar-brand">
-        <img src="assets/images/logos/paddock-logo.jpg" alt="PADDOCK" class="sidebar-logo-image" />
-        <p>GROUP PORTAL</p>
-      </div>
+  <portal-layout id="portal">
+    <portal-sidebar version="Portal v1.0"></portal-sidebar>
 
-      <nav class="side-nav" aria-label="メインメニュー">
-        <a class="active" href="dashboard.html"><span>⌂</span>Portal</a>
-        <a href="#attendance"><span>◷</span>勤怠</a>
-        <a href="#notice"><span>○</span>お知らせ</a>
-        <a href="#events"><span>◇</span>イベント</a>
-        <a href="#academy"><span>□</span>Academy</a>
-        <a href="#profile"><span>◎</span>マイページ</a>
-        <a href="#admin"><span>⚙</span>管理画面</a>
-      </nav>
+    <page-container>
+      <portal-header name="飯塚さん" team="Kawasaki Plaza 焼津"></portal-header>
 
-      <div class="sidebar-footer">
-        <span>Portal v1.0</span>
-      </div>
-    </aside>
-
-    <main class="main page-shell">
-      <div class="top-actions">
-        <button type="button" class="ghost-button" onclick="resetDemo()">デモ初期化</button>
-        <button type="button" class="ghost-button admin-button" onclick="window.location.href='paddock-group-academy-main/admin.html'">管理者</button>
-      </div>
-
-      <header class="page-header">
-        <div>
-          <p class="eyebrow">PADDOCK GROUP PORTAL</p>
-          <h1><span id="greetingText">こんにちは。</span> <span id="greetingName">飯塚さん</span></h1>
-          <p class="lead">今日の勤務状況、お知らせ、Academy へすぐ遷移できます。</p>
-        </div>
-      </header>
-
-      <section class="top-grid">
-        <article class="card time-card">
-          <p class="card-kicker">現在の時刻</p>
-          <strong id="currentTime">--:--:--</strong>
-          <span id="currentDate">----年--月--日（--）</span>
-        </article>
-
-        <article class="card message-card">
-          <div class="message-icon">☀</div>
-          <div>
-            <p class="card-kicker">今日の一言</p>
-            <strong id="dailyMessage">笑顔の対応が、お客様の最高の思い出になります。</strong>
-          </div>
-        </article>
-
-        <article class="card weather-card">
-          <div class="weather-head">
-            <div>
-              <p class="card-kicker">静岡県 週間天気</p>
-            </div>
-            <a href="https://www.jma.go.jp/bosai/forecast/#area_type=offices&area_code=220000" target="_blank" rel="noopener">気象庁 ↗</a>
-          </div>
-          <div id="weeklyWeather" class="weather-list" aria-live="polite">
-            <div class="weather-loading">読み込み中...</div>
-          </div>
-          <p id="weatherUpdated" class="weather-updated">気象庁データ / 更新情報なし</p>
-        </article>
+      <section class="dashboard-card-grid" aria-label="業務カード">
+        <attendance-card></attendance-card>
+        <announcement-card></announcement-card>
+        <weather-card></weather-card>
+        <academy-card href="paddock-group-academy-main/welcome.html"></academy-card>
       </section>
-
-      <section class="content-grid">
-        <article class="card attendance-card" id="attendance">
-          <div class="card-head">
-            <div>
-              <p class="eyebrow">ATTENDANCE</p>
-              <h2>本日の勤務状況</h2>
-            </div>
-            <span id="workStatus" class="status-badge">未打刻</span>
-          </div>
-
-          <div class="attendance-actions">
-            <button type="button" class="btn btn-start" onclick="clockIn()">出社する</button>
-            <button type="button" class="btn btn-break" onclick="openBreakModal()">外出する</button>
-            <button type="button" class="btn btn-return" onclick="returnFromBreak()">戻る</button>
-            <button type="button" class="btn btn-end" onclick="clockOut()">退勤する</button>
-          </div>
-
-          <div class="time-summary">
-            <div>
-              <span>出社時刻</span>
-              <strong id="clockInTime">--:--:--</strong>
-              <em id="clockInLabel">未打刻</em>
-            </div>
-            <div>
-              <span>退勤時刻</span>
-              <strong id="clockOutTime">--:--:--</strong>
-              <em id="clockOutLabel">未退勤</em>
-            </div>
-            <div>
-              <span>勤務時間</span>
-              <strong id="workDuration">00時間00分</strong>
-              <em id="workDurationLabel">未確定</em>
-            </div>
-          </div>
-
-          <div id="breakStatusInfo" class="attendance-break-info" aria-live="polite"></div>
-
-          <button type="button" class="link-button" onclick="openCorrection()">訂正申請をする ›</button>
-        </article>
-
-        <article class="card notice-card" id="notice">
-          <div class="card-head">
-            <div>
-              <p class="eyebrow">NOTICE</p>
-              <h2>お知らせ</h2>
-            </div>
-            <a href="#notice" class="small-link">すべて見る ›</a>
-          </div>
-          <ul id="noticeList" class="notice-list">
-            <li>
-              <time>07/01</time>
-              <div class="notice-body">
-                <strong><a href="#notice">Portal Version 1.0 開発開始</a></strong>
-                <span class="tag tag-new">NEW</span>
-              </div>
-              <a href="#notice" class="notice-link" aria-label="詳細を見る">›</a>
-            </li>
-            <li>
-              <time>07/05</time>
-              <div class="notice-body">
-                <strong><a href="#notice">共通教育コンテンツ更新予定</a></strong>
-              </div>
-              <a href="#notice" class="notice-link" aria-label="詳細を見る">›</a>
-            </li>
-            <li>
-              <time>07/12</time>
-              <div class="notice-body">
-                <strong><a href="#notice">全体ミーティング資料を公開予定</a></strong>
-              </div>
-              <a href="#notice" class="notice-link" aria-label="詳細を見る">›</a>
-            </li>
-          </ul>
-        </article>
-
-        <article class="card event-card" id="events">
-          <div class="card-head">
-            <div>
-              <p class="eyebrow">NEXT EVENTS</p>
-              <h2>次回イベント</h2>
-            </div>
-            <a href="#events" class="small-link">カレンダーを見る ›</a>
-          </div>
-          <div class="event-list">
-            <div class="event-item">
-              <span>合同イベント</span>
-              <time>07/12（土）</time>
-              <strong>PADDOCK GROUP BBQ</strong>
-            </div>
-            <div class="event-item">
-              <span>Kawasaki Plaza 焼津</span>
-              <time>07/20（日）</time>
-              <strong>Ninja 試乗会</strong>
-            </div>
-            <div class="event-item">
-              <span>Ducati 静岡</span>
-              <time>08/03（日）</time>
-              <strong>Ducati Test Ride Day</strong>
-            </div>
-          </div>
-          <button class="outline-button">すべてのイベントを見る ›</button>
-        </article>
-
-        <article class="card academy-card" id="academy">
-          <div id="profile" class="sr-only"></div>
-          <div class="card-head">
-            <div>
-              <p class="eyebrow">ACADEMY</p>
-              <h2>学習を続ける</h2>
-            </div>
-          </div>
-
-          <div class="academy-current">
-            <span>現在学習中</span>
-            <strong>PADDOCK GROUPとは</strong>
-            <div class="progress-summary">
-              <span class="progress-label">進捗</span>
-              <strong class="progress-value">40%</strong>
-            </div>
-            <div class="progress"><span style="width:40%"></span></div>
-          </div>
-
-          <a href="paddock-group-academy-main/welcome.html" class="academy-button">Academyへ進む ›</a>
-        </article>
-
-        <article class="card admin-card" id="admin">
-          <div class="card-head">
-            <div>
-              <p class="eyebrow">ADMIN</p>
-              <h2>管理画面</h2>
-            </div>
-          </div>
-          <p>勤怠・お知らせ・イベントなどを管理します。</p>
-          <button type="button" class="outline-button" onclick="window.location.href='paddock-group-academy-main/admin.html'">管理画面を開く ›</button>
-        </article>
-      </section>
-    </main>
-  </div>
+      <event-card></event-card>
+    </page-container>
+  </portal-layout>
 
   <div id="correctionModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="correctionModalTitle">
     <div class="modal-panel">
@@ -246,6 +51,13 @@
     </div>
   </div>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.PortalComponents && typeof window.PortalComponents.refreshIcons === "function") {
+        window.PortalComponents.refreshIcons();
+      }
+    });
+  </script>
   <script src="assets/js/portal.js"></script>
 </body>
 </html>

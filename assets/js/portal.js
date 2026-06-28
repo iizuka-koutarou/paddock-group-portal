@@ -3,6 +3,8 @@ const state = {
   clockOut: localStorage.getItem("paddock_clock_out") || "",
   breakStatus: localStorage.getItem("paddock_break_status") || "",
   breakReason: localStorage.getItem("paddock_break_reason") || "",
+  breakOutTime: localStorage.getItem("paddock_break_out_time") || "",
+  breakReturnTime: localStorage.getItem("paddock_break_return_time") || "",
 };
 
 const WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"];
@@ -147,9 +149,13 @@ function setStatusBadge(statusText, className) {
 function renderAttendance() {
   const clockInTime = document.getElementById("clockInTime");
   const clockOutTime = document.getElementById("clockOutTime");
+  const breakOutTime = document.getElementById("breakOutTime");
+  const breakReturnTime = document.getElementById("breakReturnTime");
   const workDuration = document.getElementById("workDuration");
   const clockInLabel = document.getElementById("clockInLabel");
   const clockOutLabel = document.getElementById("clockOutLabel");
+  const breakOutLabel = document.getElementById("breakOutLabel");
+  const breakReturnLabel = document.getElementById("breakReturnLabel");
   const workDurationLabel = document.getElementById("workDurationLabel");
   const breakStatusInfo = document.getElementById("breakStatusInfo");
   const clockInButton = document.querySelector(".btn-start");
@@ -163,9 +169,13 @@ function renderAttendance() {
 
   if (clockInTime) clockInTime.textContent = start ? formatStoredTime(state.clockIn) : "--:--:--";
   if (clockOutTime) clockOutTime.textContent = end ? formatStoredTime(state.clockOut) : "--:--:--";
+  if (breakOutTime) breakOutTime.textContent = state.breakOutTime ? formatStoredTime(state.breakOutTime) : "--:--:--";
+  if (breakReturnTime) breakReturnTime.textContent = state.breakReturnTime ? formatStoredTime(state.breakReturnTime) : "--:--:--";
 
   if (clockInLabel) clockInLabel.textContent = start ? "出社済み" : "未打刻";
   if (clockOutLabel) clockOutLabel.textContent = end ? "退勤済み" : "未退勤";
+  if (breakOutLabel) breakOutLabel.textContent = state.breakOutTime ? "外出済み" : "未外出";
+  if (breakReturnLabel) breakReturnLabel.textContent = state.breakReturnTime ? "戻り済み" : "未戻り";
 
   if (start && end) {
     if (workDuration) workDuration.textContent = formatDuration(end - start);
@@ -215,10 +225,14 @@ function clockIn() {
   state.clockOut = "";
   state.breakStatus = "";
   state.breakReason = "";
+  state.breakOutTime = "";
+  state.breakReturnTime = "";
   localStorage.setItem("paddock_clock_in", state.clockIn);
   localStorage.removeItem("paddock_clock_out");
   localStorage.removeItem("paddock_break_status");
   localStorage.removeItem("paddock_break_reason");
+  localStorage.removeItem("paddock_break_out_time");
+  localStorage.removeItem("paddock_break_return_time");
   renderAttendance();
 }
 
@@ -249,8 +263,10 @@ function submitBreak() {
   }
   state.breakStatus = "out";
   state.breakReason = reason;
+  state.breakOutTime = new Date().toISOString();
   localStorage.setItem("paddock_break_status", state.breakStatus);
   localStorage.setItem("paddock_break_reason", state.breakReason);
+  localStorage.setItem("paddock_break_out_time", state.breakOutTime);
   closeBreakModal();
   renderAttendance();
 }
@@ -259,8 +275,10 @@ function returnFromBreak() {
   if (state.breakStatus !== "out") return;
   state.breakStatus = "";
   state.breakReason = "";
+  state.breakReturnTime = new Date().toISOString();
   localStorage.removeItem("paddock_break_status");
   localStorage.removeItem("paddock_break_reason");
+  localStorage.setItem("paddock_break_return_time", state.breakReturnTime);
   renderAttendance();
 }
 
@@ -298,10 +316,14 @@ function resetDemo() {
   localStorage.removeItem("paddock_correction_request");
   localStorage.removeItem("paddock_break_status");
   localStorage.removeItem("paddock_break_reason");
+  localStorage.removeItem("paddock_break_out_time");
+  localStorage.removeItem("paddock_break_return_time");
   state.clockIn = "";
   state.clockOut = "";
   state.breakStatus = "";
   state.breakReason = "";
+  state.breakOutTime = "";
+  state.breakReturnTime = "";
   const correctionText = document.getElementById("correctionText");
   if (correctionText) correctionText.textContent = "現在、申請はありません。";
   renderAttendance();
@@ -318,17 +340,19 @@ function weatherIcon(telop = "") {
 
 function renderWeatherFallback() {
   const days = [
-    { date: "6/28", day: "土", telop: "雨" },
-    { date: "6/29", day: "日", telop: "くもり" },
-    { date: "6/30", day: "月", telop: "晴れ" },
-    { date: "7/1", day: "火", telop: "くもり" },
-    { date: "7/2", day: "水", telop: "雨" },
-    { date: "7/3", day: "木", telop: "晴れ" },
-    { date: "7/4", day: "金", telop: "くもり" },
+    { date: "6/28", day: "土", telop: "雨", max: 28, min: 22 },
+    { date: "6/29", day: "日", telop: "くもり", max: 30, min: 23 },
+    { date: "6/30", day: "月", telop: "晴れ", max: 32, min: 24 },
+    { date: "7/1", day: "火", telop: "くもり", max: 31, min: 24 },
+    { date: "7/2", day: "水", telop: "雨", max: 29, min: 23 },
+    { date: "7/3", day: "木", telop: "晴れ", max: 33, min: 24 },
+    { date: "7/4", day: "金", telop: "くもり", max: 30, min: 23 },
   ];
   renderWeatherDays(days);
   const updated = document.getElementById("weatherUpdated");
   if (updated) updated.textContent = "天気情報を取得できない場合はサンプル表示になります。";
+  const summary = document.getElementById("headerWeatherSummary");
+  if (summary) summary.textContent = "静岡県 7日予報（サンプル）";
 }
 
 function simplifyTelop(telop) {
@@ -345,18 +369,63 @@ function renderWeatherDays(days) {
   if (!wrap) return;
   wrap.innerHTML = days.slice(0, 7).map((item) => {
     const shortText = simplifyTelop(item.telop);
+    const hi = Number.isFinite(Number(item.max)) ? `${Math.round(Number(item.max))}℃` : "--";
+    const lo = Number.isFinite(Number(item.min)) ? `${Math.round(Number(item.min))}℃` : "--";
     return `
       <div class="weather-day">
         <div class="weather-day-label">${item.day}</div>
         <span class="weather-icon">${weatherIcon(item.telop)}</span>
         <div class="weather-day-caption">${shortText}</div>
+        <div class="weather-temp"><span class="weather-hi">H ${hi}</span><span class="weather-lo">L ${lo}</span></div>
       </div>
     `;
   }).join("");
 }
 
+function parseTemp(value) {
+  const n = Number(value);
+  return Number.isFinite(n) ? n : null;
+}
+
+function findAreaByName(areas = []) {
+  return areas.find((area) => area.area?.name?.includes("中部")) || areas[0];
+}
+
+function buildTemperatureMap(data) {
+  const series = data?.[0]?.timeSeries || [];
+  const temperatureSeries = series.find((item) =>
+    Array.isArray(item?.areas) && item.areas.some((area) =>
+      Array.isArray(area?.tempsMin) || Array.isArray(area?.tempsMax) || Array.isArray(area?.temps)
+    )
+  );
+
+  if (!temperatureSeries) return {};
+  const area = findAreaByName(temperatureSeries.areas || []);
+  if (!area) return {};
+
+  const timeDefines = temperatureSeries.timeDefines || [];
+  const mins = area.tempsMin || [];
+  const maxs = area.tempsMax || [];
+  const temps = area.temps || [];
+  const map = {};
+
+  timeDefines.forEach((time, index) => {
+    const key = new Date(time).toISOString().slice(0, 10);
+    const min = parseTemp(mins[index]);
+    const max = parseTemp(maxs[index]);
+    const single = parseTemp(temps[index]);
+    map[key] = {
+      min: min,
+      max: max ?? single,
+    };
+  });
+
+  return map;
+}
+
 async function loadJmaWeather() {
   const updated = document.getElementById("weatherUpdated");
+  const summary = document.getElementById("headerWeatherSummary");
 
   try {
     const response = await fetch("https://www.jma.go.jp/bosai/forecast/data/forecast/220000.json", {
@@ -367,22 +436,31 @@ async function loadJmaWeather() {
     const data = await response.json();
     const areaSeries = data?.[0]?.timeSeries?.[0];
     const timeDefines = areaSeries?.timeDefines || [];
-    const shizuokaArea = areaSeries?.areas?.find((area) => area.area?.name?.includes("中部")) || areaSeries?.areas?.[0];
+    const shizuokaArea = findAreaByName(areaSeries?.areas || []);
     const weatherCodes = shizuokaArea?.weatherCodes || [];
     const weatherText = shizuokaArea?.weathers || [];
+    const tempMap = buildTemperatureMap(data);
 
     const days = timeDefines.map((time, index) => {
       const date = new Date(time);
       const telop = weatherText[index] || codeToTelop(weatherCodes[index]) || "情報確認";
+      const key = date.toISOString().slice(0, 10);
+      const temperatures = tempMap[key] || {};
       return {
         date: `${date.getMonth() + 1}/${date.getDate()}`,
         day: WEEKDAYS[date.getDay()],
         telop,
+        max: temperatures.max,
+        min: temperatures.min,
       };
     });
 
     if (days.length) {
       renderWeatherDays(days);
+      if (summary) {
+        const first = days[0];
+        summary.textContent = `静岡県 ${simplifyTelop(first.telop)} H${Number.isFinite(Number(first.max)) ? Math.round(Number(first.max)) : "--"}℃ L${Number.isFinite(Number(first.min)) ? Math.round(Number(first.min)) : "--"}℃`;
+      }
       if (updated) updated.textContent = `気象庁データ / 最終更新 ${formatDate(new Date())} ${nowTime()}`;
     } else {
       renderWeatherFallback();

@@ -1,334 +1,145 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>PADOCK GROUP ACADEMY</title>
-<link rel="stylesheet" href="../assets/css/portal.css" />
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:"Yu Gothic",sans-serif;
-}
-
-body{
-background:
-linear-gradient(
-rgba(0,0,0,.58),
-rgba(0,0,0,.80)
-),
-url("paddock-top.jpg");
-
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
-
-color:white;
-}
-
-.container{
-max-width:1180px;
-margin:auto;
-padding:70px 34px;
-}
-
-.logo{
-text-align:center;
-letter-spacing:10px;
-color:rgba(255,255,255,.72);
-font-weight:800;
-margin-bottom:18px;
-font-size:13px;
-}
-
-.hero{
-text-align:center;
-margin-bottom:54px;
-}
-
-.hero h1{
-font-size:clamp(48px, 7vw, 70px);
-line-height:1.02;
-letter-spacing:.04em;
-margin-bottom:18px;
-}
-
-#user-name{
-margin-top:18px;
-font-size:30px;
-font-weight:800;
-color:#c8dca8;
-}
-
-.catch{
-font-size:20px;
-line-height:1.9;
-color:rgba(255,255,255,.82);
-margin-top:24px;
-max-width:760px;
-margin-left:auto;
-margin-right:auto;
-}
-
-.status-panel{
-background:rgba(255,255,255,.96);
-padding:34px;
-border-radius:28px;
-color:#111827;
-box-shadow:0 24px 72px rgba(0,0,0,.16);
-border:1px solid rgba(17,24,39,.08);
-}
-
-.status-panel h2{
-text-align:center;
-color:#111827;
-margin-bottom:24px;
-font-size:26px;
-letter-spacing:.02em;
-}
-
-.status-item{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:16px 0;
-border-bottom:1px solid rgba(15,23,42,.08);
-font-size:16px;
-}
-
-.status-item:last-child{
-border-bottom:none;
-}
-
-.status-item span{
-font-weight:800;
-}
-
-.total-pass{
-text-align:center;
-margin-top:28px;
-font-size:26px;
-font-weight:900;
-color:#111827;
-}
-
-.section-title{
-text-align:center;
-font-size:36px;
-margin-bottom:14px;
-letter-spacing:.01em;
-}
-
-.section-sub{
-text-align:center;
-color:rgba(255,255,255,.75);
-margin-bottom:32px;
-font-size:16px;
-line-height:1.85;
-}
-
-.roadmap{
-background:rgba(255,255,255,.92);
-padding:28px;
-border-radius:28px;
-color:#111827;
-box-shadow:0 20px 56px rgba(0,0,0,.14);
-border:1px solid rgba(17,24,39,.08);
-}
-
-.road-step{
-text-align:center;
-padding:16px 0;
-font-size:18px;
-font-weight:900;
-letter-spacing:.02em;
-}
-
-.arrow{
-text-align:center;
-font-size:15px;
-color:#475569;
-margin:8px 0;
-}
-
-.menu-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:24px;
-margin-top:48px;
-}
-
-.menu-card{
-background:rgba(255,255,255,.94);
-padding:28px 26px;
-border-radius:24px;
-text-decoration:none;
-color:#111827;
-transition:transform .24s ease,box-shadow .24s ease;
-border:1px solid rgba(17,24,39,.08);
-box-shadow:0 20px 56px rgba(17,24,39,.08);
-}
-
-.menu-card:hover{
-transform:translateY(-3px);
-box-shadow:0 26px 68px rgba(17,24,39,.12);
-}
-
-.menu-card h3{
-color:#111827;
-margin-bottom:12px;
-font-size:20px;
-}
-
-.menu-card p{
-color:#475569;
-line-height:1.8;
-}
-
-.footer{
-text-align:center;
-margin-top:80px;
-color:rgba(255,255,255,.70);
-font-size:14px;
-}
-
-</style>
-
-
-<link rel="stylesheet" href="../assets/css/academy-common.css" /></head>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PADDOCK GROUP ACADEMY</title>
+  <link rel="stylesheet" href="../assets/css/academy-common.css?v=20260628b" />
+</head>
 <body>
-
-<header class="paddock-header academy-kawasaki">
-  <div class="paddock-inner">
-    <div class="paddock-brand">
-      <div class="brand">PADDOCK Portal</div>
-      <div class="subtitle sr-only">Portal</div>
+  <header class="paddock-header academy-kawasaki">
+    <div class="paddock-inner">
+      <div class="paddock-brand">
+        <div class="brand">PADDOCK Portal</div>
+        <div class="subtitle sr-only">Portal</div>
+      </div>
+      <div class="paddock-title">
+        <div class="page-name">PADDOCK GROUP ACADEMY</div>
+      </div>
+      <a href="../dashboard.html" class="home-btn">Portal HOME</a>
     </div>
-    <div class="paddock-title">
-      <div class="page-name">PADOCK GROUP ACADEMY</div>
-    </div>
-    <a href="../dashboard.html" class="home-btn">🏠 Portal HOME</a>
-  </div>
-</header><div class="container">
-
-<div class="logo">
-PADOCK GROUP
-</div>
-
-<div class="hero">
-  <header class="page-header">
-    <a href="../dashboard.html" class="home-link">Portal HOME</a>
   </header>
 
-<h1>ACADEMY</h1>
+  <main class="container">
+    <section class="hero">
+      <header class="page-header">
+        <div class="page-title-group">
+          <span class="page-badge">Academy / Home</span>
+          <h1>ACADEMY HOME</h1>
+        </div>
+      </header>
+      <p id="welcomeMessage">ようこそ。学習状況を確認し、次の講座へ進みましょう。</p>
+    </section>
 
-<div id="user-name"></div>
+    <section class="grid" aria-label="学習状況">
+      <article class="card progress-card">
+        <h2>学習状況</h2>
+        <div class="progress-number" id="totalProgress">0%</div>
+        <p class="progress-text">カテゴリ進捗（4カテゴリ基準）</p>
+      </article>
 
-<div class="catch">
-学び、�E長し、Ebr>
-お客様へ価値を届ける、E</div>
+      <article class="card status-panel">
+        <h3>カテゴリ到達状況</h3>
+        <p id="commonStatus">共通スキル: 未完了</p>
+        <p id="salesStatus">営業スキル: 未完了</p>
+        <p id="techStatus">整備スキル: 未完了</p>
+        <p id="officeStatus">保険・事務: 未完了</p>
+      </article>
+    </section>
 
-<a href="../dashboard.html" class="home-link">Portal HOME</a>
+    <section style="margin-top: 34px;">
+      <header class="page-header">
+        <div class="page-title-group">
+          <span class="page-badge">Categories</span>
+          <h2 style="margin:0; color:#111827; font-size:34px;">カテゴリ</h2>
+        </div>
+      </header>
 
-<a href="common-skill.html" class="menu-card">
-<h3>📞 共通スキル</h3>
-<p>
-社会人として・挨拶・報連相・電話対応�Eクレーム対忁E</p>
-</a>
+      <div class="menu-grid" aria-label="Academyカテゴリ">
+        <a href="common-skill.html" class="menu-card">
+          <span class="card-icon" aria-hidden="true">◎</span>
+          <h3>共通スキル</h3>
+          <p>社会人として必要な基礎知識・接遇・報連相を学習します。</p>
+          <span class="card-footer"><span class="card-divider"></span><span class="card-arrow">→</span></span>
+        </a>
 
-<a href="next-stage.html" class="menu-card">
-<h3>🏍 ブランド選抁E/h3>
-<p>
-Kawasaki Academy / Ducati Academy
-</p>
-</a>
+        <a href="sales.html" class="menu-card">
+          <span class="card-icon" aria-hidden="true">◇</span>
+          <h3>営業スキル</h3>
+          <p>お客様理解、提案力、商談品質を高める講座へ進みます。</p>
+          <span class="card-footer"><span class="card-divider"></span><span class="card-arrow">→</span></span>
+        </a>
 
-<a href="admin.html" class="menu-card">
-<h3>👨‍💼 管琁E��E�Eージ</h3>
-<p>
-社員管琁E�E試験状況確誁E</p>
-</a>
+        <a href="technician.html" class="menu-card">
+          <span class="card-icon" aria-hidden="true">◈</span>
+          <h3>整備スキル</h3>
+          <p>技術・点検・現場オペレーションの基礎と実践を学びます。</p>
+          <span class="card-footer"><span class="card-divider"></span><span class="card-arrow">→</span></span>
+        </a>
 
-</div>
+        <a href="contract.html" class="menu-card">
+          <span class="card-icon" aria-hidden="true">◉</span>
+          <h3>保険・事務</h3>
+          <p>契約、保険、事務処理の正確な運用手順を確認できます。</p>
+          <span class="card-footer"><span class="card-divider"></span><span class="card-arrow">→</span></span>
+        </a>
+      </div>
+    </section>
 
-<div class="footer">
+    <section style="margin-top: 34px;" class="grid" aria-label="おすすめとお知らせ">
+      <article class="card">
+        <h3>おすすめ講座</h3>
+        <p><span class="badge-recommended" style="padding:4px 10px; border-radius:999px; font-size:12px; font-weight:800;">Recommended</span></p>
+        <p>本日の推奨: 「共通スキル / 電話対応」</p>
+        <p>次の推奨: 「営業スキル / ヒアリング」</p>
+        <a href="common-skill.html" class="btn-secondary" style="margin-top:auto; width:fit-content;">講座へ進む</a>
+      </article>
 
-PADOCK GROUP ACADEMY<br>
-Learning Never Ends.
+      <article class="card">
+        <h3>Academy お知らせ</h3>
+        <p><span class="badge-new" style="padding:4px 10px; border-radius:999px; font-size:12px; font-weight:800;">NEW</span> 共通スキルの更新を反映しました。</p>
+        <p>営業スキル教材の改訂版を来週公開予定です。</p>
+        <p>学習進捗は毎日18:00に自動集計されます。</p>
+      </article>
+    </section>
 
-</div>
+    <footer class="page-footer">PADDOCK GROUP ACADEMY</footer>
+  </main>
 
-</div>
+  <script>
+    (function () {
+      const userName = localStorage.getItem("currentUserName");
+      const welcome = document.getElementById("welcomeMessage");
+      if (userName && welcome) {
+        welcome.textContent = "ようこそ " + userName + " さん。学習状況を確認し、次の講座へ進みましょう。";
+      }
 
-<script>
+      const user = localStorage.getItem("currentUser") || "";
+      const checks = [
+        { key: "common", id: "commonStatus", label: "共通スキル" },
+        { key: "ducati_sales", id: "salesStatus", label: "営業スキル" },
+        { key: "technician", id: "techStatus", label: "整備スキル" },
+        { key: "contract", id: "officeStatus", label: "保険・事務" }
+      ];
 
-const user =
-localStorage.getItem("currentUser");
+      let done = 0;
+      checks.forEach(function (item) {
+        const el = document.getElementById(item.id);
+        if (!el) return;
+        const isDone = user ? localStorage.getItem(user + "_" + item.key) === "pass" : false;
+        if (isDone) {
+          done += 1;
+          el.textContent = item.label + ": 完了";
+        } else {
+          el.textContent = item.label + ": 未完了";
+        }
+      });
 
-const userName =
-localStorage.getItem("currentUserName");
-
-let passCount = 0;
-
-/* 名前表示 */
-
-if(userName){
-
-document.getElementById(
-"user-name"
-).innerHTML =
-
-"ようこそ " +
-userName +
-" さん";
-
-}
-
-/* 試験判宁E*/
-
-function checkStatus(id,key){
-
-if(!user) return;
-
-const result =
-localStorage.getItem(
-user + "_" + key
-);
-
-if(result === "pass"){
-
-document.getElementById(id).innerHTML =
-"✁E合格";
-
-passCount++;
-
-}
-
-}
-
-checkStatus("common-status","common");
-checkStatus("basic-status","basic");
-checkStatus("concierge-status","concierge");
-checkStatus("technician-status","technician");
-checkStatus("ducati-sales-status","ducati_sales");
-checkStatus("ducati-service-status","ducati_service");
-
-document.getElementById(
-"total-pass"
-).innerHTML =
-
-passCount + " / 6 合格";
-
-</script>
-
+      const progress = document.getElementById("totalProgress");
+      if (progress) {
+        progress.textContent = String(Math.round((done / checks.length) * 100)) + "%";
+      }
+    })();
+  </script>
 </body>
 </html>
-
-
-
-
