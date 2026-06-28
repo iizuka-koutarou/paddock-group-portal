@@ -1,1 +1,153 @@
-<!doctype html><html lang='ja'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><link rel='stylesheet' href='assets/css/style.css'></head><body><div class='layout'><aside><h2>ACADEMY</h2><a class='active'>🏠 HOME</a><a>📚 共通教育</a><a>🎓 共通スキル</a><a>🏍 ブランド教育</a><a>📝 テスト一覧</a><a>👤 マイページ</a></aside><main><div class='top'><div><h1>おかえりなさい！</h1><p>前回の続き：PADDOCK GROUPの歴史</p></div><input class='search' placeholder='教材を検索'></div><div class='cards'><div class='card'><h2>学習ロードマップ</h2><ol><li>共通教育</li><li>共通スキル</li><li>ブランド教育</li><li>テスト一覧</li></ol></div><div class='card'><h2>進捗</h2><div class='progress'><span></span></div><b>35%</b></div></div></main></div></body></html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PADDOCK GROUP Portal | Home</title>
+  <link rel="stylesheet" href="assets/css/portal.css" />
+</head>
+<body>
+  <div class="portal-layout">
+    <aside class="sidebar">
+      <div class="sidebar-logo">
+        <span class="logo-mark">P</span>
+        <div>
+          <strong>PADDOCK</strong>
+          <small>GROUP Portal</small>
+        </div>
+      </div>
+      <nav class="side-nav">
+        <a class="active" href="dashboard.html">Portal</a>
+        <a href="#academy">Academy</a>
+        <a href="#attendance">勤怠</a>
+        <a href="#notice">お知らせ</a>
+        <a href="#events">イベント</a>
+        <a href="#stores">店舗情報</a>
+        <a href="#profile">マイページ</a>
+        <a href="#admin">管理画面</a>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">PADDOCK GROUP Portal</p>
+          <h1>おはようございます。飯塚さん</h1>
+        </div>
+        <div class="user-pill">管理者</div>
+      </header>
+
+      <section class="grid hero-grid">
+        <article class="card attendance-card" id="attendance">
+          <div class="card-head">
+            <div>
+              <p class="eyebrow">Attendance</p>
+              <h2>本日の勤務</h2>
+            </div>
+            <span id="workStatus" class="status-badge">未打刻</span>
+          </div>
+
+          <div class="attendance-actions">
+            <button class="btn btn-start" onclick="clockIn()">出社する</button>
+            <button class="btn btn-end" onclick="clockOut()">退勤する</button>
+          </div>
+
+          <div class="time-summary">
+            <div><span>出社</span><strong id="clockInTime">--:--</strong></div>
+            <div><span>退勤</span><strong id="clockOutTime">--:--</strong></div>
+            <div><span>勤務時間</span><strong id="workDuration">--</strong></div>
+          </div>
+
+          <button class="link-button" onclick="openCorrection()">訂正申請をする</button>
+        </article>
+
+        <article class="card notice-card" id="notice">
+          <div class="card-head">
+            <div>
+              <p class="eyebrow">Notice</p>
+              <h2>お知らせ</h2>
+            </div>
+            <span class="dot-new">NEW</span>
+          </div>
+          <ul class="notice-list">
+            <li><time>07/01</time><span>Portal Version 1.0 開発開始</span></li>
+            <li><time>07/05</time><span>共通教育コンテンツ更新予定</span></li>
+            <li><time>07/12</time><span>全体ミーティング資料を公開予定</span></li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="grid two-col">
+        <article class="card" id="events">
+          <div class="card-head">
+            <div>
+              <p class="eyebrow">Events</p>
+              <h2>次回イベント</h2>
+            </div>
+          </div>
+          <div class="event-list">
+            <div class="event-item joint"><span>合同イベント</span><strong>07/12 PADDOCK GROUP BBQ</strong></div>
+            <div class="event-item"><span>Kawasaki Plaza 焼津</span><strong>07/20 Ninja試乗会</strong></div>
+            <div class="event-item"><span>Ducati 静岡</span><strong>08/03 Ducati Test Ride Day</strong></div>
+          </div>
+        </article>
+
+        <article class="card academy-card" id="academy">
+          <div class="card-head">
+            <div>
+              <p class="eyebrow">Academy</p>
+              <h2>学習を続ける</h2>
+            </div>
+          </div>
+          <div class="academy-current">
+            <span>前回の続き</span>
+            <strong>PADDOCK GROUPとは</strong>
+            <p>進捗 40% / 約18分</p>
+          </div>
+          <div class="academy-links">
+            <a href="#">共通教育</a>
+            <a href="#">共通スキル</a>
+            <a href="#">ブランド教育</a>
+            <a href="#">テスト一覧</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="grid two-col">
+        <article class="card" id="stores">
+          <div class="card-head"><div><p class="eyebrow">Stores</p><h2>店舗情報</h2></div></div>
+          <div class="store-list">
+            <div><strong>PADDOCK 本店</strong><span>焼津市中新田288</span></div>
+            <div><strong>Kawasaki Plaza 焼津</strong><span>焼津市中新田239-1</span></div>
+            <div><strong>Ducati 静岡</strong><span>住所確認中</span></div>
+          </div>
+        </article>
+
+        <article class="card admin-card" id="admin">
+          <div class="card-head"><div><p class="eyebrow">Admin</p><h2>管理画面</h2></div></div>
+          <p>訂正申請・お知らせ・イベント・教材を管理します。</p>
+          <div class="admin-demo">
+            <strong>訂正申請デモ</strong>
+            <span id="correctionText">現在、申請はありません。</span>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <div id="correctionModal" class="modal" aria-hidden="true">
+    <div class="modal-panel">
+      <h2>訂正申請</h2>
+      <p>間違えて打刻した場合は、理由を入力して申請してください。</p>
+      <label>訂正内容<input id="correctionValue" placeholder="例：出社 09:12 → 08:58" /></label>
+      <label>理由<textarea id="correctionReason" placeholder="例：押し忘れのため"></textarea></label>
+      <div class="modal-actions">
+        <button class="btn-secondary" onclick="closeCorrection()">閉じる</button>
+        <button class="btn-primary" onclick="submitCorrection()">申請する</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/portal.js"></script>
+</body>
+</html>

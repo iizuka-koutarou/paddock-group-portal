@@ -1,1 +1,46 @@
-<!doctype html><html lang='ja'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>PADDOCK GROUP ACADEMY</title><link rel='stylesheet' href='assets/css/style.css'></head><body class='login-page'><div class='wrap'><div class='hero'><div><div class='brand'>PADDOCK GROUP</div><h1>ACADEMY</h1><p class='tag'>Learn Together.<br>Grow Together.</p></div><div class='glass'><h2>ログイン</h2><input id='u' placeholder='ログインID'><input id='p' type='password' placeholder='パスワード'><label><input type='checkbox'> ログイン状態を保持する</label><button onclick='login()'>ログイン</button><div class='demo'>Demo：admin / paddock</div></div></div></div><div class='footer'>Version0.2<br>© PADDOCK GROUP</div><script src='assets/js/app.js'></script></body></html>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PADDOCK GROUP Portal</title>
+  <link rel="stylesheet" href="assets/css/login.css" />
+</head>
+<body class="login-page">
+  <main class="login-shell">
+    <section class="login-brand" aria-label="PADDOCK GROUP Portal">
+      <div class="brand-kicker">PADDOCK GROUP</div>
+      <div class="brand-logo-text">PADDOCK</div>
+      <div class="brand-url">http://8109.tv</div>
+      <div class="brand-portal">Portal</div>
+      <p class="brand-copy">仕事のはじまりを、ここから。</p>
+    </section>
+
+    <section class="login-card" aria-label="ログインフォーム">
+      <p class="login-label">PADDOCK GROUP Portal</p>
+      <h1>ログイン</h1>
+      <div class="login-line"></div>
+      <p class="login-description">出社・退勤、お知らせ確認、Academy学習をここから始めます。</p>
+
+      <form class="login-form" onsubmit="login(event)">
+        <label for="userId">ID</label>
+        <input type="text" id="userId" placeholder="IDを入力" autocomplete="username" required />
+
+        <label for="password">PASSWORD</label>
+        <input type="password" id="password" placeholder="パスワードを入力" autocomplete="current-password" required />
+
+        <button type="submit">Portalへログイン</button>
+      </form>
+
+      <p class="login-note">PADDOCK GROUP / Portal v1.0</p>
+    </section>
+  </main>
+
+  <script>
+    function login(event) {
+      event.preventDefault();
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>
