@@ -127,10 +127,11 @@ function formatStoredTime(value) {
 }
 
 function formatDuration(ms) {
-  const totalMin = Math.max(0, Math.floor(ms / 60000));
-  const h = Math.floor(totalMin / 60);
-  const m = totalMin % 60;
-  return `${pad(h)}時間${pad(m)}分`;
+  const totalSec = Math.max(0, Math.floor(ms / 1000));
+  const h = Math.floor(totalSec / 3600);
+  const m = Math.floor((totalSec % 3600) / 60);
+  const s = totalSec % 60;
+  return `${pad(h)}時間${pad(m)}分${pad(s)}秒`;
 }
 
 function setStatusBadge(statusText, className) {
@@ -147,6 +148,8 @@ function renderAttendance() {
   const clockInLabel = document.getElementById("clockInLabel");
   const clockOutLabel = document.getElementById("clockOutLabel");
   const workDurationLabel = document.getElementById("workDurationLabel");
+  const clockInButton = document.querySelector(".btn-start");
+  const clockOutButton = document.querySelector(".btn-end");
 
   const start = parseDateTime(state.clockIn);
   const end = parseDateTime(state.clockOut);
@@ -158,34 +161,38 @@ function renderAttendance() {
   if (clockOutLabel) clockOutLabel.textContent = end ? "退勤済み" : "未退勤";
 
   if (start && end) {
-    workDuration.textContent = formatDuration(end - start);
-    workDurationLabel.textContent = "確定";
+    if (workDuration) workDuration.textContent = formatDuration(end - start);
+    if (workDurationLabel) workDurationLabel.textContent = "確定";
     setStatusBadge("退勤済み", "is-done");
+    if (clockInButton) clockInButton.disabled = true;
+    if (clockOutButton) clockOutButton.disabled = true;
   } else if (start) {
-    workDuration.textContent = formatDuration(new Date() - start);
-    workDurationLabel.textContent = "勤務中";
+    if (workDuration) workDuration.textContent = formatDuration(new Date() - start);
+    if (workDurationLabel) workDurationLabel.textContent = "勤務中";
     setStatusBadge("勤務中", "is-working");
+    if (clockInButton) clockInButton.disabled = true;
+    if (clockOutButton) clockOutButton.disabled = false;
   } else {
-    workDuration.textContent = "00時間00分";
-    workDurationLabel.textContent = "未確定";
+    if (workDuration) workDuration.textContent = "00時間00分00秒";
+    if (workDurationLabel) workDurationLabel.textContent = "未確定";
     setStatusBadge("未打刻", "");
+    if (clockInButton) clockInButton.disabled = false;
+    if (clockOutButton) clockOutButton.disabled = true;
   }
 }
 
 function clockIn() {
-  if (!state.clockIn || confirm("出社時刻を上書きしますか？")) {
-    const now = new Date().toISOString();
-    state.clockIn = now;
-    state.clockOut = "";
-    localStorage.setItem("paddock_clock_in", state.clockIn);
-    localStorage.removeItem("paddock_clock_out");
-    renderAttendance();
-  }
+  if (state.clockIn) return;
+  const now = new Date().toISOString();
+  state.clockIn = now;
+  state.clockOut = "";
+  localStorage.setItem("paddock_clock_in", state.clockIn);
+  localStorage.removeItem("paddock_clock_out");
+  renderAttendance();
 }
 
 function clockOut() {
-  if (!state.clockIn) {
-    alert("先に出社を打刻してください。");
+  if (!state.clockIn || state.clockOut) {
     return;
   }
   state.clockOut = new Date().toISOString();
