@@ -139,6 +139,7 @@ function setStatusBadge(statusText, className) {
   if (!status) return;
   status.textContent = statusText;
   status.className = `status-badge ${className || ""}`.trim();
+  status.setAttribute("aria-label", `現在の勤務状態：${statusText}`);
 }
 
 function renderAttendance() {
@@ -163,7 +164,7 @@ function renderAttendance() {
   if (start && end) {
     if (workDuration) workDuration.textContent = formatDuration(end - start);
     if (workDurationLabel) workDurationLabel.textContent = "確定";
-    setStatusBadge("退勤済み", "is-done");
+    setStatusBadge("勤務終了", "is-done");
     if (clockInButton) clockInButton.disabled = true;
     if (clockOutButton) clockOutButton.disabled = true;
   } else if (start) {
@@ -175,7 +176,7 @@ function renderAttendance() {
   } else {
     if (workDuration) workDuration.textContent = "00時間00分00秒";
     if (workDurationLabel) workDurationLabel.textContent = "未確定";
-    setStatusBadge("未打刻", "");
+    setStatusBadge("未打刻", "is-pending");
     if (clockInButton) clockInButton.disabled = false;
     if (clockOutButton) clockOutButton.disabled = true;
   }
@@ -263,17 +264,28 @@ function renderWeatherFallback() {
   if (updated) updated.textContent = "天気情報を取得できない場合はサンプル表示になります。";
 }
 
+function simplifyTelop(telop) {
+  if (telop.includes("雷")) return "雷雨";
+  if (telop.includes("雨")) return "雨";
+  if (telop.includes("雪")) return "雪";
+  if (telop.includes("晴")) return "晴";
+  if (telop.includes("くも") || telop.includes("曇")) return "くもり";
+  return "情報";
+}
+
 function renderWeatherDays(days) {
   const wrap = document.getElementById("weeklyWeather");
   if (!wrap) return;
-  wrap.innerHTML = days.slice(0, 7).map((item) => `
-    <div class="weather-day">
-      <time>${item.date}<br>（${item.day}）</time>
-      <span class="weather-icon">${weatherIcon(item.telop)}</span>
-      <span class="weather-telop">${item.telop}</span>
-      ${item.temp ? `<small>${item.temp}</small>` : ""}
-    </div>
-  `).join("");
+  wrap.innerHTML = days.slice(0, 7).map((item) => {
+    const shortText = simplifyTelop(item.telop);
+    return `
+      <div class="weather-day">
+        <div class="weather-day-label">${item.day}</div>
+        <span class="weather-icon">${weatherIcon(item.telop)}</span>
+        <div class="weather-day-caption">${shortText}</div>
+      </div>
+    `;
+  }).join("");
 }
 
 async function loadJmaWeather() {
@@ -304,13 +316,32 @@ async function loadJmaWeather() {
 
     if (days.length) {
       renderWeatherDays(days);
-      if (updated) updated.textContent = `更新日時：${formatDate(new Date())} ${nowTime()} / 気象庁データ`;
+      if (updated) updated.textContent = `気象庁データ / 最終更新 ${formatDate(new Date())} ${nowTime()}`;
     } else {
       renderWeatherFallback();
     }
   } catch (error) {
     renderWeatherFallback();
   }
+}
+
+function initNoticeList() {
+  const list = document.getElementById("noticeList");
+  if (!list) return;
+  const items = Array.from(list.querySelectorAll("li")).filter((li) => !li.classList.contains("empty-state"));
+  if (items.length === 0) {
+    list.innerHTML = '<li class="empty-state">現在お知らせはありません</li>';
+  }
+}
+
+function disablePlaceholderLinks() {
+  document.querySelectorAll('a[href="#"]').forEach((anchor) => {
+    anchor.addEventListener("click", (event) => {
+      event.preventDefault();
+    });
+    anchor.setAttribute("aria-disabled", "true");
+    anchor.classList.add("disabled-link");
+  });
 }
 
 function codeToTelop(code) {
@@ -339,4 +370,6 @@ document.addEventListener("DOMContentLoaded", () => {
   updateClock();
   setInterval(updateClock, 1000);
   loadJmaWeather();
+  initNoticeList();
+  disablePlaceholderLinks();
 });

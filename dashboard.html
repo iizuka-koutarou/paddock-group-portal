@@ -61,14 +61,13 @@
           <div class="weather-head">
             <div>
               <p class="card-kicker">静岡県 週間天気</p>
-              <strong>気象庁発表データ</strong>
             </div>
             <a href="https://www.jma.go.jp/bosai/forecast/#area_type=offices&area_code=220000" target="_blank" rel="noopener">気象庁 ↗</a>
           </div>
           <div id="weeklyWeather" class="weather-list" aria-live="polite">
             <div class="weather-loading">読み込み中...</div>
           </div>
-          <p id="weatherUpdated" class="weather-updated">気象庁データを参照します。</p>
+          <p id="weatherUpdated" class="weather-updated">気象庁データ / 更新情報なし</p>
         </article>
       </section>
 
@@ -116,10 +115,29 @@
             </div>
             <a href="#" class="small-link">すべて見る ›</a>
           </div>
-          <ul class="notice-list">
-            <li><time>07/01</time><span class="tag tag-new">NEW</span><strong>Portal Version 1.0 開発開始</strong><a href="#">›</a></li>
-            <li><time>07/05</time><strong>共通教育コンテンツ更新予定</strong><a href="#">›</a></li>
-            <li><time>07/12</time><strong>全体ミーティング資料を公開予定</strong><a href="#">›</a></li>
+          <ul id="noticeList" class="notice-list">
+            <li>
+              <time>07/01</time>
+              <div class="notice-body">
+                <strong><a href="#">Portal Version 1.0 開発開始</a></strong>
+                <span class="tag tag-new">NEW</span>
+              </div>
+              <a href="#" class="notice-link" aria-label="詳細を見る">›</a>
+            </li>
+            <li>
+              <time>07/05</time>
+              <div class="notice-body">
+                <strong><a href="#">共通教育コンテンツ更新予定</a></strong>
+              </div>
+              <a href="#" class="notice-link" aria-label="詳細を見る">›</a>
+            </li>
+            <li>
+              <time>07/12</time>
+              <div class="notice-body">
+                <strong><a href="#">全体ミーティング資料を公開予定</a></strong>
+              </div>
+              <a href="#" class="notice-link" aria-label="詳細を見る">›</a>
+            </li>
           </ul>
         </article>
 
@@ -157,22 +175,19 @@
               <p class="eyebrow">ACADEMY</p>
               <h2>学習を続ける</h2>
             </div>
-            <a href="#" class="small-link">すべて見る ›</a>
           </div>
 
           <div class="academy-current">
-            <span>前回の続き</span>
+            <span>現在学習中</span>
             <strong>PADDOCK GROUPとは</strong>
-            <p>進捗 40% / 予想時間 約18分</p>
+            <div class="progress-summary">
+              <span class="progress-label">進捗</span>
+              <strong class="progress-value">40%</strong>
+            </div>
             <div class="progress"><span style="width:40%"></span></div>
           </div>
 
-          <div class="academy-mini-grid">
-            <a href="#"><strong>共通教育</strong><span>全12講座 / 進捗65%</span></a>
-            <a href="#"><strong>マニュアル・資料</strong><span>全28資料 / いつでも確認できます</span></a>
-          </div>
-
-          <a href="#" class="academy-button">Academyへ進む ›</a>
+          <a href="paddock-group-academy-main/welcome.html" class="academy-button">Academyへ進む ›</a>
         </article>
 
         <article class="card admin-card" id="admin">
@@ -182,11 +197,8 @@
               <h2>管理画面</h2>
             </div>
           </div>
-          <p>訂正申請・お知らせ・イベント・教材を管理します。</p>
-          <div class="admin-demo">
-            <strong>訂正申請デモ</strong>
-            <span id="correctionText">現在、申請はありません。</span>
-          </div>
+          <p>勤怠・お知らせ・イベントなどを管理します。</p>
+          <button type="button" class="outline-button">管理画面を開く ›</button>
         </article>
       </section>
     </main>
