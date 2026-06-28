@@ -1,9 +1,15 @@
 const users = {
 
 admin:{
-password:"admin2026",
+password:"admin",
 role:"admin",
 name:"管理者"
+},
+
+"ittyan007@gmail.com":{
+password:"admin",
+role:"user",
+name:"飯塚 康太郎"
 },
 
 iizuka_k:{

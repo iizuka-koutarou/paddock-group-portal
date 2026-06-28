@@ -1,377 +1,646 @@
-﻿<!DOCTYPE html>
-
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PADDOCK Portal | 管理者ページ</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --text-main: #1f2937;
+      --text-sub: #64748b;
+      --line: rgba(148, 163, 184, 0.24);
+      --shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+      --radius: 22px;
+    }
 
-<title>PADOCK GROUP ACADEMY 管琁E��E�Eージ</title>
-<link rel="stylesheet" href="../assets/css/portal.css" />
-<style>
+    * {
+      box-sizing: border-box;
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:"Yu Gothic",sans-serif;
-}
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: "Noto Sans JP", "Yu Gothic", sans-serif;
+    }
 
-body{
-background:
-linear-gradient(
-rgba(0,0,0,.60),
-rgba(0,0,0,.86)
-),
-url("paddock-top.jpg");
+    .shell {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 28px 20px 42px;
+      display: grid;
+      gap: 18px;
+    }
 
-background-size:cover;
-background-position:center;
-background-attachment:fixed;
+    .topbar {
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
 
-color:white;
-}
+    .topbar h1 {
+      margin: 0;
+      font-size: clamp(24px, 2.2vw, 32px);
+      line-height: 1.2;
+      color: #0f172a;
+    }
 
-.container{
-max-width:1180px;
-margin:auto;
-padding:70px 34px;
-}
+    .topbar p {
+      margin: 6px 0 0;
+      color: var(--text-sub);
+      font-size: 14px;
+      font-weight: 700;
+    }
 
-.hero{
-text-align:center;
-margin-bottom:50px;
-}
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
-.hero h1{
-font-size:clamp(48px, 7vw, 64px);
-margin-bottom:14px;
-letter-spacing:.04em;
-}
+    .nav-btn {
+      min-height: 40px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #eef2ff;
+      color: #1e3a8a;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 800;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 14px;
+    }
 
-.hero p{
-color:rgba(255,255,255,.78);
-font-size:17px;
-line-height:1.9;
-max-width:720px;
-margin:0 auto;
-}
+    .section-title {
+      margin: 8px 0 0;
+      color: #0f172a;
+      font-size: 22px;
+      font-weight: 800;
+    }
 
-.employee-card{
-background:rgba(255,255,255,.94);
-color:#111827;
-padding:30px;
-border-radius:24px;
-margin-bottom:25px;
-box-shadow:0 28px 72px rgba(0,0,0,.14);
-border:1px solid rgba(17,24,39,.08);
-}
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
 
-.employee-name{
-font-size:26px;
-font-weight:900;
-color:#111827;
-margin-bottom:10px;
-}
+    .summary-card,
+    .panel,
+    .store-card {
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
 
-.login-date{
-color:#475569;
-margin-bottom:18px;
-}
+    .summary-card p {
+      margin: 0;
+      color: var(--text-sub);
+      font-size: 13px;
+      font-weight: 700;
+    }
 
-.test-row{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:16px 0;
-border-bottom:1px solid rgba(15,23,42,.08);
-font-size:15px;
-}
+    .summary-card strong {
+      display: block;
+      margin-top: 8px;
+      font-size: 34px;
+      line-height: 1;
+      color: #0f172a;
+    }
 
-.test-row:last-child{
-border-bottom:none;
-}
+    .panel-grid {
+      display: grid;
+      grid-template-columns: minmax(340px, 0.95fr) minmax(0, 1.45fr);
+      gap: 14px;
+    }
 
-.management-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:22px;
-margin-bottom:28px;
-}
+    .panel h2 {
+      margin: 0;
+      color: #0f172a;
+      font-size: 20px;
+    }
 
-.management-card{
-background:rgba(255,255,255,.94);
-color:#111827;
-padding:28px 26px;
-border-radius:24px;
-border:1px solid rgba(17,24,39,.08);
-box-shadow:0 24px 64px rgba(0,0,0,.14);
-display:grid;
-gap:14px;
-transition:transform .2s ease,box-shadow .2s ease;
-}
+    .panel .sub {
+      margin: 8px 0 0;
+      color: var(--text-sub);
+      font-size: 13px;
+      line-height: 1.7;
+    }
 
-.management-card:hover{
-transform:translateY(-3px);
-box-shadow:0 28px 72px rgba(0,0,0,.16);
-}
+    .daily-editor {
+      margin-top: 14px;
+      display: grid;
+      gap: 10px;
+    }
 
-.management-card h3{
-margin:0;
-font-size:22px;
-color:#111827;
-}
+    .daily-editor textarea {
+      width: 100%;
+      min-height: 140px;
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.34);
+      background: #f8fafc;
+      color: #1f2937;
+      padding: 12px;
+      line-height: 1.8;
+      resize: vertical;
+      font-family: inherit;
+      font-size: 14px;
+    }
 
-.management-card p{
-margin:0;
-color:#475569;
-line-height:1.7;
-font-size:15px;
-}
+    .editor-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
 
-.status-pill{
-display:inline-flex;
-align-items:center;
-padding:9px 16px;
-border-radius:999px;
-font-size:12px;
-font-weight:900;
-letter-spacing:.04em;
-}
+    .btn {
+      min-height: 40px;
+      border-radius: 999px;
+      border: none;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 0 14px;
+      cursor: pointer;
+    }
 
-.status-pill.active{
-background:#dcfce7;
-color:#166534;
-}
+    .btn-primary {
+      background: #1e3a8a;
+      color: #fff;
+    }
 
-.status-pill.coming-soon{
-background:#f8fafc;
-color:#334155;
-border:1px solid rgba(15,23,42,.08);
-}
+    .btn-soft {
+      border: 1px solid rgba(30, 58, 138, 0.32);
+      background: #eef2ff;
+      color: #1e3a8a;
+    }
 
-.info-panel{
-background:rgba(255,255,255,.96);
-color:#111827;
-padding:28px 30px;
-border-radius:24px;
-border:1px solid rgba(17,24,39,.08);
-box-shadow:0 24px 68px rgba(0,0,0,.14);
-margin-bottom:32px;
-}
+    .current-message-box {
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: #f8fafc;
+      padding: 12px;
+      margin-top: 8px;
+    }
 
-.info-panel strong{
-display:block;
-margin-bottom:12px;
-font-size:20px;
-color:#111827;
-}
+    .current-message-box p {
+      margin: 0;
+      color: var(--text-sub);
+      font-size: 12px;
+      font-weight: 800;
+    }
 
-.back-btn{
-display:inline-flex;
-margin-top:30px;
-padding:16px 32px;
-background:rgba(255,255,255,.96);
-color:#111827;
-text-decoration:none;
-border-radius:22px;
-font-weight:900;
-letter-spacing:.02em;
-box-shadow:0 18px 40px rgba(0,0,0,.12);
-transition:transform .18s ease,box-shadow .18s ease;
-}
+    .current-message-text {
+      margin: 6px 0 0;
+      color: #1f2937;
+      font-size: 14px;
+      line-height: 1.8;
+      white-space: pre-wrap;
+    }
 
-.back-btn:hover{
-transform:translateY(-2px);
-box-shadow:0 22px 48px rgba(0,0,0,.16);
-}
+    .status-text {
+      min-height: 20px;
+      margin: 2px 0 0;
+      font-size: 12px;
+      font-weight: 800;
+      color: #166534;
+    }
 
-.center{
-text-align:center;
-}
+    .table-wrap {
+      margin-top: 12px;
+      overflow: auto;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 14px;
+      background: #fff;
+    }
 
-</style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 940px;
+    }
 
+    th,
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+      text-align: left;
+      font-size: 13px;
+      white-space: nowrap;
+    }
 
-<link rel="stylesheet" href="../assets/css/academy-common.css" /></head>
+    th {
+      background: #f8fafc;
+      color: #334155;
+      font-size: 12px;
+      font-weight: 800;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
 
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .badge {
+      min-height: 24px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 10px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .badge-working { background: #dcfce7; color: #166534; }
+    .badge-out { background: #fff3e0; color: #b45309; }
+    .badge-break { background: #e8f0ff; color: #1e4db7; }
+    .badge-done { background: #e5e7eb; color: #374151; }
+    .badge-none { background: #f1f5f9; color: #475569; }
+
+    .store-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .store-card h3 {
+      margin: 0;
+      color: #0f172a;
+      font-size: 18px;
+    }
+
+    .store-counts {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .store-counts div {
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      background: #f8fafc;
+      padding: 8px 10px;
+      display: grid;
+      gap: 3px;
+    }
+
+    .store-counts span {
+      color: #64748b;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .store-counts strong {
+      color: #0f172a;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    @media (max-width: 1180px) {
+      .summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .panel-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .store-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
 <body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <h1>管理者ページ</h1>
+        <p>管理者向けに、勤務状況とPortal設定を一括で確認できます。</p>
+      </div>
+      <div class="top-actions">
+        <a class="nav-btn" href="portal-settings.html">Portal設定</a>
+        <a class="nav-btn" href="../dashboard.html">Portal HOME</a>
+      </div>
+    </header>
 
-<header class="paddock-header academy-kawasaki">
-  <div class="paddock-inner">
-    <div class="paddock-brand">
-      <div class="brand">PADDOCK Portal</div>
-      <div class="subtitle sr-only">Portal</div>
-    </div>
-    <div class="paddock-title">
-      <div class="page-name">PADOCK GROUP ACADEMY 管琁E��E�Eージ</div>
-    </div>
-    <a href="../dashboard.html" class="home-btn">🏠 Portal HOME</a>
-  </div>
-</header><div class="container">
+    <h2 class="section-title">本日の勤務状況</h2>
+    <section class="summary-grid" aria-label="本日の勤務状況サマリー">
+      <article class="summary-card">
+        <p>勤務中人数</p>
+        <strong id="countWorking">0</strong>
+      </article>
+      <article class="summary-card">
+        <p>外出中人数</p>
+        <strong id="countOut">0</strong>
+      </article>
+      <article class="summary-card">
+        <p>休憩中人数</p>
+        <strong id="countBreak">0</strong>
+      </article>
+      <article class="summary-card">
+        <p>退勤済人数</p>
+        <strong id="countDone">0</strong>
+      </article>
+    </section>
 
-<div class="hero">
-  <header class="page-header">
-    <a href="../dashboard.html" class="home-link">Portal HOME</a>
-  </header>
+    <section class="panel-grid" aria-label="管理機能">
+      <article class="panel">
+        <h2>今日のひとこと</h2>
+        <p class="sub">管理者が入力・保存した内容はPortal HOMEへ反映されます。</p>
+        <div class="daily-editor">
+          <textarea id="dailyMessageInput" placeholder="例：春の風のように、やわらかな笑顔でお客様をお迎えしましょう。"></textarea>
+          <div class="current-message-box">
+            <p>現在表示中のメッセージ</p>
+            <div id="currentMessageText" class="current-message-text"></div>
+          </div>
+          <div class="editor-actions">
+            <button class="btn btn-primary" id="saveMessageBtn" type="button">保存</button>
+            <button class="btn btn-soft" id="resetMessageBtn" type="button">初期メッセージへ戻す</button>
+            <a class="nav-btn" href="portal-settings.html">詳細設定へ</a>
+          </div>
+          <p id="saveStatus" class="status-text" aria-live="polite"></p>
+        </div>
+      </article>
 
-<h1>👨‍💼 管琁E��E�Eージ</h1>
+      <article class="panel">
+        <h2>スタッフ一覧</h2>
+        <p class="sub">氏名・所属店舗・勤務状態・各時刻を確認できます。</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>氏名</th>
+                <th>所属店舗</th>
+                <th>勤務状態</th>
+                <th>出勤時刻</th>
+                <th>外出時刻</th>
+                <th>戻り時刻</th>
+                <th>退勤時刻</th>
+                <th>勤務時間</th>
+              </tr>
+            </thead>
+            <tbody id="staffTableBody"></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
 
-<p>
-社員の学習状況を確誁E</p>
+    <h2 class="section-title">店舗別勤務状況</h2>
+    <section class="store-grid" id="storeGrid" aria-label="店舗別勤務状況"></section>
+  </main>
 
-<a href="../dashboard.html" class="home-link">Portal HOME</a>
+  <script>
+    const DAILY_MESSAGE_KEY = "paddock_portal_daily_message";
+    const STAFF = [
+      { id: "iizuka_k", name: "飯塚康太郎", store: "焼津店" },
+      { id: "iizuka_s", name: "飯塚宗一郎", store: "焼津店" },
+      { id: "aoshima", name: "青島昇平", store: "静岡店" },
+    ];
 
-</div>
+    const DEFAULT_DAILY_QUOTES = {
+      spring: [
+        "春の風のように、やわらかな笑顔でお客様をお迎えしましょう。",
+        "新しい季節の始まりに、丁寧なひと声で安心を届けましょう。",
+      ],
+      summer: [
+        "暑い日こそ、最初のひと言に涼しさと思いやりを添えましょう。",
+        "ご来店の瞬間に、爽やかな挨拶で心地よさをつくりましょう。",
+      ],
+      autumn: [
+        "雨の日のご来店には、いつも以上の感謝を言葉にしましょう。",
+        "実りの季節こそ、落ち着いた応対で信頼を積み重ねましょう。",
+      ],
+      winter: [
+        "寒い季節ほど、あたたかい声掛けがお客様の心に残ります。",
+        "冷える朝こそ、先回りした気配りで安心感を届けましょう。",
+      ],
+      all: [
+        "小さな気配りが、次のご来店につながる一番のサービスです。",
+        "整った身だしなみと明るい挨拶が、信頼の第一歩です。",
+        "お客様の一日が少し良くなる接客を心がけましょう。",
+      ],
+    };
 
-<section class="management-grid" aria-label="Portal設定">
-  <a class="management-card" href="portal-settings.html" style="text-decoration:none; color:inherit;">
-    <h3>Portal設定</h3>
-    <p>今日のひとことを編集して、Portal HOMEへ反映します。</p>
-    <span class="status-pill active">今日のひとこと</span>
-  </a>
-</section>
+    function pad(value) {
+      return String(value).padStart(2, "0");
+    }
 
-</div>
+    function getSeason(date = new Date()) {
+      const month = date.getMonth() + 1;
+      if ([3, 4, 5].includes(month)) return "spring";
+      if ([6, 7, 8].includes(month)) return "summer";
+      if ([9, 10, 11].includes(month)) return "autumn";
+      return "winter";
+    }
 
-<script>
+    function getDefaultDailyMessage(date = new Date()) {
+      const season = getSeason(date);
+      const pool = (DEFAULT_DAILY_QUOTES[season] || []).concat(DEFAULT_DAILY_QUOTES.all);
+      return pool[date.getDate() % pool.length];
+    }
 
-const employees = [
+    function getDailyMessage() {
+      const saved = localStorage.getItem(DAILY_MESSAGE_KEY);
+      if (saved && saved.trim()) return saved.trim();
+      return getDefaultDailyMessage();
+    }
 
-{
-id:"iizuka_k",
-name:"飯塚康太郁E
-},
+    function parseDateTime(value) {
+      if (!value) return null;
+      const d = new Date(value);
+      return Number.isNaN(d.getTime()) ? null : d;
+    }
 
-{
-id:"iizuka_s",
-name:"飯塚宗一郁E
-},
+    function formatStoredTime(value) {
+      const d = parseDateTime(value);
+      if (!d) return "--:--:--";
+      return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+    }
 
-{
-id:"aoshima",
-name:"青島昁E��"
-}
+    function formatDuration(startValue, endValue) {
+      const start = parseDateTime(startValue);
+      if (!start) return "--";
+      const end = parseDateTime(endValue) || new Date();
+      const totalSec = Math.max(0, Math.floor((end - start) / 1000));
+      const h = Math.floor(totalSec / 3600);
+      const m = Math.floor((totalSec % 3600) / 60);
+      const s = totalSec % 60;
+      return `${pad(h)}:${pad(m)}:${pad(s)}`;
+    }
 
-];
+    function readStaffState(staffId) {
+      const currentUser = localStorage.getItem("currentUser");
+      const isCurrentUser = currentUser === staffId;
+      const read = (key, fallbackKey) => {
+        const scoped = localStorage.getItem(`paddock_${staffId}_${key}`) || localStorage.getItem(`${staffId}_${key}`);
+        if (scoped) return scoped;
+        return isCurrentUser ? localStorage.getItem(fallbackKey) || "" : "";
+      };
 
-const area =
-document.getElementById(
-"employee-list"
-);
+      const clockIn = read("clock_in", "paddock_clock_in");
+      const clockOut = read("clock_out", "paddock_clock_out");
+      const breakStatus = read("break_status", "paddock_break_status");
+      const breakOutTime = read("break_out_time", "paddock_break_out_time");
+      const breakReturnTime = read("break_return_time", "paddock_break_return_time");
 
-employees.forEach(emp=>{
+      return { clockIn, clockOut, breakStatus, breakOutTime, breakReturnTime };
+    }
 
-const card =
-document.createElement("div");
+    function resolveStatus(state) {
+      if (state.clockOut) return { key: "done", label: "退勤", className: "badge-done" };
+      if (state.breakStatus === "out") return { key: "out", label: "外出", className: "badge-out" };
+      if (state.breakStatus === "break") return { key: "break", label: "休憩", className: "badge-break" };
+      if (state.clockIn) return { key: "working", label: "勤務中", className: "badge-working" };
+      return { key: "none", label: "未出勤", className: "badge-none" };
+    }
 
-card.className =
-"employee-card";
+    function buildRows() {
+      return STAFF.map((staff) => {
+        const state = readStaffState(staff.id);
+        const status = resolveStatus(state);
+        return {
+          ...staff,
+          ...state,
+          status,
+          workDuration: formatDuration(state.clockIn, state.clockOut),
+        };
+      });
+    }
 
-const common =
-localStorage.getItem(
-emp.id + "_common"
-) === "pass"
-? "✁E
-: "❁E;
+    function renderSummary(rows) {
+      const counts = { working: 0, out: 0, break: 0, done: 0 };
+      rows.forEach((row) => {
+        if (counts[row.status.key] !== undefined) counts[row.status.key] += 1;
+      });
 
-const basic =
-localStorage.getItem(
-emp.id + "_basic"
-) === "pass"
-? "✁E
-: "❁E;
+      document.getElementById("countWorking").textContent = String(counts.working);
+      document.getElementById("countOut").textContent = String(counts.out);
+      document.getElementById("countBreak").textContent = String(counts.break);
+      document.getElementById("countDone").textContent = String(counts.done);
+    }
 
-const concierge =
-localStorage.getItem(
-emp.id + "_concierge"
-) === "pass"
-? "✁E
-: "❁E;
+    function renderStaffTable(rows) {
+      const body = document.getElementById("staffTableBody");
+      body.innerHTML = rows.map((row) => {
+        return `
+          <tr>
+            <td>${row.name}</td>
+            <td>${row.store}</td>
+            <td><span class="badge ${row.status.className}">${row.status.label}</span></td>
+            <td>${formatStoredTime(row.clockIn)}</td>
+            <td>${formatStoredTime(row.breakOutTime)}</td>
+            <td>${formatStoredTime(row.breakReturnTime)}</td>
+            <td>${formatStoredTime(row.clockOut)}</td>
+            <td>${row.workDuration}</td>
+          </tr>
+        `;
+      }).join("");
+    }
 
-const technician =
-localStorage.getItem(
-emp.id + "_technician"
-) === "pass"
-? "✁E
-: "❁E;
+    function renderStoreCards(rows) {
+      const grid = document.getElementById("storeGrid");
+      const stores = rows.reduce((acc, row) => {
+        if (!acc[row.store]) {
+          acc[row.store] = { working: 0, out: 0, break: 0, done: 0 };
+        }
+        if (acc[row.store][row.status.key] !== undefined) {
+          acc[row.store][row.status.key] += 1;
+        }
+        return acc;
+      }, {});
 
-const sales =
-localStorage.getItem(
-emp.id + "_ducati_sales"
-) === "pass"
-? "✁E
-: "❁E;
+      grid.innerHTML = Object.keys(stores).map((storeName) => {
+        const count = stores[storeName];
+        return `
+          <article class="store-card">
+            <h3>${storeName}</h3>
+            <div class="store-counts">
+              <div><span>勤務中</span><strong>${count.working}</strong></div>
+              <div><span>外出中</span><strong>${count.out}</strong></div>
+              <div><span>休憩中</span><strong>${count.break}</strong></div>
+              <div><span>退勤済</span><strong>${count.done}</strong></div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
 
-const service =
-localStorage.getItem(
-emp.id + "_ducati_service"
-) === "pass"
-? "✁E
-: "❁E;
+    function renderDailyMessageEditor() {
+      const input = document.getElementById("dailyMessageInput");
+      const preview = document.getElementById("currentMessageText");
+      const status = document.getElementById("saveStatus");
 
-const lastLogin =
-localStorage.getItem(
-emp.id + "_lastlogin"
-) || "未ログイン";
+      input.value = localStorage.getItem(DAILY_MESSAGE_KEY) || "";
+      preview.textContent = getDailyMessage();
 
-card.innerHTML =
+      document.getElementById("saveMessageBtn").addEventListener("click", () => {
+        const value = input.value.trim();
+        if (!value) {
+          localStorage.removeItem(DAILY_MESSAGE_KEY);
+          status.textContent = "空欄のため初期メッセージ表示へ切り替えました。";
+        } else {
+          localStorage.setItem(DAILY_MESSAGE_KEY, value);
+          status.textContent = "保存しました。Portal HOMEへ反映されます。";
+        }
+        preview.textContent = getDailyMessage();
+      });
 
-`
+      document.getElementById("resetMessageBtn").addEventListener("click", () => {
+        localStorage.removeItem(DAILY_MESSAGE_KEY);
+        input.value = "";
+        preview.textContent = getDailyMessage();
+        status.textContent = "初期メッセージに戻しました。";
+      });
+    }
 
-<div class="employee-name">
+    function guardAdminPage() {
+      const currentUser = localStorage.getItem("currentUser");
+      const role = localStorage.getItem("role") || localStorage.getItem("currentUserRole") || "";
+      if (!currentUser) {
+        window.location.href = "index.html";
+        return;
+      }
+      if (role !== "admin") {
+        alert("権限がありません。Portal HOMEへ戻ります。");
+        window.location.href = "../dashboard.html";
+      }
+    }
 
-${emp.name}
+    function renderAll() {
+      const rows = buildRows();
+      renderSummary(rows);
+      renderStaffTable(rows);
+      renderStoreCards(rows);
+    }
 
-</div>
-
-<div class="login-date">
-
-最終ログイン�E�E${lastLogin}
-
-</div>
-
-<div class="test-row">
-<span>共通教育試騁E/span>
-<span>${common}</span>
-</div>
-
-<div class="test-row">
-<span>Kawasaki基礎試騁E/span>
-<span>${basic}</span>
-</div>
-
-<div class="test-row">
-<span>Kawasakiコンシェルジュ試騁E/span>
-<span>${concierge}</span>
-</div>
-
-<div class="test-row">
-<span>KawasakiチE��ニシャン試騁E/span>
-<span>${technician}</span>
-</div>
-
-<div class="test-row">
-<span>Ducatiセールス試騁E/span>
-<span>${sales}</span>
-</div>
-
-<div class="test-row">
-<span>Ducatiサービス試騁E/span>
-<span>${service}</span>
-</div>
-
-`;
-
-area.appendChild(card);
-
-});
-
-</script>
-
+    guardAdminPage();
+    renderDailyMessageEditor();
+    renderAll();
+    setInterval(renderAll, 1000);
+  </script>
 </body>
 </html>
-```
-
-
-
-

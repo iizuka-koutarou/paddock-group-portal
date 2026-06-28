@@ -89,6 +89,13 @@
       flex-wrap: wrap;
     }
 
+    .button-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
     .hint {
       color: #64748b;
       font-size: 12px;
@@ -105,6 +112,42 @@
       font-weight: 800;
       padding: 0 18px;
       cursor: pointer;
+    }
+
+    .reset-btn {
+      min-height: 42px;
+      border-radius: 999px;
+      border: 1px solid rgba(30, 58, 138, 0.3);
+      background: #eef2ff;
+      color: #1e3a8a;
+      font-size: 14px;
+      font-weight: 800;
+      padding: 0 18px;
+      cursor: pointer;
+    }
+
+    .current-box {
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.32);
+      background: #f8fafc;
+      padding: 14px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .current-box p {
+      margin: 0;
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .current-message {
+      margin: 0;
+      color: #1f2937;
+      font-size: 15px;
+      line-height: 1.8;
+      white-space: pre-wrap;
     }
 
     .status {
@@ -131,38 +174,118 @@
       <label for="dailyMessageInput">今日のひとこと（2〜5行推奨）
         <textarea id="dailyMessageInput" placeholder="例：\n今日も笑顔でお客様をお迎えしましょう。\n暑い季節です。冷たいお飲み物のお声掛けを忘れずに。"></textarea>
       </label>
+      <div class="current-box">
+        <p>現在表示中のメッセージ</p>
+        <div id="currentMessagePreview" class="current-message"></div>
+      </div>
       <div class="actions">
         <p class="hint">入力内容はこの端末のローカルストレージに保存されます。</p>
-        <button type="button" class="save-btn" id="saveMessageButton">保存する</button>
+        <div class="button-row">
+          <button type="button" class="save-btn" id="saveMessageButton">保存する</button>
+          <button type="button" class="reset-btn" id="resetMessageButton">初期メッセージに戻す</button>
+        </div>
       </div>
       <p class="status" id="saveStatus" aria-live="polite"></p>
     </section>
   </main>
 
   <script>
+        function guardAdminPage() {
+          const currentUser = localStorage.getItem("currentUser");
+          const role = localStorage.getItem("role") || localStorage.getItem("currentUserRole") || "";
+          if (!currentUser) {
+            window.location.href = "index.html";
+            return;
+          }
+          if (role !== "admin") {
+            alert("権限がありません。Portal HOMEへ戻ります。");
+            window.location.href = "../dashboard.html";
+          }
+        }
+
     const DAILY_MESSAGE_KEY = "paddock_portal_daily_message";
+    const DEFAULT_DAILY_QUOTES = {
+      spring: [
+        "春の風のように、やわらかな笑顔でお客様をお迎えしましょう。",
+        "新しい季節の始まりに、丁寧なひと声で安心を届けましょう。",
+      ],
+      summer: [
+        "暑い日こそ、最初のひと言に涼しさと思いやりを添えましょう。",
+        "ご来店の瞬間に、爽やかな挨拶で心地よさをつくりましょう。",
+      ],
+      autumn: [
+        "雨の日のご来店には、いつも以上の感謝を言葉にしましょう。",
+        "実りの季節こそ、落ち着いた応対で信頼を積み重ねましょう。",
+      ],
+      winter: [
+        "寒い季節ほど、あたたかい声掛けがお客様の心に残ります。",
+        "冷える朝こそ、先回りした気配りで安心感を届けましょう。",
+      ],
+      all: [
+        "小さな気配りが、次のご来店につながる一番のサービスです。",
+        "整った身だしなみと明るい挨拶が、信頼の第一歩です。",
+        "お客様の一日が少し良くなる接客を心がけましょう。",
+      ],
+    };
+
     const input = document.getElementById("dailyMessageInput");
     const status = document.getElementById("saveStatus");
     const saveButton = document.getElementById("saveMessageButton");
+    const resetButton = document.getElementById("resetMessageButton");
+    const preview = document.getElementById("currentMessagePreview");
+
+    function getSeason(date = new Date()) {
+      const month = date.getMonth() + 1;
+      if ([3, 4, 5].includes(month)) return "spring";
+      if ([6, 7, 8].includes(month)) return "summer";
+      if ([9, 10, 11].includes(month)) return "autumn";
+      return "winter";
+    }
+
+    function getDefaultDailyMessage(date = new Date()) {
+      const season = getSeason(date);
+      const pool = (DEFAULT_DAILY_QUOTES[season] || []).concat(DEFAULT_DAILY_QUOTES.all);
+      const index = date.getDate() % pool.length;
+      return pool[index];
+    }
+
+    function getEffectiveMessage() {
+      const saved = localStorage.getItem(DAILY_MESSAGE_KEY);
+      if (saved && saved.trim()) return saved.trim();
+      return getDefaultDailyMessage();
+    }
 
     function loadSavedMessage() {
       const saved = localStorage.getItem(DAILY_MESSAGE_KEY) || "";
       input.value = saved;
+      preview.textContent = getEffectiveMessage();
     }
 
     function saveMessage() {
       const value = input.value.trim();
       if (!value) {
-        status.textContent = "メッセージを入力してください。";
-        status.style.color = "#b91c1c";
-        return;
+        localStorage.removeItem(DAILY_MESSAGE_KEY);
+        status.textContent = "保存メッセージが空のため、初期メッセージ表示に切り替えました。";
+        status.style.color = "#166534";
+      } else {
+        localStorage.setItem(DAILY_MESSAGE_KEY, value);
+        status.textContent = "保存しました。Portal HOMEに反映されます。";
+        status.style.color = "#166534";
       }
-      localStorage.setItem(DAILY_MESSAGE_KEY, value);
-      status.textContent = "保存しました。Portal HOMEに反映されます。";
+      loadSavedMessage();
+    }
+
+    function resetToDefaultMessage() {
+      localStorage.removeItem(DAILY_MESSAGE_KEY);
+      input.value = "";
+      preview.textContent = getDefaultDailyMessage();
+      status.textContent = "初期メッセージに戻しました。";
       status.style.color = "#166534";
     }
 
     saveButton.addEventListener("click", saveMessage);
+    resetButton.addEventListener("click", resetToDefaultMessage);
+    guardAdminPage();
     loadSavedMessage();
   </script>
 </body>

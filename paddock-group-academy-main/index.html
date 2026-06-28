@@ -1,232 +1,163 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PADDOCK Portal | ログイン</title>
+  <script src="users.js"></script>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --text-main: #1f2937;
+      --text-sub: #64748b;
+      --line: rgba(148, 163, 184, 0.24);
+      --shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+    }
 
-<title>PADOCK GROUP ACADEMY LOGIN</title>
+    * { box-sizing: border-box; }
 
-<script src="users.js"></script>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 10% 10%, rgba(30, 58, 138, 0.12), transparent 40%), var(--bg);
+      color: var(--text-main);
+      font-family: "Noto Sans JP", "Yu Gothic", sans-serif;
+      padding: 20px;
+    }
 
-<style>
+    .login-card {
+      width: min(460px, 100%);
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      box-shadow: var(--shadow);
+      padding: 26px;
+      display: grid;
+      gap: 14px;
+    }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:"Yu Gothic",sans-serif;
-}
+    h1 {
+      margin: 0;
+      color: #0f172a;
+      font-size: 30px;
+      line-height: 1.2;
+      text-align: center;
+    }
 
-body{
+    .sub {
+      margin: 0;
+      color: var(--text-sub);
+      font-size: 13px;
+      line-height: 1.8;
+      text-align: center;
+    }
 
-height:100vh;
+    .demo {
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.26);
+      background: #f8fafc;
+      color: #334155;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 10px 12px;
+      margin: 0;
+    }
 
-display:flex;
+    label {
+      display: grid;
+      gap: 6px;
+      font-size: 13px;
+      color: #334155;
+      font-weight: 800;
+    }
 
-justify-content:center;
+    input {
+      width: 100%;
+      min-height: 44px;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: #ffffff;
+      color: var(--text-main);
+      padding: 0 12px;
+      font-size: 14px;
+    }
 
-align-items:center;
+    button {
+      min-height: 44px;
+      border: none;
+      border-radius: 999px;
+      background: #1e3a8a;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
 
-background:
-linear-gradient(
-rgba(0,0,0,.65),
-rgba(0,0,0,.85)
-),
-url("paddock-top.jpg");
+    #error {
+      min-height: 18px;
+      color: #b91c1c;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      margin: 0;
+    }
 
-background-size:cover;
-background-position:center;
-
-color:white;
-
-}
-
-.login-box{
-
-width:420px;
-
-background:
-rgba(255,255,255,.95);
-
-padding:40px;
-
-border-radius:20px;
-
-color:#222;
-
-box-shadow:
-0 10px 30px rgba(0,0,0,.3);
-
-}
-
-h1{
-
-text-align:center;
-
-margin-bottom:30px;
-
-color:#1F3A5F;
-
-}
-
-input{
-
-width:100%;
-
-padding:15px;
-
-margin-bottom:15px;
-
-border:1px solid #ddd;
-
-border-radius:10px;
-
-font-size:16px;
-
-}
-
-button{
-
-width:100%;
-
-padding:15px;
-
-background:#1F3A5F;
-
-color:white;
-
-border:none;
-
-border-radius:10px;
-
-font-size:18px;
-
-font-weight:bold;
-
-cursor:pointer;
-
-}
-
-#error{
-
-color:red;
-
-margin-top:15px;
-
-text-align:center;
-
-}
-
-</style>
-
-
-<link rel="stylesheet" href="../assets/css/academy-common.css" /></head>
-
+    .home-link {
+      color: #1d4ed8;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      display: block;
+    }
+  </style>
+</head>
 <body>
+  <main class="login-card">
+    <h1>PADDOCK Portal</h1>
+    <p class="sub">管理者・一般ユーザー共通ログイン</p>
+    <p class="demo">管理者ID: admin / 一般ID: ittyan007@gmail.com / パスワード: users.js の設定値</p>
 
-<header class="paddock-header academy-kawasaki">
-  <div class="paddock-inner">
-    <div class="paddock-brand">
-      <div class="brand">PADDOCK Portal</div>
-      <div class="subtitle sr-only">Portal</div>
-    </div>
-    <div class="paddock-title">
-      <div class="page-name">PADOCK GROUP ACADEMY LOGIN</div>
-    </div>
-    <a href="../dashboard.html" class="home-btn">🏠 Portal HOME</a>
-  </div>
-</header><div class="login-box">
+    <label for="id">ID
+      <input id="id" type="text" autocomplete="username" placeholder="IDを入力" />
+    </label>
+    <label for="pass">Password
+      <input id="pass" type="password" autocomplete="current-password" placeholder="パスワードを入力" />
+    </label>
 
-<h1>PADOCK GROUP<br>ACADEMY</h1>
+    <button type="button" onclick="login()">ログイン</button>
+    <p id="error" aria-live="polite"></p>
+    <a class="home-link" href="../dashboard.html">Portal HOMEへ戻る</a>
+  </main>
 
-<input
-type="text"
-id="id"
-placeholder="ID">
+  <script>
+    function login() {
+      const id = document.getElementById("id").value.trim();
+      const pass = document.getElementById("pass").value;
+      const user = users[id];
+      const error = document.getElementById("error");
 
-<input
-type="password"
-id="pass"
-placeholder="Password">
+      if (!user || user.password !== pass) {
+        error.textContent = "IDまたはパスワードが違います。";
+        return;
+      }
 
-<button onclick="login()">
+      localStorage.setItem("currentUser", id);
+      localStorage.setItem("currentUserName", user.name);
+      localStorage.setItem("currentUserRole", user.role);
+      localStorage.setItem("name", user.name);
+      localStorage.setItem("role", user.role);
+      localStorage.setItem(id + "_lastlogin", new Date().toLocaleString());
 
-ログイン
-
-</button>
-
-<div id="error"></div>
-
-</div>
-
-<script>
-
-function login(){
-
-const id =
-document.getElementById("id").value;
-
-const pass =
-document.getElementById("pass").value;
-
-const user =
-users[id];
-
-if(!user){
-
-document.getElementById(
-"error"
-).innerHTML =
-
-"IDまた�Eパスワードが違いまぁE;
-
-return;
-
-}
-
-if(user.password !== pass){
-
-document.getElementById(
-"error"
-).innerHTML =
-
-"IDまた�Eパスワードが違いまぁE;
-
-return;
-
-}
-
-localStorage.setItem(
-"currentUser",
-id
-);
-
-localStorage.setItem(
-"currentUserName",
-user.name
-);
-
-localStorage.setItem(
-id + "_lastlogin",
-new Date().toLocaleString()
-);
-
-if(user.role === "admin"){
-
-location.href =
-"admin.html";
-
-}else{
-
-location.href =
-"welcome.html";
-
-}
-
-}
-
-</script>
-
+      if (user.role === "admin") {
+        location.href = "admin.html";
+      } else {
+        location.href = "welcome.html";
+      }
+    }
+  </script>
 </body>
 </html>
-

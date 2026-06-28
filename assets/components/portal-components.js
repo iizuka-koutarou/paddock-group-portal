@@ -31,6 +31,12 @@
       if (this.dataset.rendered === "true") return;
       this.classList.add("portal-sidebar");
       const version = escapeHtml(this.getAttribute("version") || "Portal v1.0");
+      const currentRole = localStorage.getItem("role") || localStorage.getItem("currentUserRole") || "";
+      const currentUser = localStorage.getItem("currentUser") || "";
+      const isAdmin = currentRole === "admin" || currentUser === "admin";
+      const adminMenu = isAdmin
+        ? '<a href="paddock-group-academy-main/admin.html"><i data-lucide="settings"></i><span>管理画面</span></a>'
+        : "";
       this.innerHTML =
         '<div class="sidebar-brand">' +
         '<img src="assets/images/logos/paddock-logo.jpg" alt="PADDOCK" class="sidebar-logo" />' +
@@ -43,7 +49,7 @@
         '<a href="#events"><i data-lucide="calendar-days"></i><span>イベント</span></a>' +
         '<a href="#academy"><i data-lucide="graduation-cap"></i><span>Academy</span></a>' +
         '<a href="#mypage"><i data-lucide="user-round"></i><span>マイページ</span></a>' +
-        '<a href="paddock-group-academy-main/admin.html"><i data-lucide="settings"></i><span>管理画面</span></a>' +
+        adminMenu +
         "</nav>" +
         '<p class="sidebar-version">' + version + "</p>";
       this.dataset.rendered = "true";

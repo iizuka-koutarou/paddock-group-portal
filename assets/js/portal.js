@@ -10,26 +10,27 @@ const state = {
 const WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"];
 const PORTAL_DAILY_MESSAGE_KEY = "paddock_portal_daily_message";
 
-const customerMessages = {
-  morning: [
-    "今日も笑顔でお客様をお迎えしましょう。",
-    "朝一番の明るい挨拶が、お客様の安心につながります。",
-    "ご来店いただくお客様に、気持ちの良い一日をお届けしましょう。"
+const DEFAULT_DAILY_QUOTES = {
+  spring: [
+    "春の風のように、やわらかな笑顔でお客様をお迎えしましょう。",
+    "新しい季節の始まりに、丁寧なひと声で安心を届けましょう。",
   ],
-  noon: [
-    "ご来店いただく一人ひとりのお客様との時間を大切にしましょう。",
-    "忙しい時間帯こそ、落ち着いたご案内を心掛けましょう。",
-    "お客様の小さな不安にも、丁寧に耳を傾けましょう。"
+  summer: [
+    "暑い日こそ、最初のひと言に涼しさと思いやりを添えましょう。",
+    "ご来店の瞬間に、爽やかな挨拶で心地よさをつくりましょう。",
   ],
-  evening: [
-    "一日の締めくくりまで、丁寧な対応を心掛けましょう。",
-    "夕方のご来店にも、変わらない笑顔でお迎えしましょう。",
-    "最後のお見送りまで、PADDOCKらしい心配りを大切に。"
+  autumn: [
+    "雨の日のご来店には、いつも以上の感謝を言葉にしましょう。",
+    "実りの季節こそ、落ち着いた応対で信頼を積み重ねましょう。",
   ],
-  night: [
-    "今日も一日お疲れ様でした。明日も気持ちよくお迎えしましょう。",
-    "閉店前も、最後まで丁寧な対応を心掛けましょう。",
-    "明日のお客様対応につながる準備を整えておきましょう。"
+  winter: [
+    "寒い季節ほど、あたたかい声掛けがお客様の心に残ります。",
+    "冷える朝こそ、先回りした気配りで安心感を届けましょう。",
+  ],
+  all: [
+    "小さな気配りが、次のご来店につながる一番のサービスです。",
+    "整った身だしなみと明るい挨拶が、信頼の第一歩です。",
+    "お客様の一日が少し良くなる接客を心がけましょう。",
   ],
 };
 
@@ -83,21 +84,12 @@ function getSeason(date = new Date()) {
   return "winter";
 }
 
-function getSeasonalMessage(date = new Date()) {
-  const period = getTimePeriod(date);
+function getDefaultDailyMessage(date = new Date()) {
   const season = getSeason(date);
-  const baseMessages = customerMessages[period];
-  const base = baseMessages[date.getDate() % baseMessages.length];
-
-  const seasonal = {
-    spring: "新しい出会いの季節です。第一印象を大切にしましょう。",
-    summer: "暑い季節です。冷たいお飲み物のお声掛けを忘れずに。",
-    autumn: "ツーリングの話題が増える季節です。お客様との会話を楽しみましょう。",
-    winter: "寒い中ご来店いただくお客様へ、温かいおもてなしを心掛けましょう。",
-  };
-
-  if (date.getDate() % 2 === 0) return seasonal[season];
-  return base;
+  const seasonalQuotes = DEFAULT_DAILY_QUOTES[season] || [];
+  const pool = seasonalQuotes.concat(DEFAULT_DAILY_QUOTES.all);
+  const index = date.getDate() % pool.length;
+  return pool[index];
 }
 
 function updateClock() {
@@ -107,13 +99,16 @@ function updateClock() {
   const currentTime = document.getElementById("currentTime");
   const currentDate = document.getElementById("currentDate");
   const greetingText = document.getElementById("greetingText");
+  const greetingName = document.getElementById("greetingName");
   const serviceMessage = document.getElementById("serviceMessage");
   const dailyMessage = document.getElementById("dailyMessage");
   const messageText = getDailyMessage();
+  const currentUserName = localStorage.getItem("name") || localStorage.getItem("currentUserName");
 
   if (currentTime) currentTime.textContent = nowTime();
   if (currentDate) currentDate.textContent = formatDate(now);
   if (greetingText) greetingText.textContent = getGreeting(period);
+  if (greetingName && currentUserName) greetingName.textContent = `${currentUserName}さん`;
   if (serviceMessage) serviceMessage.textContent = messageText;
   if (dailyMessage) dailyMessage.textContent = messageText;
 
@@ -123,7 +118,7 @@ function updateClock() {
 function getDailyMessage() {
   const fromStorage = localStorage.getItem(PORTAL_DAILY_MESSAGE_KEY);
   if (fromStorage && fromStorage.trim()) return fromStorage.trim();
-  return "管理画面のPortal設定から「今日のひとこと」を登録してください。";
+  return getDefaultDailyMessage();
 }
 
 function parseDateTime(value) {
